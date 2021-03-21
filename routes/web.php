@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Admin routes
+require 'admin.php';
+
+// Frontend routes
 Route::get('/', function () {
     return view('welcome');
 });
