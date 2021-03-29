@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\Admin\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 Use Illuminate\Support\Facades\Auth;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
-
-
+session_start();
 class LoginController extends Controller
 {
     public function login(Request $request)
@@ -22,7 +23,8 @@ class LoginController extends Controller
         if (Auth::guard('admin')->attempt($credentials)) {   
             return redirect()->route('dashboard');
         } else {
-            return redirect()->back()->withInput();
+            session::put('message','Username or password incorret');
+            return Redirect::to('/login');
         }
     }
 }

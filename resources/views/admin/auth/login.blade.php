@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <!-- 
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.2.0
@@ -63,6 +64,13 @@ License: You must have a valid license purchased only from themeforest(the above
 	<form class="login-form" action="{{route('admin.login')}}" method="POST">
 		@csrf
 		<h3 class="form-title">Sign In</h3>
+		<?php 
+		$message= Session::get('message');
+		if($message){
+			echo $message;
+			Session::put('message',null);
+		}
+		?> 
 		<div class="alert alert-danger display-hide">
 			<button class="close" data-close="alert"></button>
 			<span>
