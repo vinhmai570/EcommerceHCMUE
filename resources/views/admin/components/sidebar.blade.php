@@ -26,12 +26,12 @@
         </a>
         <ul class="sub-menu">
           <li>
-            <a href="">
+            <a href="{{ route('admin.categories.create') }}">
             <i class="fa fa-plus"></i>
             New</a>
           </li>
           <li>
-            <a href="">
+            <a href="{{ route('admin.categories.index') }}">
             <i class="fa fa-list"></i>
             List Categories</a>
           </li>

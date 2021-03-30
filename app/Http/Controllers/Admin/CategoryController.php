@@ -10,15 +10,19 @@ use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
+    const ITEM_PER_PAGE = 12;
+
     public function index()
     {
-        return view('admin.category.index');
+        $categories = Category::paginate(self::ITEM_PER_PAGE);
+
+        return view('admin.category.index', compact('categories'));
     }
 
     public function create()
     {
         $categories = Category::all();
-        
+
         return view('admin.category.create', compact('categories'));
     }
 
