@@ -45,7 +45,7 @@ function save_image($image, $name, $type)
 /**
  * @param $image
  * @param null $size
- * @return false|string
+ * @return string
  */
 function get_image($image, $size)
 {
@@ -57,29 +57,4 @@ function get_image($image, $size)
     }
 
     return $image;
-}
-
-/**
- * @param $image
- * @param null $size
- * @return false|string
- */
-function get_image_product($image, $size = null)
-{
-    if (strrpos($image, '.')) {
-        $ext = substr($image, strrpos($image, '.'));
-        $name = substr($image, 0, strrpos($image, '.'));
-
-        switch ($size) {
-            case '400x300':
-                return File::exists(public_path() . "/" . $name . '_400x300' . $ext) ? ("/" . $name . '_400x300') . $ext:false;
-            case '600x450':
-                return File::exists(public_path() . "/" . $name . '_600x450' . $ext) ? ("/" . $name . '_600x450') . $ext:false;
-            case '800x600':
-                return File::exists(public_path() . "/" . $name . '_800x600' . $ext) ? ("/" . $name . '_800x600') . $ext:false;
-            default:
-                return File::exists(public_path().'/'.$image)?$image:false;
-        }
-    }
-    return false;
 }

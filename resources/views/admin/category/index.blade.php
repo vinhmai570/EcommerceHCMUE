@@ -77,8 +77,8 @@
         {{ $category->id }}
       </td>
       <td>
-        <button type="button" class="todo-username-btn btn btn-circle btn-default btn-xs">&nbsp;Edit&nbsp;</button>
-        <button type="button" class="todo-username-btn btn btn-circle btn-default btn-xs">&nbsp;Delete&nbsp;</button>
+        <button type="button" class="todo-username-btn btn btn-circle btn-default btn-xs"><a href="{{ route('admin.categories.edit', $category->id) }}">&nbsp;Edit&nbsp;</a></button>
+        <button type="button" class="todo-username-btn btn btn-circle btn-default btn-xs"><a href="{{ route('admin.categories.destroy', $category->id) }}">&nbsp;Delete&nbsp;</a></button>
       </td>
     </tr>
   @endforeach

@@ -36,9 +36,41 @@ class CategoryController extends Controller
         if ($request->hasFile('image')) {
             $category->image = save_image($request->image, $category->slug, 'category');
         }
-
         $category->save();
+        $request->session()->flash('notice', 'Create category successful');
 
         return back()->withInput();
+    }
+
+    public function edit($id)
+    {
+        $category = Category::find($id);
+        $categories = Category::all();
+
+        return view('admin.category.edit', compact('category', 'categories')); 
+    }
+
+    public function update(CategoryRequest $request, $id)
+    {
+        $category = Category::find($id);
+        $category->name = $request->name;
+        $category->parent_id = $request->parent_id;
+        $category->slug = Str::slug($request->name);
+
+        if ($request->hasFile('image')) {
+            $category->image = save_image($request->image, $category->slug, 'category');
+        }
+        $category->save();
+        $request->session()->flash('notice', 'Update category successful');
+
+        return redirect()->route('admin.categories.index');
+    }
+
+    public function destroy($id)
+    {
+        Category::destroy($id);
+        $request->session()->flash('notice', 'Delete category successful');
+
+        return back(); 
     }
 }
