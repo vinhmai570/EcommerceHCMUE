@@ -52,9 +52,9 @@ function get_image($image, $size)
     if (strrpos($image, '.')) {
         $name = substr($image, 0, strrpos($image, '.'));
         $image_path = $name . '_' .$size . '.jpg';
-        $image_path_origin = storage_path('app/') . $image_path;
-        return File::exists($image_path) ? $image_path : $image_path;
+        $image_path_origin = storage_path('app/public/') . $image_path;
+        return File::exists($image_path_origin) ? asset('storage/' . $image_path) : '';
     }
 
-    return $image;
+    return '';
 }

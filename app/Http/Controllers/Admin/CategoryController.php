@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Http\Requests\CategoryRequest;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Session;
 
 class CategoryController extends Controller
 {
@@ -37,9 +38,8 @@ class CategoryController extends Controller
             $category->image = save_image($request->image, $category->slug, 'category');
         }
         $category->save();
-        $request->session()->flash('notice', 'Create category successful');
-
-        return back()->withInput();
+q
+        return back()->with('message', 'Create category successful');
     }
 
     public function edit($id)
