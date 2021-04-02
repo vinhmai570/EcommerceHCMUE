@@ -18,5 +18,5 @@ require 'admin.php';
 
 // Frontend routes
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.home');
 });
