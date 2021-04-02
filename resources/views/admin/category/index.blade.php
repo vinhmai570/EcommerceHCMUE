@@ -65,7 +65,7 @@
         {{ $category->id }}
       </td>
       <td>
-        <img src="{{ asset('storage/'.get_image($category->image, '60x60')) }}" alt="">
+        <img src="{{ get_image($category->image, '60x60') }}" alt="">
       </td>
       <td>
         {{ $category->name }}
