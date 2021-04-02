@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Http\Requests\CategoryRequest;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
+
 class CategoryController extends Controller
 {
     const ITEM_PER_PAGE = 12;
@@ -37,7 +38,7 @@ class CategoryController extends Controller
             $category->image = save_image($request->image, $category->slug, 'category');
         }
         $category->save();
-
+q
         return back()->with('message', 'Create category successful');
     }
 
