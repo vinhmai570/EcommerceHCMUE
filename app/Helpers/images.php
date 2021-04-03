@@ -1,6 +1,7 @@
 <?php
 
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 define('CATEGORY_IMAGE_SIZE', [
   "small"  => [60  => 60],
@@ -52,9 +53,36 @@ function get_image($image, $size)
     if (strrpos($image, '.')) {
         $name = substr($image, 0, strrpos($image, '.'));
         $image_path = $name . '_' .$size . '.jpg';
-        $image_path_origin = storage_path('app/') . $image_path;
-        return File::exists($image_path) ? $image_path : $image_path;
+        $image_path_origin = storage_path('app/public/') . $image_path;
+        return File::exists($image_path_origin) ? asset('storage/' . $image_path) : '';
     }
 
-    return $image;
+    return '';
+}
+
+/**
+ * @param $image_path
+ * @param $image_type
+ * @return boolean
+ */
+function delete_image($image_path, $image_type)
+{
+    if (empty($image_path)) {
+        return false;
+    }
+
+    $const_size = strtoupper($image_type).'_IMAGE_SIZE';
+    $image_path = 'public/' . $image_path;
+    Storage::delete($image_path);
+
+    $image_path_without_ext = substr($image_path, 0, strrpos($image_path, '.'));
+
+    foreach (constant($const_size) as $key => $size) {
+        foreach ($size as $witdth => $height) {
+            $image_path = $image_path_without_ext . '_' . $witdth . 'x' . $height . '.jpg';
+            Storage::delete($image_path);
+        }
+    }
+
+    return true;
 }
