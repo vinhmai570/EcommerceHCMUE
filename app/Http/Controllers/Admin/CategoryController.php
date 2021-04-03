@@ -10,7 +10,6 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
-
 class CategoryController extends Controller
 {
     const ITEM_PER_PAGE = 12;
