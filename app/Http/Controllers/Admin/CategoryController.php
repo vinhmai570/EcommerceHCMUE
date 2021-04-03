@@ -8,6 +8,8 @@ use App\Models\Category;
 use App\Http\Requests\CategoryRequest;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
+
 
 class CategoryController extends Controller
 {
@@ -47,7 +49,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
         $categories = Category::all();
 
-        return view('admin.category.edit', compact('category', 'categories')); 
+        return view('admin.category.edit', compact('category', 'categories'));
     }
 
     public function update(CategoryRequest $request, $id)
@@ -68,9 +70,10 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
-        Category::destroy($id);
-        $request->session()->flash('notice', 'Delete category successful');
+        $category = Category::find($id);
+        $category->delete();
+        delete_image($category->image, 'category');
 
-        return back(); 
+        return back()->with('message', 'Delete category successful');
     }
 }
