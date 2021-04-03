@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\Auth\LoginController as UserLoginController;
+use App\Http\Controllers\User\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +22,6 @@ require 'admin.php';
 Route::get('/', function () {
     return view('layouts.home');
 });
+
+// login user
+Route::match(['get', 'post'], '/user', [UserLoginController::class, 'login'])->name('login');

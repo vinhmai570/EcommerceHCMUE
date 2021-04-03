@@ -1,12 +1,16 @@
 <?php
-
+use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Admin\Auth\LogoutController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoryController;
+use Illuminate\Support\Facades\Route;
 
-Route::get('/dashboard', function () {
-    return view('layouts/admin');
-});
+Route::match(['get', 'post'], '/login', [LoginController::class, 'login'])->name('admin.login');
+Route::get('/logout', [LogoutController::class,'logout'])->name('admin.logout');
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::middleware('auth:admin')->name('admin.')->group(function (){
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
     Route::prefix('categories')->name('categories.')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('index');
         Route::get('/create', [CategoryController::class, 'create'])->name('create');
@@ -16,3 +20,4 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/delete/{id}', [CategoryController::class, 'destroy'])->name('destroy');
     });
 });
+
