@@ -38,7 +38,7 @@ class CategoryController extends Controller
             $category->image = save_image($request->image, $category->slug, 'category');
         }
         $category->save();
-q
+
         return back()->with('message', 'Create category successful');
     }
 
