@@ -71,7 +71,7 @@
         {{ $category->name }}
       </td>
       <td>
-        {{ $category->parent_id }}
+        {{ $category->parent->name }}
       </td>
       <td>
         {{ $category->id }}
