@@ -63,9 +63,8 @@ class CategoryController extends Controller
             $category->image = save_image($request->image, $category->slug, 'category');
         }
         $category->save();
-        $request->session()->flash('notice', 'Update category successful');
 
-        return redirect()->route('admin.categories.index');
+        return redirect()->route('admin.categories.index')->with('message', 'Update category successful');;
     }
 
     public function destroy($id)
