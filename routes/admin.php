@@ -20,4 +20,3 @@ Route::middleware('auth:admin')->name('admin.')->group(function (){
         Route::get('/delete/{id}', [CategoryController::class, 'destroy'])->name('destroy');
     });
 });
-
