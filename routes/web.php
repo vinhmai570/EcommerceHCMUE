@@ -24,4 +24,4 @@ Route::get('/', function () {
 });
 
 // login user
-Route::match(['get', 'post'], '/user', [UserLoginController::class, 'login'])->name('login');
+Route::match(['get', 'post'], '/user', [UserLoginController::class, 'login'])->name('user.login');
