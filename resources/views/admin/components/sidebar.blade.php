@@ -19,7 +19,7 @@
         </a>
       </li>
       <li>
-        <a href="javascript:;">
+        <a href="{{ route('admin.categories.index') }}">
         <i class="fa fa-list-alt"></i>
         <span class="title">Category</span>
         <span class="arrow "></span>
@@ -34,6 +34,20 @@
             <a href="{{ route('admin.categories.index') }}">
             <i class="fa fa-list"></i>
             List Categories</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="{{ route('admin.categories.index') }}">
+        <i class="icon-handbag"></i>
+        <span class="title">Product</span>
+        <span class="arrow "></span>
+        </a>
+        <ul class="sub-menu">
+          <li>
+            <a href="{{ route('admin.products.create') }}">
+            <i class="fa fa-plus"></i>
+            New</a>
           </li>
         </ul>
       </li>
