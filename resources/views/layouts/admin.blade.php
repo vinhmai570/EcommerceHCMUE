@@ -28,6 +28,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <link href="{{ asset('admin/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
 <link href="{{ asset('admin/plugins/uniform/css/uniform.default.css') }}" rel="stylesheet" type="text/css"/>
 <link href="{{ asset('admin/plugins/bootstrap-toastr/toastr.min.css') }}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset('admin/plugins/bootstrap-switch/css/bootstrap-switch.min.css') }}" rel="stylesheet" type="text/css"/>
 <!-- BEGIN PAGE STYLES -->
 
 <!-- END PAGE STYLES -->
@@ -79,6 +80,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="{{ asset('admin/plugins/jquery-slimscroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('admin/plugins/uniform/jquery.uniform.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('admin/plugins/bootstrap-toastr/toastr.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('admin/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
