@@ -78,14 +78,6 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-md-2 control-label">SKU: <span class="required">
-                    * </span>
-                    </label>
-                    <div class="col-md-10">
-                      <input type="text" class="form-control" name="product[sku]" placeholder="">
-                    </div>
-                  </div>
-                  <div class="form-group">
                     <label class="col-md-2 control-label">Price: <span class="required">
                     * </span>
                     </label>
@@ -118,9 +110,37 @@
                 </div>
               </div>
               <div class="tab-pane" id="tab_images">
-                <div class="alert alert-success margin-bottom-10">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-                  <i class="fa fa-warning fa-lg"></i> Image type and information need to be specified.
+                <div class="col-md-6 row">
+                    <div class="form-group">
+                      <label class="col-md-2 control-label">Sku <span class="required"> * </span>
+                      </label>
+                      <div class="col-md-10">
+                          <input type="text" class="form-control" name="product[name]" placeholder="">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-2 control-label">Price: <span class="required"> * </span>
+                      </label>
+                      <div class="col-md-10">
+                          <input type="text" class="form-control" name="product[name]" placeholder="">
+                      </div>
+                    </div>
+                </div>
+                <div class="col-md-6 row">
+                    <div class="form-group">
+                      <label class="col-md-2 control-label">Quantity: <span class="required"> * </span>
+                      </label>
+                      <div class="col-md-10">
+                          <input type="text" class="form-control" name="product[name]" placeholder="">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-2 control-label">Image: <span class="required"> * </span>
+                      </label>
+                      <div class="col-md-10">
+                          <input type="file" class="form-control" name="product[name]" placeholder="">
+                      </div>
+                    </div>
                 </div>
                 <div id="tab_images_uploader_container" class="text-align-reverse margin-bottom-10">
                   <a id="tab_images_uploader_pickfiles" href="javascript:;" class="btn yellow">
