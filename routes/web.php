@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\User\Auth\LoginController as UserLoginController;
-use App\Http\Controllers\User\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,14 +12,10 @@ use App\Http\Controllers\User\HomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+require __DIR__.'/admin.php';
 
-// Admin routes
-require 'admin.php';
-
-// Frontend routes
 Route::get('/', function () {
     return view('layouts.home');
-});
+})->name('home');
 
-// login user
-Route::match(['get', 'post'], '/user', [UserLoginController::class, 'login'])->name('login');
+require __DIR__.'/auth.php';
