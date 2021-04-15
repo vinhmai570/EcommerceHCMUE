@@ -23,5 +23,6 @@ Route::middleware('auth:admin')->name('admin.')->group(function (){
 
     Route::prefix('products')->name('products.')->group(function () {
         Route::get('/create', [ProductController::class, 'create'])->name('create');
+        Route::post('/create', [ProductController::class, 'store'])->name('store');
     });
 });

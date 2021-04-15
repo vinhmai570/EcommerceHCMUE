@@ -3,7 +3,8 @@
 <!-- BEGIN PAGE CONTENT-->
 <div class="row">
   <div class="col-md-12">
-    <form class="form-horizontal form-row-seperated row" action="#">
+    <form class="form-horizontal form-row-seperated row" method="POST" enctype="multipart/form-data" action="{{ route('admin.products.store') }}">
+      @csrf
       <div class="col-md-9 col-sm-12">
         <div class="portlet light">
           <div class="portlet-title">
@@ -30,7 +31,7 @@
               </div>
               <div class="form-group">
                 <label>Content</label>
-                <textarea class="form-control" name="short_description"></textarea>
+                <textarea class="form-control" name="content"></textarea>
               </div>
               <div class="form-group">
                 <label>Image</label>
@@ -44,7 +45,7 @@
                       <label>{{ $attribute->name }}</label>
                       <select class="table-group-action-input form-control input-medium" name="attribute[]">
                         @foreach ($attribute->attribute_values as $value)
-                          <option value="{{ $value->id }}">{{ $value->value_name }}</option>                  
+                          <option value="{{ $value->id }}">{{ $value->value_name }}</option>
                         @endforeach
                       </select>
                     </div>
@@ -71,7 +72,7 @@
                   <div style="margin: 10px">
                     <div class="form-group">
                       <label>Price sale</label>
-                      <input type="number" class="form-control" name="price_sale" placeholder="">
+                      <input type="number" class="form-control" name="sale_price" placeholder="">
                     </div>
                   </div>
                 </div>
@@ -92,9 +93,9 @@
         <div class="portlet light">
           <div class="form-group">
             <label>Category</label>
-            <select class="table-group-action-input form-control input-medium" name="category">
+            <select class="table-group-action-input form-control input-medium" name="category_id">
             @foreach ($categories as $category)
-              <option value="{{ $category->id }}">{{ $category->name }}</option>                  
+              <option value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach
             </select>
           </div>
