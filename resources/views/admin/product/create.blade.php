@@ -43,7 +43,7 @@
                   <div style="margin: 10px">
                     <div class="form-group">
                       <label>{{ $attribute->name }}</label>
-                      <select class="table-group-action-input form-control input-medium" name="attribute[]">
+                      <select class="table-group-action-input form-control input-medium" name="product_attributes[{{ $attribute->id }}]">
                         @foreach ($attribute->attribute_values as $value)
                           <option value="{{ $value->id }}">{{ $value->value_name }}</option>
                         @endforeach
