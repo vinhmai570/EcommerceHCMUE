@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\CreateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductSku;
@@ -22,7 +22,7 @@ class ProductController extends Controller
         return view('admin.product.create', compact('categories', 'attributes'));
     }
 
-    public function store(Request $request)
+    public function store(CreateProductRequest $request)
     {
         $product_params = $request->only(['name', 'description', 'content', 'category_id']);
         $product_params['slug'] = Str::slug($request->name);
