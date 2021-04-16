@@ -17,6 +17,7 @@ class CreateProductSkusTable extends Migration
             $table->id();
             $table->integer('product_id');
             $table->string('sku');
+            $table->string('image')->nullable();
             $table->decimal('price', $precision = 8, $scale = 2);
             $table->decimal('sale_price', $precision = 8, $scale = 2);
             $table->integer('quantity');
