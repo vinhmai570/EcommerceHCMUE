@@ -1,4 +1,9 @@
 @extends('layouts.admin')
+
+@section('css')
+  <link href="{{ asset('admin/plugins/bootstrap-switch/css/bootstrap-switch.min.css') }}" rel="stylesheet" type="text/css"/>
+@endsection
+
 @section('content')
 <!-- BEGIN PAGE CONTENT-->
 <div class="row">
@@ -15,7 +20,7 @@
               <span class="caption-helper">Man Tops</span>
             </div>
             <div class="actions btn-set">
-              <button type="button" name="back" class="btn btn-default btn-circle"><i class="fa fa-angle-left"></i> Back</button>
+              <a href="{{ URL::previous() }}" name="back" class="btn btn-default btn-circle"><i class="fa fa-angle-left"></i> Back</a>
               <button class="btn green-haze btn-circle"><i class="fa fa-check"></i> Save</button>
             </div>
           </div>
@@ -55,10 +60,7 @@
                   <div style="margin: 10px">
                     <div class="form-group">
                       <label>{{ $attribute->name }}</label>
-                      @if ($errors->first('product_attributes'))
-                      <p class="text-danger"> {{ $errors->first('product_attributes') }} </p>
-                      @endif
-                      <select class="table-group-action-input form-control input-medium @error('product_attributes') has-error @enderror" name="product_attributes[{{ $attribute->id }}]">
+                      <select class="table-group-action-input form-control input-medium" name="product_attributes[{{ $attribute->id }}]">
                         @foreach ($attribute->attribute_values as $value)
                           <option value="{{ $value->id }}">{{ $value->value_name }}</option>
                         @endforeach
@@ -155,4 +157,8 @@
   </div>
 </div>
 <!-- END PAGE CONTENT-->
+@endsection
+
+@section('script')
+  <script src="{{ asset('admin/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}" type="text/javascript"></script>
 @endsection
