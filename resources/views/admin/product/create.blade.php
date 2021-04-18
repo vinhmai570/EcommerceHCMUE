@@ -133,21 +133,15 @@
           </div>
         </div>
         <div class="portlet light">
-          <div class="form-group @error('is_published') has-error @enderror">
+          <div class="form-group">
             <label class="control-label" style="margin:0">Is published?</label>
-            @if ($errors->first('is_published'))
-            <p class="text-danger"> {{ $errors->first('is_published') }} </p>
-            @endif
             <hr>
             <input type="checkbox" checked class="make-switch" data-size="small" name="is_published">
           </div>
         </div>
         <div class="portlet light">
-          <div class="form-group @error('is_featured') has-error @enderror">
+          <div class="form-group">
             <label class="control-label" style="margin:0">Is featured?</label>
-            @if ($errors->first('is_featured'))
-            <p class="text-danger"> {{ $errors->first('is_featured') }} </p>
-            @endif
             <hr>
             <input type="checkbox" class="make-switch" data-size="small" name="is_featured">
           </div>
