@@ -36,53 +36,39 @@
 
 <div class="table-responsive">
   <table class="table">
-  <thead>
-  <tr>
-    <th>
-       #
-    </th>
-    <th>
-       Image
-    </th>
-    <th>
-       Name
-    </th>
-    <th>
-       Parent
-    </th>
-    <th>
-       Published
-    </th>
-    <th>
-       Action
-    </th>
-  </tr>
-  </thead>
-  <tbody>
-  @foreach ($categories as $category)
-    <tr>
-      <td>
-        {{ $category->id }}
-      </td>
-      <td>
-        <img src="{{ get_image($category->image, '60x60') }}" alt="">
-      </td>
-      <td>
-        {{ $category->name }}
-      </td>
-      <td>
-        {{ $category->parent ? $category->parent->name : ''}}
-      </td>
-      <td>
-        {{ $category->id }}
-      </td>
-      <td>
-        <button type="button" class="todo-username-btn btn btn-circle btn-default btn-xs"><a href="{{ route('admin.categories.edit', $category->id) }}">&nbsp;Edit&nbsp;</a></button>
-        <button type="button" class="todo-username-btn btn btn-circle btn-default btn-xs"><a href="{{ route('admin.categories.destroy', $category->id) }}">&nbsp;Delete&nbsp;</a></button>
-      </td>
-    </tr>
-  @endforeach
-  </tbody>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Parent</th>
+        <th>Published</th>
+        <th class="text-center" style="width: 130px;">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+    @foreach ($categories as $category)
+      <tr>
+        <td>{{ $category->id }}</td>
+        <td><img src="{{ get_image($category->image, '60x60') }}" alt=""></td>
+        <td>{{ $category->name }}</td>
+        <td>{{ $category->parent ? $category->parent->name : ''}}</td>
+        <td>{{ $category->id }}</td>
+        <td class="text-center">
+          <div class="row">
+            <div class="col-md-4">
+              <a href="{{ route('admin.categories.edit', $category->id) }}" class="btn btn-circle btn-info btn-xs">&nbsp;Edit&nbsp;</a>
+            </div>
+            <form action="{{ route('admin.categories.destroy', [$category->id]) }}" method="POST" class="col-md-8">
+              @method('DELETE')
+              @csrf
+              <button type="submit" class="btn btn-circle btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete this item?');">&nbsp;Delete&nbsp;</button>
+            </form>
+          </div>
+        </td>
+      </tr>
+    @endforeach
+    </tbody>
   </table>
   {{ $categories->links() }}
 </div>

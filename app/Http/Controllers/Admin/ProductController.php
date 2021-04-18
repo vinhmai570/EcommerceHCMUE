@@ -15,11 +15,27 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
+    const ITEM_PER_PAGE = 12;
+
+    public function index()
+    {
+        $products = Product::join('product_skus', 'products.id', '=', 'product_skus.product_id')->where('product_skus.is_default', 1)->paginate(self::ITEM_PER_PAGE);
+        return view('admin.product.index', compact('products'));
+    }
+
     public function create()
     {
         $categories = Category::all();
         $attributes = Attribute::all();
         return view('admin.product.create', compact('categories', 'attributes'));
+    }
+
+    public function delete($id)
+    {
+      $product = Product::find($id);
+      $product->delete();
+
+      return back()->with('message', 'Delete product successful');
     }
 
     public function store(CreateProductRequest $request)
