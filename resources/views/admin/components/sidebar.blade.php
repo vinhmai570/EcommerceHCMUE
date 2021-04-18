@@ -49,6 +49,11 @@
             <i class="fa fa-plus"></i>
             New</a>
           </li>
+          <li>
+            <a href="{{ route('admin.products.index') }}">
+            <i class="fa fa-list"></i>
+            List Products</a>
+          </li>
         </ul>
       </li>
     </ul>
