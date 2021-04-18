@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateProductRequest;
+use App\Http\Requests\UpdateProductRequest;
+use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductSku;
@@ -77,5 +79,17 @@ class ProductController extends Controller
             DB::rollback();
             return back()->with_input()->with('message', 'Create product failed');
         }
+    }
+
+    public function update(UpdateProductRequest $request, $id)
+    {
+      $product = Product::find($id);
+      $product_params = $request->product;
+      $product_params['slug'] = Str::slug($product_params['name']);
+      $product_params['is_published'] = isset($product_params['is_published']) ? true : false;
+      $product_params['is_featured']  = isset($product_params['is_featured']) ? true : false;
+      $product->update($product_params);
+
+      return redirect()->route('admin.products.index')->with('message', 'Update product successful');
     }
 }

@@ -10,7 +10,7 @@
 <!-- BEGIN PAGE CONTENT-->
 <div class="row">
   <div class="col-md-12">
-    <form class="form-horizontal form-row-seperated row" method="POST" enctype="multipart/form-data" action="">
+    <form class="form-horizontal form-row-seperated row" method="POST" enctype="multipart/form-data" action="{{ route('admin.products.update', [$product->id]) }}">
       @method('PUT')
       @csrf
       <div class="col-md-9 col-sm-12">
@@ -29,26 +29,26 @@
           </div>
           <div class="portlet-body">
             <div class="form-body">
-              <div class="form-group @error('name') has-error @enderror">
+              <div class="form-group @error('product.name') has-error @enderror">
                 <label>Name</label>
-                @if ($errors->first('name'))
-                <p class="text-danger"> {{ $errors->first('name') }} </p>
+                @if ($errors->first('product.name'))
+                <p class="text-danger"> {{ $errors->first('product.name') }} </p>
                 @endif
-                <input type="text" class="form-control" name="name" placeholder="" value="{{ $product->name }}">
+                <input type="text" class="form-control" name="product[name]" placeholder="" value="{{ $product->name }}">
               </div>
-              <div class="form-group @error('description') has-error @enderror">
+              <div class="form-group @error('product.description') has-error @enderror">
                 <label>Description</label>
-                @if ($errors->first('description'))
-                <p class="text-danger"> {{ $errors->first('description') }} </p>
+                @if ($errors->first('product.description'))
+                <p class="text-danger"> {{ $errors->first('product.description') }} </p>
                 @endif
-                <textarea class="form-control" name="description">{{ $product->description }}</textarea>
+                <textarea class="form-control" name="product[description]">{{ $product->description }}</textarea>
               </div>
-              <div class="form-group @error('content') has-error @enderror">
+              <div class="form-group @error('product.content') has-error @enderror">
                 <label>Content</label>
-                @if ($errors->first('content'))
-                <p class="text-danger"> {{ $errors->first('content') }} </p>
+                @if ($errors->first('product.content'))
+                <p class="text-danger"> {{ $errors->first('product.content') }} </p>
                 @endif
-                <textarea class="form-control" name="content">{{ $product->content }}</textarea>
+                <textarea class="form-control" name="product[content]">{{ $product->content }}</textarea>
               </div>
             </div>
           </div>
@@ -180,12 +180,12 @@
       </div>
       <div class="col-md-3 col-sm-12">
         <div class="portlet light">
-          <div class="form-group @error('category_id') has-error @enderror">
+          <div class="form-group @error('product.category_id') has-error @enderror">
             <label>Category</label>
-            @if ($errors->first('category_id'))
-            <p class="text-danger"> {{ $errors->first('category_id') }} </p>
+            @if ($errors->first('product.category_id'))
+            <p class="text-danger"> {{ $errors->first('product.category_id') }} </p>
             @endif
-            <select class="table-group-action-input form-control input-medium" name="category_id">
+            <select class="table-group-action-input form-control input-medium" name="product[category_id]">
             @foreach ($categories as $category)
               <option value="{{ $category->id }}" {{ $product->category_id ? 'selected' : '' }}>{{ $category->name }}</option>
             @endforeach
@@ -193,23 +193,17 @@
           </div>
         </div>
         <div class="portlet light">
-          <div class="form-group @error('is_published') has-error @enderror">
+          <div class="form-group">
             <label class="control-label" style="margin:0">Is published?</label>
-            @if ($errors->first('is_published'))
-            <p class="text-danger"> {{ $errors->first('is_published') }} </p>
-            @endif
             <hr>
-            <input type="checkbox"  @if($product->is_published) checked @endif class="make-switch" data-size="small" name="is_published">
+            <input type="checkbox"  @if($product->is_published) checked @endif class="make-switch" data-size="small" name="product[is_published]">
           </div>
         </div>
         <div class="portlet light">
-          <div class="form-group @error('is_featured') has-error @enderror">
+          <div class="form-group">
             <label class="control-label" style="margin:0">Is featured?</label>
-            @if ($errors->first('is_featured'))
-            <p class="text-danger"> {{ $errors->first('is_featured') }} </p>
-            @endif
             <hr>
-            <input type="checkbox" @if($product->is_featured) checked @endif class="make-switch" data-size="small" name="is_featured">
+            <input type="checkbox" @if($product->is_featured) checked @endif class="make-switch" data-size="small" name="product[is_featured]">
           </div>
         </div>
       </div>
