@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class SkuValue extends Model
 {
     use HasFactory;
+
+    /**
+     * Get the user that owns the SkuValue
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function attribute_value()
+    {
+        return $this->belongsTo(AttributeValue::class);
+    }
 }

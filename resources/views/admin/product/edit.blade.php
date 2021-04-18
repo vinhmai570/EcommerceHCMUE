@@ -1,0 +1,226 @@
+@extends('layouts.admin')
+
+@section('css')
+  <link href="{{ asset('admin/plugins/bootstrap-switch/css/bootstrap-switch.min.css') }}" rel="stylesheet" type="text/css"/>
+  <link href="{{ asset('admin/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css') }}" rel="stylesheet" type="text/css"/>
+  <link href="{{ asset('admin/plugins/bootstrap-modal/css/bootstrap-modal.css') }}" rel="stylesheet" type="text/css"/>
+@endsection
+
+@section('content')
+<!-- BEGIN PAGE CONTENT-->
+<div class="row">
+  <div class="col-md-12">
+    <form class="form-horizontal form-row-seperated row" method="POST" enctype="multipart/form-data" action="">
+      @method('PUT')
+      @csrf
+      <div class="col-md-9 col-sm-12">
+        <div class="portlet light">
+          <div class="portlet-title">
+            <div class="caption">
+              <i class="icon-basket font-green-sharp"></i>
+              <span class="caption-subject font-green-sharp bold uppercase">
+              Edit Product </span>
+              <span class="caption-helper">Man Tops</span>
+            </div>
+            <div class="actions btn-set">
+              <a href="{{ URL::previous() }}" name="back" class="btn btn-default btn-circle"><i class="fa fa-angle-left"></i> Back</a>
+              <button class="btn green-haze btn-circle"><i class="fa fa-check"></i> Save</button>
+            </div>
+          </div>
+          <div class="portlet-body">
+            <div class="form-body">
+              <div class="form-group @error('name') has-error @enderror">
+                <label>Name</label>
+                @if ($errors->first('name'))
+                <p class="text-danger"> {{ $errors->first('name') }} </p>
+                @endif
+                <input type="text" class="form-control" name="name" placeholder="" value="{{ $product->name }}">
+              </div>
+              <div class="form-group @error('description') has-error @enderror">
+                <label>Description</label>
+                @if ($errors->first('description'))
+                <p class="text-danger"> {{ $errors->first('description') }} </p>
+                @endif
+                <textarea class="form-control" name="description">{{ $product->description }}</textarea>
+              </div>
+              <div class="form-group @error('content') has-error @enderror">
+                <label>Content</label>
+                @if ($errors->first('content'))
+                <p class="text-danger"> {{ $errors->first('content') }} </p>
+                @endif
+                <textarea class="form-control" name="content">{{ $product->content }}</textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="portlet light">
+          <div class="portlet-title row">
+            <div class="col-md-8 col-sm-12">
+              <h4>
+                <span>Product has variants</span>
+              </h4>
+            </div>
+            <div class="col-md-4 col-sm-12">
+              <div>
+                <a data-toggle="modal" href="#responsive" style="margin-right: 20px;">Add new variants</a>
+              </div>
+            </div>
+          </div>
+          <div class="portlet-body">
+            <!-- MODAL-->
+            <div id="responsive" class="modal fade" tabindex="-1" data-width="760">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Responsive</h4>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  @foreach ($attributes as $attribute)
+                  <div class="col-md-4 col-sm-6">
+                    <div class="form-group">
+                      <label>{{ $attribute->name }}</label>
+                      <select class="table-group-action-input form-control input-medium" name="product_attributes[{{ $attribute->id }}]">
+                        @foreach ($attribute->attribute_values as $value)
+                        <option value="{{ $value->id }}">{{ $value->value_name }}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                  </div>
+                  @endforeach
+                </div>
+                <div class="row">
+                  <div class="col-md-4 col-sm-6">
+                    <div class="form-group">
+                      <label>Sku</label>
+                      <input type="number" class="form-control" name="Sku">
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-6">
+                    <div class="form-group">
+                      <label>Price</label>
+                      <input type="number" class="form-control" name="price">
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-6">
+                    <div class="form-group">
+                      <label>Sale price</label>
+                      <input type="number" class="form-control" name="sale_price">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4 col-sm-6">
+                    <div class="form-group">
+                      <label>Quantity</label>
+                      <input type="number" class="form-control" name="quantity">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4 col-sm-6">
+                    <div class="form-group">
+                      <label>Image</label>
+                      <input type="file" class="form-control" name="image">
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-6">
+                    <div class="form-group" style="margin-top:30px;">
+                      <label>Is default?</label>
+                      <input type="checkbox" class="make-switch" data-size="small" name="is_default">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+                <button type="button" class="btn blue">Save changes</button>
+              </div>
+            </div>
+            <!-- END MODAL-->
+            <div class="form-body">
+              <div class="table-responsive">
+                <table class="table">
+                <thead>
+                <tr>
+                  <th>IMAGE</th>
+                  @foreach ($attributes as $attribute)
+                  <th>{{ strtoupper($attribute->name) }}</th>
+                  @endforeach
+                  <th>PRICE</th>
+                  <th>QUANTITY</th>
+                  <th>SKU</th>
+                  <th>IS DEFAULT</th>
+                  <th class="text-center">ACTION</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach ($product_skus as $product_sku)
+                  <tr>
+                    <td><img src="{{ get_image($product_sku->image, '60x60') }}" alt=""></td>
+                    @foreach ($product_sku->sku_values as $sku_value)
+                      <td>{{ $sku_value->attribute_value->value_name }}</td>
+                    @endforeach
+                    <td>{{ $product_sku->sale_price }}</td>
+                    <td>{{ $product_sku->quantity }}</td>
+                    <td>{{ $product_sku->sku }}</td>
+                    <td>{{ $product_sku->is_default ? 'TRUE' : 'FALSE'}}</td>
+                    <td class="text-center">
+                      <a class="btn btn-info btn-circle">Edit</a>
+                      <a class="btn btn-danger btn-circle">Delete</a>
+                    </td>
+                  </tr>
+                @endforeach
+                </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-12">
+        <div class="portlet light">
+          <div class="form-group @error('category_id') has-error @enderror">
+            <label>Category</label>
+            @if ($errors->first('category_id'))
+            <p class="text-danger"> {{ $errors->first('category_id') }} </p>
+            @endif
+            <select class="table-group-action-input form-control input-medium" name="category_id">
+            @foreach ($categories as $category)
+              <option value="{{ $category->id }}" {{ $product->category_id ? 'selected' : '' }}>{{ $category->name }}</option>
+            @endforeach
+            </select>
+          </div>
+        </div>
+        <div class="portlet light">
+          <div class="form-group @error('is_published') has-error @enderror">
+            <label class="control-label" style="margin:0">Is published?</label>
+            @if ($errors->first('is_published'))
+            <p class="text-danger"> {{ $errors->first('is_published') }} </p>
+            @endif
+            <hr>
+            <input type="checkbox"  @if($product->is_published) checked @endif class="make-switch" data-size="small" name="is_published">
+          </div>
+        </div>
+        <div class="portlet light">
+          <div class="form-group @error('is_featured') has-error @enderror">
+            <label class="control-label" style="margin:0">Is featured?</label>
+            @if ($errors->first('is_featured'))
+            <p class="text-danger"> {{ $errors->first('is_featured') }} </p>
+            @endif
+            <hr>
+            <input type="checkbox" @if($product->is_featured) checked @endif class="make-switch" data-size="small" name="is_featured">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- END PAGE CONTENT-->
+@endsection
+
+@section('script')
+  <script src="{{ asset('admin/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}" type="text/javascript"></script>
+  <script src="{{ asset('admin/plugins/bootstrap-modal/js/bootstrap-modalmanager.js') }}" type="text/javascript"></script>
+  <script src="{{ asset('admin/plugins/bootstrap-modal/js/bootstrap-modal.js') }}" type="text/javascript"></script>
+@endsection

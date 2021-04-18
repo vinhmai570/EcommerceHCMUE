@@ -30,6 +30,15 @@ class ProductController extends Controller
         return view('admin.product.create', compact('categories', 'attributes'));
     }
 
+    public function edit($id)
+    {
+        $categories = Category::all();
+        $attributes = Attribute::all();
+        $product = Product::find($id);
+        $product_skus = ProductSku::where('product_id', $product->id)->get();
+        return view('admin.product.edit', compact('categories', 'attributes', 'product', 'product_skus'));
+    }
+
     public function delete($id)
     {
       $product = Product::find($id);
