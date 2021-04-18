@@ -51,9 +51,10 @@
     <div class="form-group">
       <label class="control-label">Parent</label>
       <div>
-        <select name="parent_id" value="{{ $category->id }}">
-          @foreach ($categories as $category)
-          <option value="{{ $category->id }}">{{ $category->name }}</option>
+        <select name="parent_id">
+          <option value="0">None</option>
+          @foreach ($categories as $parent)
+          <option value="{{ $parent->id }}" {{ $category->parent_id == $parent->id ? 'selected' : '' }}>{{ $parent->name }}</option>
           @endforeach
         </select>
       </div>
