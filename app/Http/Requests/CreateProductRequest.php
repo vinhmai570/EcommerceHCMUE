@@ -24,15 +24,16 @@ class CreateProductRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'name'               => 'required|min:3|max:255|unique:products,name,' .$this->id,
-            'description'        => 'required|min:3',
-            'content'            => 'required|min:3',
-            'category_id'        => 'integer',
-            'image'              => 'required|mimes:jpg,gif,png',
-            'sku'                => 'required|string',
-            'price'              => 'required|integer',
-            'sale_price'         => 'required|integer',
-            'quantity'           => 'required|integer'
+            'name'                 => 'required|min:3|max:255|unique:products,name,' .$this->id,
+            'description'          => 'required|min:3',
+            'content'              => 'required|min:3',
+            'category_id'          => 'integer',
+            'product_attributes.*' => 'required|integer',
+            'image'                => 'required|mimes:jpg,gif,png',
+            'sku'                  => 'required|string',
+            'price'                => 'required|integer',
+            'sale_price'           => 'required|integer',
+            'quantity'             => 'required|integer'
         ];
 
         return $rules;

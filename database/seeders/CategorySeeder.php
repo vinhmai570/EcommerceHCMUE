@@ -17,15 +17,17 @@ class CategorySeeder extends Seeder
     {
         DB::table('categories')->insert([
             [
-                'id' => 1,
+                'id'   => 1,
                 'name' => 'Uncategorized',
                 'slug' => 'uncategorized'
             ],
             [
+                'id'   => 2,
                 'name' => 'Watch',
                 'slug' => 'watch'
             ],
             [
+                'id'   => 3,
                 'name' => 'Laptop',
                 'slug' => 'laptop'
             ]

@@ -24,12 +24,13 @@ class ProductSkuRequest extends ApiRequest
     public function rules()
     {
         return [
-            'product_id' => 'required|integer',
-            'image'      => 'mimes:jpg,gif,png',
-            'sku'        => 'required|string|min:3|max:12',
-            'price'      => 'required|integer',
-            'sale_price' => 'required|integer',
-            'quantity'   => 'required|integer'
+            'product_id'           => 'required|integer',
+            'product_attributes.*' => 'required|integer',
+            'image'                => 'mimes:jpg,gif,png',
+            'sku'                  => 'required|string|min:3|max:12',
+            'price'                => 'required|integer',
+            'sale_price'           => 'required|integer',
+            'quantity'             => 'required|integer'
         ];
     }
 }
