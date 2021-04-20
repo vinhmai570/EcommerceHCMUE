@@ -24,11 +24,11 @@ class UpdateProductRequest extends FormRequest
     public function rules()
     {
         return [
-          'product.name'               => 'required|min:3|max:255|unique:products,name,' .$this->id,
-          'product.description'        => 'required|min:3',
-          'product.content'            => 'required|min:3',
-          'product.category_id'        => 'integer',
-          'product.quantity'           => 'required|integer'
+            'product.name'               => 'required|min:3|max:255|unique:products,name,' .$this->id,
+            'product.description'        => 'required|min:3',
+            'product.content'            => 'required|min:3',
+            'product.category_id'        => 'integer',
+            'product.quantity'           => 'required|integer'
         ];
     }
 }
