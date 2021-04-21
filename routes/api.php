@@ -24,6 +24,8 @@ Route::prefix('v1')->name('api.v1')->group(function () {
         Route::prefix('product-skus')->name('.product_skus')->group(function () {
             Route::post('/', [ProductSkuController::class, 'store'])->name('.store');
             Route::get('/{id}', [ProductSkuController::class, 'show'])->name('.show');
+            Route::put('/{id}', [ProductSkuController::class, 'update'])->name('.update');
+            Route::delete('/{id}', [ProductSkuController::class, 'destroy'])->name('.destroy');
         });
     });
 });
