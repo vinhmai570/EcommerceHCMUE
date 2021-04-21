@@ -10,4 +10,9 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'slug', 'description', 'content', 'category_id', 'is_published', 'is_featured'];
+
+    public function product_skus()
+    {
+        return $this->hasMany(ProductSku::class);
+    }
 }

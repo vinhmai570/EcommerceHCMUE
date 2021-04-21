@@ -60,17 +60,12 @@ class ProductController extends Controller
             DB::beginTransaction();
             $product = Product::create($product_params);
             $product_sku_params = $request->only(['sku', 'price', 'sale_price', 'quantity']);
-            $product_sku_params['product_id'] = $product->id;
             $product_sku_params['is_default'] = true;
             $product_sku_params['image'] = save_image($request->image, $product->slug, 'product_sku');
-            $product_sku = ProductSku::create($product_sku_params);
-
+            $product_sku = $product->product_skus()->save(new ProductSku($product_sku_params));
             foreach ($request->product_attributes as $attribute_id => $attribute_value_id) {
-                $sku_value = new SkuValue;
-                $sku_value->product_sku_id = $product_sku->id;
-                $sku_value->attribute_id = $attribute_id;
-                $sku_value->attribute_value_id = $attribute_value_id;
-                $sku_value->save();
+                $sku_value_params = compact('attribute_id', 'attribute_value_id');
+                $product_sku->sku_values()->save(new SkuValue($sku_value_params));
             }
             DB::commit();
 

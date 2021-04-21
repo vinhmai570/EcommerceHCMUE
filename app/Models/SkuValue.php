@@ -9,6 +9,8 @@ class SkuValue extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['attribute_id', 'attribute_value_id'];
+
     /**
      * Get the user that owns the SkuValue
      *
