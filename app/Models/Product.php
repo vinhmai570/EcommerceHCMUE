@@ -15,4 +15,12 @@ class Product extends Model
     {
         return $this->hasMany(ProductSku::class);
     }
+
+    public static function boot() {
+        parent::boot();
+
+        static::deleting(function($product) {
+             $product->product_skus()->delete();
+        });
+    }
 }

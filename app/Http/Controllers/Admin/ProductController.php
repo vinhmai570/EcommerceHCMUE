@@ -43,10 +43,18 @@ class ProductController extends Controller
 
     public function delete($id)
     {
-      $product = Product::find($id);
-      $product->delete();
-
-      return back()->with('message', 'Delete product successful');
+        try {
+            DB::beginTransaction();
+                $product = Product::find($id);
+                $product_sku_ids = $product->product_skus()->pluck('id');
+                SkuValue::where('product_sku_id', $product_sku_ids)->delete();
+                $product->delete();
+            DB::commit();
+            return back()->with('message', 'Delete product successful');
+        } catch(\Exception $e) {
+            DB::rollback();
+            return back()->with('alert-type', 'error')->with('message', 'Delete product Failed');
+        }
     }
 
     public function store(CreateProductRequest $request)
@@ -72,7 +80,7 @@ class ProductController extends Controller
             return back()->with('message', 'Create product successful');
         } catch(\Exception $e) {
             DB::rollback();
-            return back()->with_input()->with('message', 'Create product failed');
+            return back()->with_input()->with('alert-type', 'error')->with('message', 'Create product failed');
         }
     }
 
