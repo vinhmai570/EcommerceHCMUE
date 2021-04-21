@@ -63,24 +63,25 @@
             </div>
             <div class="col-md-4 col-sm-12">
               <div>
-                <a data-toggle="modal" href="#responsive" style="margin-right: 20px;">Add new variants</a>
+                <a data-toggle="modal" href="#product_sku_modal" style="margin-right: 20px;">Add new variants</a>
               </div>
             </div>
           </div>
           <div class="portlet-body">
             <!-- MODAL-->
-            <div id="responsive" class="modal fade" tabindex="-1" data-width="760">
+            <div id="product_sku_modal" class="modal fade" tabindex="-1" data-width="760">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                 <h4 class="modal-title">Responsive</h4>
               </div>
               <div class="modal-body">
+                <input type="hidden" id="product_id" value="{{ $product->id }}">
                 <div class="row">
                   @foreach ($attributes as $attribute)
                   <div class="col-md-4 col-sm-6">
                     <div class="form-group">
                       <label>{{ $attribute->name }}</label>
-                      <select class="table-group-action-input form-control input-medium" name="product_attributes[{{ $attribute->id }}]">
+                      <select class="table-group-action-input form-control input-medium attributes" name="product_attributes[{{ $attribute->id }}]" id="{{ $attribute->id }}">
                         @foreach ($attribute->attribute_values as $value)
                         <option value="{{ $value->id }}">{{ $value->value_name }}</option>
                         @endforeach
@@ -93,19 +94,19 @@
                   <div class="col-md-4 col-sm-6">
                     <div class="form-group">
                       <label>Sku</label>
-                      <input type="number" class="form-control" name="Sku">
+                      <input type="text" class="form-control" name="sku" id="sku">
                     </div>
                   </div>
                   <div class="col-md-4 col-sm-6">
                     <div class="form-group">
                       <label>Price</label>
-                      <input type="number" class="form-control" name="price">
+                      <input type="number" class="form-control" name="price" id="price">
                     </div>
                   </div>
                   <div class="col-md-4 col-sm-6">
                     <div class="form-group">
                       <label>Sale price</label>
-                      <input type="number" class="form-control" name="sale_price">
+                      <input type="number" class="form-control" name="sale_price" id="sale_price">
                     </div>
                   </div>
                 </div>
@@ -113,7 +114,7 @@
                   <div class="col-md-4 col-sm-6">
                     <div class="form-group">
                       <label>Quantity</label>
-                      <input type="number" class="form-control" name="quantity">
+                      <input type="number" class="form-control" name="quantity" id="quantity">
                     </div>
                   </div>
                 </div>
@@ -121,20 +122,20 @@
                   <div class="col-md-4 col-sm-6">
                     <div class="form-group">
                       <label>Image</label>
-                      <input type="file" class="form-control" name="image">
+                      <input type="file" class="form-control" name="image" id="image">
                     </div>
                   </div>
                   <div class="col-md-4 col-sm-6">
                     <div class="form-group" style="margin-top:30px;">
                       <label>Is default?</label>
-                      <input type="checkbox" class="make-switch" data-size="small" name="is_default">
+                      <input type="checkbox" class="make-switch" data-size="small" name="is_default" id="is_default">
                     </div>
                   </div>
                 </div>
               </div>
               <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
-                <button type="button" class="btn blue">Save changes</button>
+                <button type="button" id="btn-store-variant" class="btn blue">Save changes</button>
               </div>
             </div>
             <!-- END MODAL-->
@@ -154,9 +155,9 @@
                   <th class="text-center">ACTION</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="list_product_sku">
                 @foreach ($product_skus as $product_sku)
-                  <tr>
+                  <tr id="{{ $product_sku->id }}">
                     <td><img src="{{ get_image($product_sku->image, '60x60') }}" alt=""></td>
                     @foreach ($product_sku->sku_values as $sku_value)
                       <td>{{ $sku_value->attribute_value->value_name }}</td>
@@ -166,8 +167,8 @@
                     <td>{{ $product_sku->sku }}</td>
                     <td>{{ $product_sku->is_default ? 'TRUE' : 'FALSE'}}</td>
                     <td class="text-center">
-                      <a class="btn btn-info btn-circle">Edit</a>
-                      <a class="btn btn-danger btn-circle">Delete</a>
+                      <a class="btn btn-info btn-circle btn-edit-variant" data="{{ $product_sku->id }}" data-toggle="modal" href="#product_sku_modal">Edit</a>
+                      <a class="btn btn-danger btn-circle btn-delete-variant" data="{{ $product_sku->id }}" onclick="deleteVariant($(this))">Delete</a>
                     </td>
                   </tr>
                 @endforeach
@@ -217,4 +218,5 @@
   <script src="{{ asset('admin/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}" type="text/javascript"></script>
   <script src="{{ asset('admin/plugins/bootstrap-modal/js/bootstrap-modalmanager.js') }}" type="text/javascript"></script>
   <script src="{{ asset('admin/plugins/bootstrap-modal/js/bootstrap-modal.js') }}" type="text/javascript"></script>
+  @include('admin.scripts.product')
 @endsection

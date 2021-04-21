@@ -28,7 +28,6 @@ class UpdateProductRequest extends FormRequest
             'product.description'        => 'required|min:3',
             'product.content'            => 'required|min:3',
             'product.category_id'        => 'integer',
-            'product.quantity'           => 'required|integer'
         ];
     }
 }

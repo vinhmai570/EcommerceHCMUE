@@ -20,4 +20,9 @@ class SkuValue extends Model
     {
         return $this->belongsTo(AttributeValue::class);
     }
+
+    public function attribute()
+    {
+        return $this->belongsTo(Attribute::class);
+    }
 }

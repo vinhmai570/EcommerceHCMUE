@@ -6,8 +6,6 @@
 <script src="{{ asset('admin/plugins/jquery-slimscroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('admin/plugins/uniform/jquery.uniform.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('admin/plugins/bootstrap-toastr/toastr.min.js') }}" type="text/javascript"></script>
-
-@yield('script')
 <!-- END CORE PLUGINS -->
 
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
@@ -46,4 +44,5 @@
     @endif
   });
 </script>
+@yield('script')
 <!-- END JAVASCRIPTS -->
