@@ -11,10 +11,10 @@ define('CATEGORY_IMAGE_SIZE', [
 
 // edit when upload file to products
 define('PRODUCT_SKU_IMAGE_SIZE', [
-    "small"  => [60  => 60],
-    "medium" => [256 => 360],
-    "large"  => [600 => 600],
-    "list"   => [500 => 500],
+    "small"    => [60  => 60],
+    "medium"   => [256 => 360],
+    "large"    => [600 => 600],
+    "list"     => [500 => 500],
     "featured" => [400 => 480],
 ]);
 

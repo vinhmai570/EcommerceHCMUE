@@ -25,7 +25,6 @@ class ProductSkuController extends Controller
     public function store(ProductSkuRequest $request)
     {
         $product_sku_params = $request->only(['sku', 'price', 'sale_price', 'quantity', 'is_default']);
-        $product_sku_params['is_default']  = isset($product_sku_params['is_default']) ? true : false;
         try {
             DB::beginTransaction();
             $product = Product::findOrFail($request->product_id);
@@ -53,7 +52,6 @@ class ProductSkuController extends Controller
         try {
             DB::beginTransaction();
             $product_sku = ProductSku::findOrFail($id);
-            $product_sku_params['is_featured']  = isset($product_sku_params['is_featured']) ? true : false;
             if ($request->hasFile('image')) {
                 $image_name = $product_sku->product->slug . '_' . Str::random(self::NUMBER_CHAR_OF_TOKEN);
                 $product_sku_params['image'] = save_image($request->image, $image_name, 'product_sku');

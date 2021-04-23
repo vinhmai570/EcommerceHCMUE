@@ -63,7 +63,7 @@
             </div>
             <div class="col-md-4 col-sm-12">
               <div>
-                <a data-toggle="modal" href="#product_sku_modal" style="margin-right: 20px;">Add new variants</a>
+                <a data-toggle="modal" href="#product_sku_modal" style="margin-right: 20px;" id="btn-add-variant">Add new variants</a>
               </div>
             </div>
           </div>
@@ -76,6 +76,7 @@
               </div>
               <div class="modal-body">
                 <input type="hidden" id="product_id" value="{{ $product->id }}">
+                <input type="hidden" id="product_sku_id">
                 <div class="row">
                   @foreach ($attributes as $attribute)
                   <div class="col-md-4 col-sm-6">
@@ -117,25 +118,25 @@
                       <input type="number" class="form-control" name="quantity" id="quantity">
                     </div>
                   </div>
-                </div>
-                <div class="row">
                   <div class="col-md-4 col-sm-6">
                     <div class="form-group">
                       <label>Image</label>
                       <input type="file" class="form-control" name="image" id="image">
                     </div>
                   </div>
-                  <div class="col-md-4 col-sm-6">
+                </div>
+                <div class="row">
+                  {{-- <div class="col-md-4 col-sm-6">
                     <div class="form-group" style="margin-top:30px;">
                       <label>Is default?</label>
                       <input type="checkbox" class="make-switch" data-size="small" name="is_default" id="is_default">
                     </div>
-                  </div>
+                  </div> --}}
                 </div>
               </div>
               <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
-                <button type="button" id="btn-store-variant" class="btn blue">Save changes</button>
+                <button type="button" id="btn-save-variant" class="btn blue btn-create-variant">Save changes</button>
               </div>
             </div>
             <!-- END MODAL-->
