@@ -151,7 +151,15 @@
         item_sku +=  `<td>${productSku.sale_price}</td>
                         <td>${productSku.quantity}</td>
                         <td>${productSku.sku}</td>
-                        <td>${productSku.is_default ? 'TRUE' : 'FALSE'}</td>
+                        <td>
+                          <label>
+                            <div class="radio">
+                              <span class="${productSku.is_default ? 'checked' : ''}">
+                                <input type="radio" name="product[variantion_default_id]" ${productSku.is_default ? 'checked' : ''} value="{{ $product_sku->id }}">
+                              </span>
+                            </div>
+                          </label>
+                        </td>
                         <td class="text-center">
                         <a class="btn btn-info btn-circle btn-edit-variant" data="${productSku.id}" data-toggle="modal" href="#product_sku_modal">Edit</a>
                         <a class="btn btn-danger btn-circle btn-delete-variant" data="${productSku.id}" onclick="deleteVariant($(this))">Delete</a>

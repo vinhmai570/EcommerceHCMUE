@@ -166,7 +166,11 @@
                     <td>{{ $product_sku->sale_price }}</td>
                     <td>{{ $product_sku->quantity }}</td>
                     <td>{{ $product_sku->sku }}</td>
-                    <td>{{ $product_sku->is_default ? 'TRUE' : 'FALSE'}}</td>
+                    <td>
+                      <label>
+                        <input type="radio" name="product[variantion_default_id]" @if($product_sku->is_default) checked @endif value="{{ $product_sku->id }}">
+                      </label>
+                    </td>
                     <td class="text-center">
                       <a class="btn btn-info btn-circle btn-edit-variant" data="{{ $product_sku->id }}" data-toggle="modal" href="#product_sku_modal">Edit</a>
                       <a class="btn btn-danger btn-circle btn-delete-variant" data="{{ $product_sku->id }}" onclick="deleteVariant($(this))">Delete</a>
