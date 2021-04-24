@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Models\ProductSku;
 use App\Models\SkuValue;
+use App\Models\Category;
+use App\Models\Attribute;
 
 class ProductService {
     private $product_repostitory;
@@ -82,5 +84,15 @@ class ProductService {
             DB::rollback();
             return false;
         }
+    }
+
+    public function getAllAttributes()
+    {
+        return Attribute::all();
+    }
+
+    public function getAllCategories()
+    {
+        return Category::all();
     }
 }

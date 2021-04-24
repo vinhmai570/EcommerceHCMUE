@@ -5,9 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\UpdateProductRequest;
-use App\Models\Category;
-use App\Models\Attribute;
-use App\Models\AttributeValue;
 use App\Services\ProductService;
 
 class ProductController extends Controller
@@ -29,15 +26,15 @@ class ProductController extends Controller
 
     public function create()
     {
-        $categories = $this->getAllCategories();
-        $attributes = $this->getAllAttributes();
+        $categories = $this->product_service->getAllCategories();
+        $attributes = $this->product_service->getAllAttributes();
         return view('admin.product.create', compact('categories', 'attributes'));
     }
 
     public function edit($id)
     {
-        $categories   = $this->getAllCategories();
-        $attributes   = $this->getAllAttributes();
+        $categories   = $this->product_service->getAllCategories();
+        $attributes   = $this->product_service->getAllAttributes();
         $product      = $this->product_service->find($id);
         $product_skus = $product->product_skus;
         return view('admin.product.edit', compact('categories', 'attributes', 'product', 'product_skus'));
@@ -68,15 +65,5 @@ class ProductController extends Controller
         } else {
             return back()->with('alert-type', 'error')->with('message', 'Delete product Failed');
         }
-    }
-
-    private function getAllAttributes()
-    {
-        return Attribute::all();
-    }
-
-    private function getAllCategories()
-    {
-        return Category::all();
     }
 }
