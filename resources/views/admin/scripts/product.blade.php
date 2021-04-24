@@ -39,10 +39,19 @@
                                 productSku = resultData.data;
                                 sku_item = skuItem(productSku);
                                 $("#list_product_sku").append(sku_item);
+                                $(document).on('click', `.radio[data=${productSku.id}]`, function() {
+                                    $(`.radio:not([data=${productSku.id}])`).children().removeClass('checked');
+                                    $(this).children().addClass('checked');
+                                    $(this).children().children().attr('checked');
+                                });
+                                $(document).on('click', `.radio:not([data=${productSku.id}])`, function() {
+                                    $(`.radio[data=${productSku.id}]`).children().removeClass('checked');
+                                });
                             })
                         }
 
                         appendData();
+
                         $("#product_sku_modal").modal('hide');
                         toastr.success('Create variant successful!');
                     } else {
@@ -54,7 +63,6 @@
         deleteVariant = (_this) => {
             product_sku_id = _this.attr('data');
             var state = confirm("Delete this variant?");
-            console.log(product_sku_id);
             if (state) {
                 url = '{{ route('api.v1.admin.product_skus.store',) }}/'+ product_sku_id;
                 fetchData(url = url, data = {}, method = 'DELETE')
@@ -153,7 +161,7 @@
                         <td>${productSku.sku}</td>
                         <td>
                           <label>
-                            <div class="radio">
+                            <div class="radio" data="${productSku.id}">
                               <span class="${productSku.is_default ? 'checked' : ''}">
                                 <input type="radio" name="product[variantion_default_id]" ${productSku.is_default ? 'checked' : ''} value="{{ $product_sku->id }}">
                               </span>

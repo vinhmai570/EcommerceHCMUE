@@ -9,11 +9,11 @@ class ProductRepository extends AbstractRepository implements ProductRepositoryI
 {
     public function __construct()
     {
-        $this->modelClassName = \App\Models\Product::class;
+        $this->model_class_name = \App\Models\Product::class;
     }
 
     public function withVariantionDefault($columns = array('*'))
     {
-        return call_user_func_array("{$this->modelClassName}::withVariantionDefault", $columns);
+        return call_user_func_array("{$this->model_class_name}::withVariantionDefault", $columns);
     }
 }

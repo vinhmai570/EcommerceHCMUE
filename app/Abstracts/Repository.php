@@ -5,30 +5,30 @@ use App\Repositories\RepositoryInterface;
 
 abstract class Repository implements RepositoryInterface
 {
-    protected $modelClassName;
+    protected $model_class_name;
 
     public function create(array $attributes)
 	{
-		return call_user_func_array("{$this->modelClassName}::create", array($attributes));
+		return call_user_func_array("{$this->model_class_name}::create", array($attributes));
 	}
 
 	public function all($columns = array('*'))
 	{
-		return call_user_func_array("{$this->modelClassName}::all", array($columns));
+		return call_user_func_array("{$this->model_class_name}::all", array($columns));
 	}
 
 	public function find($id, $columns = array('*'))
 	{
-		return call_user_func_array("{$this->modelClassName}::find", array($id, $columns));
+		return call_user_func_array("{$this->model_class_name}::find", array($id, $columns));
 	}
 
     public function update($id, array $attributes)
 	{
-		return call_user_func_array("{$this->modelClassName}::update", array($id, $attributes));
+		return call_user_func_array("{$this->model_class_name}::update", array($id, $attributes));
 	}
 
 	public function destroy($ids)
 	{
-		return call_user_func_array("{$this->modelClassName}::destroy", array($ids));
+		return call_user_func_array("{$this->model_class_name}::destroy", array($ids));
 	}
 }
