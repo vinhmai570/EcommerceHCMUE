@@ -21,7 +21,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products = Product::join('product_skus', 'products.id', '=', 'product_skus.product_id')->where('product_skus.is_default', 1)->paginate(self::ITEM_PER_PAGE);
+        $products = Product::withVariantionDefault()->paginate(self::ITEM_PER_PAGE);
         return view('admin.product.index', compact('products'));
     }
 

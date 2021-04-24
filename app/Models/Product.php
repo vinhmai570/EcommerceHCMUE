@@ -23,4 +23,9 @@ class Product extends Model
              $product->product_skus()->delete();
         });
     }
+
+    public function scopeWithVariantionDefault($query)
+    {
+        return $query->join('product_skus', 'products.id', '=', 'product_skus.product_id')->whereColumn('products.variantion_default_id', 'product_skus.id');
+    }
 }
