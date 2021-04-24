@@ -1,27 +1,34 @@
-<h3>My account</h3>
-<form class="form-horizontal" method="POST" action="{{route('login')}}">
+@extends('layouts.auth')
+@section('content')
+<form class="login-form" method="POST" action="{{route('login')}}" novalidate="novalidate" style="display: block;">
     @csrf
-    <div class="acc-name">
-        <input class="form-control" type="text" placeholder="Account name" id="inputacname" name="email" :value="old('email')" required autofocus>
+    <h3 class="form-title">Sign In</h3>
+
+    <div class="form-group">
+        <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+        <label class="control-label visible-ie8 visible-ie9">Username</label>
+        <input class="form-control form-control-solid placeholder-no-fix" type="text" placeholder="Username" name="email" :value="old('email')" required autofocus>
     </div>
 
-    <div class="acc-pass">
-        <input class="form-control" placeholder="Password" id="inputpass" type="password" name="password" required autocomplete="current-password">
+    <div class="form-group">
+        <label class="control-label visible-ie8 visible-ie9">Password</label>
+        <input class="form-control form-control-solid placeholder-no-fix" type="password"  placeholder="Password" name="password" required autocomplete="current-password">
     </div>
-
-    <div class="remember">
-        <input type="checkbox" id="me" name="remember" />
-        <label for="me">remember me</label>
-        <a class="help" href="#" title="help ?">help?</a>
-    </div>
-
-    <div class="flex items-center justify-end mt-4">
+    
+    <div class="form-actions">
+        <button type="submit" class="btn btn-success uppercase">Login</button>
+        <label class="rememberme check">
+           <span><input type="checkbox" name="remember" value="1"></span>Remember
+        </label>
         @if (Route::has('password.request'))
-        <a class="help" href="{{ route('password.request') }}" title="help ?">{{ __('Forgot your password?') }}</a>
-        </a>
+        <a href="{{ route('password.request') }}" id="forget-password" class="forget-password">Forgot Password?</a>
         @endif
     </div>
-
-    <button type="submit" class="link-button">Submit</button>
+    
+    <div class="create-account">
+        <p>
+            <a href="{{ route('register') }}" id="register-btn" class="uppercase">Create an account</a>
+        </p>
+    </div>
 </form>
-
+@endsection
