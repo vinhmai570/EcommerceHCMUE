@@ -51,7 +51,7 @@
     <tbody>
     @foreach ($products as $product)
       <tr>
-        <td>{{ $product->id }}</td>
+        <td>{{ $product->product_id }}</td>
         <td><img src="{{ get_image($product->image, '60x60') }}" alt=""></td>
         <td>{{ $product->name }}</td>
         <td>{{ $product->price }}</td>

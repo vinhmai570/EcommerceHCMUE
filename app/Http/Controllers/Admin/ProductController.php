@@ -5,99 +5,78 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\UpdateProductRequest;
-use Illuminate\Http\Request;
 use App\Models\Category;
-use App\Models\Product;
-use App\Models\ProductSku;
-use App\Models\SkuValue;
 use App\Models\Attribute;
 use App\Models\AttributeValue;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\DB;
+use App\Services\ProductService;
 
 class ProductController extends Controller
 {
     const ITEM_PER_PAGE = 12;
 
+    private $product_service;
+
+    public function __construct(ProductService $product_service)
+    {
+        $this->product_service = $product_service;
+    }
+
     public function index()
     {
-        $products = Product::withVariantionDefault()->paginate(self::ITEM_PER_PAGE);
+        $products = $this->product_service->paginate(self::ITEM_PER_PAGE);
         return view('admin.product.index', compact('products'));
     }
 
     public function create()
     {
-        $categories = Category::all();
-        $attributes = Attribute::all();
+        $categories = $this->getAllCategories();
+        $attributes = $this->getAllAttributes();
         return view('admin.product.create', compact('categories', 'attributes'));
     }
 
     public function edit($id)
     {
-        $categories = Category::all();
-        $attributes = Attribute::all();
-        $product = Product::find($id);
-        $product_skus = ProductSku::where('product_id', $product->id)->get();
+        $categories   = $this->getAllCategories();
+        $attributes   = $this->getAllAttributes();
+        $product      = $this->product_service->find($id);
+        $product_skus = $product->product_skus;
         return view('admin.product.edit', compact('categories', 'attributes', 'product', 'product_skus'));
-    }
-
-    public function delete($id)
-    {
-        try {
-            DB::beginTransaction();
-                $product = Product::find($id);
-                $product_sku_ids = $product->product_skus()->pluck('id');
-                SkuValue::where('product_sku_id', $product_sku_ids)->delete();
-                $product->delete();
-            DB::commit();
-            return back()->with('message', 'Delete product successful');
-        } catch(\Exception $e) {
-            DB::rollback();
-            return back()->with('alert-type', 'error')->with('message', 'Delete product Failed');
-        }
     }
 
     public function store(CreateProductRequest $request)
     {
-        $product_params = $request->only(['name', 'description', 'content', 'category_id', 'variantion_default_id']);
-        $product_params['slug'] = Str::slug($request->name);
-        $product_params['is_published'] = $request->boolean('is_published');
-        $product_params['is_featured'] = $request->boolean('is_featured');
-
-        try {
-            DB::beginTransaction();
-            $product = Product::create($product_params);
-            $product_sku_params = $request->only(['sku', 'price', 'sale_price', 'quantity']);
-            $product_sku_params['is_default'] = true;
-            $product_sku_params['image'] = save_image($request->image, $product->slug, 'product_sku');
-            $product_sku = $product->product_skus()->save(new ProductSku($product_sku_params));
-            $product->variantion_default_id = $product_sku->id;
-            $product->save();
-            foreach ($request->product_attributes as $attribute_id => $attribute_value_id) {
-                $sku_value_params = compact('attribute_id', 'attribute_value_id');
-                $product_sku->sku_values()->save(new SkuValue($sku_value_params));
-            }
-            DB::commit();
-
+        if ($this->product_service->store($request)) {
             return back()->with('message', 'Create product successful');
-        } catch(\Exception $e) {
-            DB::rollback();
+        } else {
             return back()->with_input()->with('alert-type', 'error')->with('message', 'Create product failed');
         }
     }
 
     public function update(UpdateProductRequest $request, $id)
     {
-      $product = Product::find($id);
-      $product_params = $request->product;
-      if ($product->variantion_default_id != $product_params['variantion_default_id']) {
-          $product->product_skus()->where('is_default', 1)->update(['is_default'=> 0]);
-          $product->product_skus()->find($product_params['variantion_default_id'])->update(['is_default'=> 1]);
-      }
-      $product_params['slug'] = Str::slug($product_params['name']);
-      $product_params['is_published'] = isset($product_params['is_published']) ? true : false;
-      $product_params['is_featured']  = isset($product_params['is_featured']) ? true : false;
-      $product->update($product_params);
-      return redirect()->route('admin.products.index')->with('message', 'Update product successful');
+        if ($this->product_service->update($request, $id)) {
+            return redirect()->route('admin.products.index')->with('message', 'Update product successful');
+        } else {
+            return back()->with('message', 'Update product failed');
+        }
+    }
+
+    public function delete($id)
+    {
+        if ($this->product_service->delete($id)) {
+            return back()->with('message', 'Delete product successful');
+        } else {
+            return back()->with('alert-type', 'error')->with('message', 'Delete product Failed');
+        }
+    }
+
+    private function getAllAttributes()
+    {
+        return Attribute::all();
+    }
+
+    private function getAllCategories()
+    {
+        return Category::all();
     }
 }
