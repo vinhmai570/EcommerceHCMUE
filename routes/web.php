@@ -13,9 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 require __DIR__.'/admin.php';
+require __DIR__.'/auth.php';
 
 Route::get('/', function () {
     return view('layouts.home');
 })->name('home');
 
-require __DIR__.'/auth.php';
+// login user
+Route::match(['get', 'post'], '/user', [UserLoginController::class, 'login'])->name('user.login');

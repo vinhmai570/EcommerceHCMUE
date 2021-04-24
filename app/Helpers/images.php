@@ -4,20 +4,18 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 
 define('CATEGORY_IMAGE_SIZE', [
-  "small"  => [60  => 60],
-  "medium" => [256 => 360],
-  "large"  => [580 => 580]
+    "small"  => [60  => 60],
+    "medium" => [265 => 360],
+    "large"  => [580 => 580]
 ]);
 
 // edit when upload file to products
-define('PRODUCT_IMAGE_SIZE', [
-  60  => 60,
-  130 => 130,
-  252 => 252,
-  270 => 270,
-  450 => 450,
-  525 => 693,
-  545 => 524,
+define('PRODUCT_SKU_IMAGE_SIZE', [
+    "small"    => [60  => 60],
+    "medium"   => [256 => 360],
+    "large"    => [600 => 600],
+    "list"     => [500 => 500],
+    "featured" => [400 => 480],
 ]);
 
 /**
