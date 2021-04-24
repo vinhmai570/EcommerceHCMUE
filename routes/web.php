@@ -15,9 +15,6 @@ use App\Http\Controllers\User\HomeController;
 |
 */
 
-// Admin routes
-require 'admin.php';
-
 // Frontend routes
 Route::get('/', function () {
     return view('layouts.home');
