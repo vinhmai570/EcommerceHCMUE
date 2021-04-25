@@ -1,3 +1,4 @@
+@section('header')
 <header id="header" class="header-v1">
     <div id="topbar">
         <div class="container">
@@ -135,10 +136,10 @@
                 <!-- End menutop -->
             </div>
             <!-- End inner container -->
-            @include('frontend/components/commons/sidebar')
+            @include('frontend.home.components.sidebar')
         </div>
         <!-- End container -->
     </div>
     <!-- End header-top -->
-
 </header><!-- /header -->
+@endsection

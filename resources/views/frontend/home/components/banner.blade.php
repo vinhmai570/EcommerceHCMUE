@@ -1,7 +1,7 @@
 <div class="banner-home1-bottom">
     <div class="container">
         <div class="images" data-wow-duration="0.5s" data-wow-delay="400ms">
-            <img src="assets/images/Dana-home1-banner-bottom.png" alt="Banner">
+            <img src="{{ asset('frontend/images/Dana-home1-banner-bottom.png') }}" alt="Banner">
         </div>
         <!-- End image -->
         <div class="text" data-wow-duration="0.5s" data-wow-delay="400ms">

@@ -6,3 +6,4 @@
 <script type="text/javascript" src="{{ asset('frontend/js/engo-plugins.js') }}"></script>
 <script type="text/javascript" src="{{ asset('frontend/js/wow.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('frontend/js/store.js') }}"></script>
+@yield('scripts')
