@@ -51,6 +51,7 @@
       <label class="control-label">Parent</label>
       <div>
         <select name="parent_id" value="{{ old('parent_id') }}">
+          <option value="0">None</option>
           @foreach ($categories as $category)
           <option value="{{ $category->id }}">{{ $category->name }}</option>
           @endforeach
