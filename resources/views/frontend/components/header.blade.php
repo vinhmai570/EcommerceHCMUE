@@ -63,24 +63,14 @@
                         </div>
                     </div>
                     @else
-                    <a class="sign-in" href="#" title="user"><i class="zmdi zmdi-account"></i>My account</a>
-                    <div class="register-list cart-list dropdown-menu ">
-                        <!-- Session Status -->
-                        <x-auth-session-status class="mb-4" :status="session('status')" />
-                        <!-- Validation Errors -->
-                        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-                        <!-- login -->
-                        @include('auth.login')
-                        <!-- register -->
-                        @include('auth.register')
-                    </div>
-                    @endif
-
+                    <a class="sign-in" href="{{route('login')}}" title="user"><i class="zmdi zmdi-account"></i>Sign In</a>
                 </div>
+                @endif
             </div>
-            <!-- End topbar-right -->
         </div>
-        <!-- End container -->
+        <!-- End topbar-right -->
+    </div>
+    <!-- End container -->
     </div>
     <!-- End Top Bar -->
     <div class="header-top">
