@@ -4,7 +4,7 @@ Login page
 /* bg color */
 .login {
   background-color:#212121 !important;
-  background-image: url("../../img/BGlogin.jpeg");
+  background-image: linear-gradient(to right, #212121,#333333, #202123,#242527);
 }
 
 .login .logo {
