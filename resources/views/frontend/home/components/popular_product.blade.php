@@ -55,23 +55,7 @@
                         </div>
                     </div>
                     <!-- End product -->
-                    @foreach ($popular_products as $product)
-                    <div class="product">
-                        <div class="wrap-title">
-                            <p class="product-title">{{ $product->name }}</p>
-                            <p class="product-price"><span>Price: </span>$ {{ $product->sale_price }}</p>
-                        </div>
-                        <!-- End wrap-title -->
-                        <a class="product-images" href="#" title="">
-                            <img class="primary_image" src="{{ get_image($product->image, '400x480') }}" alt="{{ $product->name }}" />
-                        </a>
-                        <div class="action">
-                            <a href="#" class="refresh"><i class="zmdi zmdi-refresh-sync"></i></a>
-                            <a title="Like" href="#"><i class="zmdi zmdi-favorite-outline"></i></a>
-                            <a title="add-to-cart" href="#"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
-                        </div>
-                    </div>
-                    @endforeach
+                    @each('frontend.products.product_item', $popular_products, 'product')
                 </div>
                 <!-- End product-tab-content products                                     -->
             </div>

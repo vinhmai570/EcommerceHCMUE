@@ -91,7 +91,7 @@
 							</li>
 						</ul>
 					</li>
-					<!-- END NOTIFICATION DROPDOWN -->					
+					<!-- END NOTIFICATION DROPDOWN -->
 					<!-- BEGIN USER LOGIN DROPDOWN -->
 					<!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
 					<li class="dropdown dropdown-user">

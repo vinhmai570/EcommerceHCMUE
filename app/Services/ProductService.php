@@ -27,6 +27,16 @@ class ProductService {
         return $this->product_repostitory->find($id);
     }
 
+    public function withVariantionDefault()
+    {
+        return $this->product_repostitory->withVariantionDefault();
+    }
+
+    public function findBySlug($slug)
+    {
+        return $this->product_repostitory->findBySlug($slug);
+    }
+
     public function store($request)
     {
         $product_params = $request->only(['name', 'description', 'content', 'category_id', 'variantion_default_id']);
