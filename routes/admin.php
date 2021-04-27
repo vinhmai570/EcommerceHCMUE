@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -7,9 +8,9 @@ use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::match(['get', 'post'], '/login', [LoginController::class, 'login'])->name('admin.login');
-Route::get('/logout', [LogoutController::class,'logout'])->name('admin.logout');
+Route::get('/logout', [LogoutController::class, 'logout'])->name('admin.logout');
 
-Route::middleware('auth:admin')->name('admin.')->group(function (){
+Route::middleware('auth:admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::prefix('categories')->name('categories.')->group(function () {

@@ -42,42 +42,35 @@
                     </div>
                 </div>
                 <div class="wrap-sign-in cart dropdown">
-                    <a class="sign-in" href="#" title="user"><i class="zmdi zmdi-account"></i>My account</a>
+                    @if (Auth::check())
+                    <a class="sign-in" href="#" title="user"><i class="zmdi zmdi-account"></i>{{ Auth::user()->name }}</a>
                     <div class="register-list cart-list dropdown-menu ">
-                        <h3>My account</h3>
-                        <form class="form-horizontal" method="POST">
-                            <div class="acc-name">
-                                <input class="form-control" type="text" placeholder="Account name" id="inputacname">
-                            </div>
-                            <div class="acc-pass">
-                                <input class="form-control" type="text" placeholder="Password" id="inputpass">
-                            </div>
-                            <div class="remember">
-                                <input type="checkbox" id="me" name="nar" />
-                                <label for="me">remember me</label>
-                                <a class="help" href="#" title="help ?">help?</a>
-                            </div>
-                            <button type="submit" class="link-button">Submit</button>
-                        </form>
-                        <h3>Or register</h3>
-                        <form class="form-horizontal" method="POST">
-                            <input type="text" placeholder="Your mail" id="inputmail" class="form-control">
-                            <input type="password" placeholder="Password" id="inputpass1" class="form-control">
-                            <button type="submit" class="link-button">register</button>
-                        </form>
-                        <h4>or register to</h4>
-                        <div class="social">
-                            <a class="facebook" href="#" title="facebook"><i class="zmdi zmdi-facebook"></i></a>
-                            <a class="twitter" href="#" title="twitter"><i class="zmdi zmdi-twitter"></i></a>
-                            <a class="instagram" href="#" title="instagram"><i class="zmdi zmdi-instagram"></i></a>
-                            <a class="google" href="#" title="google"><i class="zmdi zmdi-google-glass"></i></a>
+                        <h3>Hi {{ Auth::user()->name }}</h3>
+
+                        <ul class="list">
+                            <li class="images">
+                                <div class="text">
+                                    <P>{{ Auth::user()->email}}</P>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="wrap-title">
+                            <a href="#">view cart</a>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="link-button">Logout</button>
+                            </form>
                         </div>
                     </div>
+                    @else
+                    <a class="sign-in" href="{{route('login')}}" title="user"><i class="zmdi zmdi-account"></i>Sign In</a>
                 </div>
+                @endif
             </div>
-            <!-- End topbar-right -->
         </div>
-        <!-- End container -->
+        <!-- End topbar-right -->
+    </div>
+    <!-- End container -->
     </div>
     <!-- End Top Bar -->
     <div class="header-top">
