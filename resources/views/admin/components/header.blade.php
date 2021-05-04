@@ -107,7 +107,7 @@
 								<i class="icon-user"></i> My Profile </a>
 							</li>
 							<li>
-								<a href="{{URL::to('/logout')}}">
+								<a href="{{route('admin.logout')}}">
 								<i class="icon-key"></i> Log Out </a>
 							</li>
 						</ul>

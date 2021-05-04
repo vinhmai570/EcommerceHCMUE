@@ -41,33 +41,41 @@
                         </ul>
                     </div>
                 </div>
-                <div class="wrap-sign-in cart dropdown">
-                    @if (Auth::check())
-                    <a class="sign-in" href="#" title="user"><i class="zmdi zmdi-account"></i>{{ Auth::user()->name }}</a>
-                    <div class="register-list cart-list dropdown-menu ">
-                        <h3>Hi {{ Auth::user()->name }}</h3>
 
-                        <ul class="list">
-                            <li class="images">
-                                <div class="text">
-                                    <P>{{ Auth::user()->email}}</P>
-                                </div>
-                            </li>
+
+                @if (Auth::check())
+
+                <!-- <
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+						<img alt="" class="img-circle" src="http://localhost/admin/img/avatar3_small.jpg">
+						<span class="username username-hide-on-mobile">
+						</span>
+						<i class="fa fa-angle-down"></i>
+						</a>
+                </div> -->
+                
+                <div class="wrap-dollar-box dropdown">
+                    <a href="#" title="Account"><i class="zmdi zmdi-account"></i>{{Auth::user()->name}} <i class="zmdi zmdi-chevron-down"></i></a>
+                    <div class="dollar-list dropdown-menu">
+                        <ul>
+                            <li><a href="{{route('profile.show')}}" title="information">Profile</a></li>
                         </ul>
-                        <div class="wrap-title">
-                            <a href="#">view cart</a>
-                            <form method="POST" action="{{ route('logout') }}">
+
+                        <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <button type="submit" class="link-button">Logout</button>
-                            </form>
-                        </div>
+                                <button type="submit" class="btn btn-outline-secondary">Logout</button>
+                        </form>
                     </div>
-                    @else
-                    <a class="sign-in" href="{{route('login')}}" title="user"><i class="zmdi zmdi-account"></i>Sign In</a>
                 </div>
+                
+                @else
+                <a class="sign-in" href="{{route('login')}}" title="user"><i class="zmdi zmdi-account"></i>Sign In</a>
+
                 @endif
             </div>
         </div>
+
         <!-- End topbar-right -->
     </div>
     <!-- End container -->
