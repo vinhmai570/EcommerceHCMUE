@@ -25,9 +25,9 @@ class UserRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'phone' => 'min:10|max:11',
-            'birthday'=> 'date',
-            'address' => 'string',
+            'phone' => 'nullable|min:10|max:11',
+            'birthday'=> 'date|nullable',
+            'address' => 'nullable|string',
             'image' => 'image|mimes:jpg,png,jpeg,gif,svg'
         ];
     }
