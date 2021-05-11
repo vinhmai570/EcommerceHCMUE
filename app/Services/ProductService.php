@@ -40,7 +40,6 @@ class ProductService {
     public function store($request)
     {
         $product_params = $request->only(['name', 'description', 'content', 'category_id', 'variantion_default_id']);
-        $product_params['slug'] = Str::slug($request->name);
         $product_params['is_published'] = $request->boolean('is_published');
         $product_params['is_featured'] = $request->boolean('is_featured');
 
@@ -74,7 +73,6 @@ class ProductService {
             $product->product_skus()->where('is_default', 1)->update(['is_default'=> 0]);
             $product->product_skus()->find($product_params['variantion_default_id'])->update(['is_default'=> 1]);
         }
-        $product_params['slug'] = Str::slug($product_params['name']);
         $product_params['is_published'] = isset($product_params['is_published']) ? true : false;
         $product_params['is_featured']  = isset($product_params['is_featured']) ? true : false;
         return $product->update($product_params);
