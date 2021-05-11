@@ -63,13 +63,13 @@
                 <p>Size</p>
                 <ul class="size">
                     @foreach ($sizes as $size)
-                    <li><a href="#" class="@if($size->product_sku_id == $default_variant->id) size-active @endif">{{ $size->attribute_value->value_name }}</a></li>
+                    <li><a href="#" name="attribute_ids[{{ $size->attribute_id }}]" data="{{ $size->attribute_value_id }}" class="@if($size->product_sku_id == $default_variant->id) size-active @endif">{{ $size->attribute_value->value_name }}</a></li>
                     @endforeach
                 </ul>
                 <p>Color</p>
                 <ul class="color">
                     @foreach ($colors as $color)
-                    <li><a class="{{ $color->attribute_value->value_name }} @if($color->product_sku_id == $default_variant->id) color-active @endif" href="#" title="xs"></a></li>
+                    <li><a name="attribute_ids[{{ $color->attribute_id }}]" data="{{ $color->attribute_value_id }}" class="{{ strtolower($color->attribute_value->value_name) }} @if($color->product_sku_id == $default_variant->id) color-active @endif" href="#" title="xs"></a></li>
                     @endforeach
                 </ul>
                 <div class="quantity">
