@@ -20,9 +20,7 @@ class ProductSkuController extends Controller
                                     ->orWhere(function ($query) use($request) {
                                         $query->where('attribute_id', 2)->where('attribute_value_id', $request->attribute_value_id[2]);
                                     })->groupBy('product_sku_id')->havingRaw('count(product_sku_id) > ?', [1])->first();
-                                // ->where('attribute_id', 1)->where('attribute_value_id', $request->attribute_value_id[1])
-                                // ->orWhere();
-        $product_sku = ProductSku::find($sku_values);
+        $product_sku = ProductSku::find($sku_values->product_sku_id);
         return new ProductSkuResource($product_sku);
     }
 }
