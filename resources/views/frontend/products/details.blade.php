@@ -66,7 +66,7 @@
                 <p>Size</p>
                 <ul class="size" id="attribute_size">
                     @foreach ($sizes as $size)
-                    <li><a href="#" name="attribute_ids[{{ $size->attribute_id }}]" value="{{ $size->attribute_value_id }}" class="size @if($size->product_sku_id == $default_variant->id)size-active @endif">{{ $size->attribute_value->value_name }}</a></li>
+                    <li><a href="#" name="attribute_ids[{{ $size->attribute_id }}]" value="{{ $size->attribute_value_id }}" class="size_attr @if($size->product_sku_id == $default_variant->id)size-active @endif">{{ $size->attribute_value->value_name }}</a></li>
                     @endforeach
                 </ul>
                 <p>Color</p>
@@ -186,6 +186,20 @@ jQuery(document).ready(function() {
         $(this).addClass("color-active");
         let size = $("#attribute_size").find(".size-active").attr("value");
         let color = $(this).attr("value");
+        let product_id = $("#product_id").val();
+        url = `{{ URL::to('/api/v1/product-variants') }}/${product_id}?attribute_value_id[1]=${size}&attribute_value_id[2]=${color}`
+        fetchAPI(url).then((response) => {
+            $("#price").html('$' + response.data.sale_price);
+            $(".product-sku").html('SKU: ' + response.data.sku);
+            $("#sku_hidden").val(response.data.id);
+        })
+    });
+
+    $(document).on("click", ".size_attr", function (e) {
+        $(".size_attr").removeClass("size-active");
+        $(this).addClass("size-active");
+        let color = $("#attribute_color").find(".color-active").attr("value");
+        let size = $(this).attr("value");
         let product_id = $("#product_id").val();
         url = `{{ URL::to('/api/v1/product-variants') }}/${product_id}?attribute_value_id[1]=${size}&attribute_value_id[2]=${color}`
         fetchAPI(url).then((response) => {
