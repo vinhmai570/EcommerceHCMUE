@@ -34,7 +34,8 @@
         <div class="product-box-content">
             <div class="product-name">
                 <h1>{{ $product->name }}</h1>
-                <p class="cat">{{ $product->category->name }}</p>
+                <p class="cat">CATEGORY: {{ $product->category->name }}</p>
+                <p class="product-sku">SKU: {{ $default_variant->sku }}</p>
             </div>
             <!-- End product-name -->
             <div class="rating">
@@ -55,21 +56,23 @@
             </div>
             <!-- End Rating -->
             <div class="wrap-price">
-                <p class="price">$299</p>
+                <p class="price" id="price">$299</p>
             </div>
             <!-- End Price -->
             <p class="description">{{ $product->description }}</p>
+            <input type="hidden" id="product_id" value="{{ $product->id }}" >
+            <input type="hidden" id="sku_hidden" value="{{ $default_variant->id }}" >
             <div class="options">
                 <p>Size</p>
-                <ul class="size">
+                <ul class="size" id="attribute_size">
                     @foreach ($sizes as $size)
-                    <li><a href="#" name="attribute_ids[{{ $size->attribute_id }}]" data="{{ $size->attribute_value_id }}" class="@if($size->product_sku_id == $default_variant->id) size-active @endif">{{ $size->attribute_value->value_name }}</a></li>
+                    <li><a href="#" name="attribute_ids[{{ $size->attribute_id }}]" value="{{ $size->attribute_value_id }}" class="size @if($size->product_sku_id == $default_variant->id)size-active @endif">{{ $size->attribute_value->value_name }}</a></li>
                     @endforeach
                 </ul>
                 <p>Color</p>
-                <ul class="color">
+                <ul class="color" id="attribute_color">
                     @foreach ($colors as $color)
-                    <li><a name="attribute_ids[{{ $color->attribute_id }}]" data="{{ $color->attribute_value_id }}" class="{{ strtolower($color->attribute_value->value_name) }} @if($color->product_sku_id == $default_variant->id) color-active @endif" href="#" title="xs"></a></li>
+                    <li><a name="attribute_ids[{{ $color->attribute_id }}]" value="{{ $color->attribute_value_id }}" class="color_attr {{ strtolower($color->attribute_value->value_name) }} @if($color->product_sku_id == $default_variant->id)color-active @endif" href="#" title="xs"></a></li>
                     @endforeach
                 </ul>
                 <div class="quantity">
@@ -176,4 +179,31 @@
 @endsection
 @section('scripts')
 <script type="text/javascript" src="{{ asset('frontend/js/jquery.elevatezoom.js') }}"></script>
+<script>
+jQuery(document).ready(function() {
+    $(document).on("click", ".color_attr", function (e) {
+        $(".color_attr").removeClass("color-active");
+        $(this).addClass("color-active");
+        let size = $("#attribute_size").find(".size-active").attr("value");
+        let color = $(this).attr("value");
+        let product_id = $("#product_id").val();
+        url = `{{ URL::to('/api/v1/product-variants') }}/${product_id}?attribute_value_id[1]=${size}&attribute_value_id[2]=${color}`
+        fetchAPI(url).then((response) => {
+            $("#price").html('$' + response.data.sale_price);
+            $(".product-sku").html('SKU: ' + response.data.sku);
+            $("#sku_hidden").val(response.data.id);
+        })
+    });
+
+    async function fetchAPI(api){
+        try {
+            let response = await fetch(api);
+            let responseJson = await response.json();
+            return responseJson;
+        } catch (error) {
+            console.error(`error is :${error}`);
+        }
+    }
+})
+</script>
 @endsection
