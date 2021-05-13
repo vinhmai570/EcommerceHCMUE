@@ -32,7 +32,6 @@ class CategoryController extends Controller
         $category = new Category;
         $category->name = $request->name;
         $category->parent_id = $request->parent_id;
-        $category->slug = Str::slug($request->name);
 
         if ($request->hasFile('image')) {
             $category->image = save_image($request->image, $category->slug, 'category');
@@ -55,7 +54,6 @@ class CategoryController extends Controller
         $category = Category::find($id);
         $category->name = $request->name;
         $category->parent_id = $request->parent_id;
-        $category->slug = Str::slug($request->name);
 
         if ($request->hasFile('image')) {
             $category->image = save_image($request->image, $category->slug, 'category');

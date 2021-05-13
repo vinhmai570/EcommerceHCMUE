@@ -1,0 +1,7 @@
+.size-active {
+    background-color: #242424;
+    color: #fff;
+}
+.color-active {
+    transform: scale(2);
+}

@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row footer-top">
             <div class="col-md-5">
-                <a class="logo" href="#" title="logo"><img src="{{asset('user/images/Dana-menu-logo.png')}}" alt="Logo"></a>
+                <a class="logo" href="#" title="logo"><img src="{{asset('frontend/images/Dana-menu-logo.png')}}" alt="Logo"></a>
                 <p class="italic">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
                 <div class="infomation">
                     <p><i class="zmdi zmdi-pin"></i>PO Box CT16122 Collins Street West, Victoria 8007, Australia.</p>
@@ -10,21 +10,15 @@
                     <p><i class="zmdi zmdi-email"></i>engotheme@gmail.com</p>
                 </div>
             </div>
-
             <div class="col-md-4">
                 <h3>Quick link</h3>
                 <ul class="menu">
                     <li><a href="#" title="Headphone">Headphone</a></li>
                     <li><a href="#" title="Smart watch">Smart watch</a></li>
                     <li><a href="#" title="Smartphone">Smartphone</a></li>
-                    <li><a href="#" title="Video game & consoles">Video game & consoles</a></li>
                     <li><a href="#" title="Laptop">Laptop</a></li>
                     <li><a href="#" title="Televison">Televison</a></li>
-                    <li><a href="#" title="Home">Home</a></li>
                     <li><a href="#" title="About us">About us</a></li>
-                    <li><a href="#" title="Blog">Blog</a></li>
-                    <li><a href="#" title="Service">Service</a></li>
-                    <li><a href="#" title="Contact us">Contact us</a></li>
                 </ul>
             </div>
             <div class="col-md-3">
@@ -36,7 +30,6 @@
                     <li><a href="#" title="customer service">customer service</a></li>
                     <li><a href="#" title="Returns/ Exchage">Returns/ Exchage</a></li>
                     <li><a href="#" title="FAQS">FAQS</a></li>
-                    <li><a href="#" title="Product support">Product support</a></li>
                 </ul>
             </div>
         </div>

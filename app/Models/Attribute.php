@@ -13,4 +13,9 @@ class Attribute extends Model
     {
         return $this->hasMany(AttributeValue::class);
     }
+
+    public function sku_values()
+    {
+        return $this->hasMany(SkuValue::class);
+    }
 }

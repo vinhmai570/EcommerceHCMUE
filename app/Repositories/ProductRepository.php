@@ -16,4 +16,8 @@ class ProductRepository extends AbstractRepository implements ProductRepositoryI
     {
         return call_user_func_array("{$this->model_class_name}::withVariantionDefault", $columns);
     }
+
+    public function findBySlug($slug, $columns = array('*')) {
+        return call_user_func_array("{$this->model_class_name}::firstWhere", array('slug'));
+    }
 }
