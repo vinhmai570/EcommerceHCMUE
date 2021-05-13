@@ -46,11 +46,11 @@
                             <a class="google" href="#" title="google"><i class="zmdi zmdi-google-glass"></i></a>
                         </div>
                     </div>
-                </div>
             </div>
-            <!-- End topbar-right -->
         </div>
-        <!-- End container -->
+        <!-- End topbar-right -->
+    </div>
+    <!-- End container -->
     </div>
     <!-- End Top Bar -->
     <div class="header-top">
