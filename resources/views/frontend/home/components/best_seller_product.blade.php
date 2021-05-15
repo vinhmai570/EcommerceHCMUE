@@ -1,4 +1,5 @@
-<div class="best-sellers slider-product tabs-right space-padding-tb-60 " data-wow-duration="0.5s" data-wow-delay="400ms">
+<div class="best-sellers slider-product tabs-right space-padding-tb-60 " data-wow-duration="0.5s"
+    data-wow-delay="400ms">
     <div class="container">
         <div class="title-text">
             <h3><span>B</span>est sellers</h3>
@@ -28,14 +29,18 @@
                                             <img class="primary_image" src="assets/images/products/1.jpg" alt="" />
                                         </a>
                                     </div>
-                                    <div class="items" data-thumb='<img class="primary_image" src="assets/images/Dana-home1-product1.jpg" alt=""/>'>
+                                    <div class="items"
+                                        data-thumb='<img class="primary_image" src="assets/images/Dana-home1-product1.jpg" alt=""/>'>
                                         <a href="#" title="products">
-                                            <img class="primary_image" src="assets/images/Dana-home1-product1.jpg" alt="" />
+                                            <img class="primary_image" src="assets/images/Dana-home1-product1.jpg"
+                                                alt="" />
                                         </a>
                                     </div>
-                                    <div class="items" data-thumb='<img class="primary_image" src="assets/images/Dana-home1-product1.jpg" alt=""/>'>
+                                    <div class="items"
+                                        data-thumb='<img class="primary_image" src="assets/images/Dana-home1-product1.jpg" alt=""/>'>
                                         <a href="#" title="products">
-                                            <img class="primary_image" src="assets/images/Dana-home1-product1.jpg" alt="" />
+                                            <img class="primary_image" src="assets/images/Dana-home1-product1.jpg"
+                                                alt="" />
                                         </a>
                                     </div>
                                 </div>
@@ -127,17 +132,20 @@
                             <!-- End wrap-title -->
                             <div class="product-images">
                                 <div class="slide-product-images">
-                                    <div class="items" data-thumb='<img class="primary_image" src="assets/images/products/1.jpg" alt=""/>'>
+                                    <div class="items"
+                                        data-thumb='<img class="primary_image" src="assets/images/products/1.jpg" alt=""/>'>
                                         <a href="#" title="products">
                                             <img class="primary_image" src="assets/images/products/1.jpg" alt="" />
                                         </a>
                                     </div>
-                                    <div class="items" data-thumb='<img class="primary_image" src="assets/images/products/1.jpg" alt=""/>'>
+                                    <div class="items"
+                                        data-thumb='<img class="primary_image" src="assets/images/products/1.jpg" alt=""/>'>
                                         <a href="#" title="products">
                                             <img class="primary_image" src="assets/images/products/1.jpg" alt="" />
                                         </a>
                                     </div>
-                                    <div class="items" data-thumb='<img class="primary_image" src="assets/images/products/1.jpg" alt=""/>'>
+                                    <div class="items"
+                                        data-thumb='<img class="primary_image" src="assets/images/products/1.jpg" alt=""/>'>
                                         <a href="#" title="products">
                                             <img class="primary_image" src="assets/images/products/1.jpg" alt="" />
                                         </a>
@@ -189,5 +197,4 @@
     </div>
     <!-- End container -->
 </div>
- <!-- End bes-sellers -->
- 
+<!-- End bes-sellers -->

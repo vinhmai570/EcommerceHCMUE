@@ -14,20 +14,21 @@ License: You must have a valid license purchased only from themeforest(the above
 <html lang="en" class="no-js">
 <!--<![endif]-->
 <!-- BEGIN HEAD -->
+
 <head>
-<meta charset="utf-8"/>
-<title>Lara</title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<meta content="" name="description"/>
-<meta content="" name="author"/>
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>
-@include('admin.components.styles')
+    <meta charset="utf-8" />
+    <title>Lara</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>
+    @include('admin.components.styles')
 </head>
 <body class="page-boxed page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid page-sidebar-closed-hide-logo">
-  @include('admin/components/header')
-  @include('admin.components.content')
-  @include('admin.components.footer')
-  @include('admin.components.scripts')
+    @include('admin.components.header')
+    @include('admin.components.content')
+    @include('admin.components.footer')
+    @include('admin.components.scripts')
 </body>
 </html>

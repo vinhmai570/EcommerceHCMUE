@@ -29,4 +29,9 @@ class ProductSku extends Model
             $product_sku->sku_values()->delete();
         });
     }
+
+    public function scopeDefault($query)
+    {
+        return $query->where('default', true)->first();
+    }
 }

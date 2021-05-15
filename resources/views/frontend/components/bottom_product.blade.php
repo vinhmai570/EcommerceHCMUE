@@ -10,7 +10,8 @@
                 </a>
                 <div class="product-content">
                     <a class="category" href="#" title="category">watch</a>
-                    <a class="product-name" href="#" title="Mens Hugo Boss Chronograph Watch">Mens Hugo Boss Chronograph Watch</a>
+                    <a class="product-name" href="#" title="Mens Hugo Boss Chronograph Watch">Mens Hugo Boss Chronograph
+                        Watch</a>
                     <p class="product-price"><span>Price: </span>$60.99</p>
                     <div class="action">
                         <a class="refresh" href="#"><i class="zmdi zmdi-refresh-sync"></i></a>
@@ -33,7 +34,8 @@
                 </a>
                 <div class="product-content">
                     <a class="category" href="#" title="category">watch</a>
-                    <a class="product-name" href="#" title="Mens Hugo Boss Chronograph Watch">HP ENVY Curved All-in-One PC</a>
+                    <a class="product-name" href="#" title="Mens Hugo Boss Chronograph Watch">HP ENVY Curved All-in-One
+                        PC</a>
                     <p class="product-price"><span>Price: </span>$60.99</p>
                     <p class="star">
                         <a href="#" title="star"><i class="fa fa-star"></i></a>
