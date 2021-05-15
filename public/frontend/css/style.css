@@ -9772,3 +9772,22 @@ nav.pagination {
   -o-transition: all ease-in-out 0.15s;
   transition: all ease-in-out 0.15s;
 }
+.edit-profile{
+  width: 54px; 
+  height: 33px;
+  position: absolute;
+  vertical-align: middle; 
+  margin-top: 33px; margin-left: -77px;
+  border: 0px; font-weight: bold; 
+  font-style: normal;
+  font-variant: normal; 
+  font-stretch: normal; 
+  font-size: 20px; 
+  line-height: normal; 
+  font-family: Arial;
+  text-align: center; 
+  color: rgb(76, 197, 205); 
+  padding: 0px; 
+  -webkit-appearance: none; 
+  background: none;
+}

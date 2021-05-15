@@ -17,21 +17,17 @@
 
 <body>
     @include('frontend.components.header')
-
     <div class="container bootstrap snippets bootdey">
         <div class="row">
             <div class="profile-nav col-md-3">
                 <div class="panel">
                     <div class="user-heading round">
                         <a href="#">
-                        <!-- ../../../../../storage/app/public/user/2.1620109788.jpg -->
                             <img src="{{ asset('storage/' . Auth::user()->image) }}" alt="">
                         </a>
                         <h1>{{Auth::user()->name}}</h1>
                         <p>{{Auth::user()->email}}</p>
-
                         @yield('input_avatar')
-
                     </div>
 
                     <ul class="nav nav-pills nav-stacked">
@@ -46,18 +42,13 @@
                     <div class="bio-graph-heading">
                     With detailed information we serve you better
                     </div>
-
                     @yield('content')
-
                 </div>
-
                 @yield('exten')
-
             </div>
         </div>
     </div>
-
-    @include('frontend.components.footer')
+        @include('frontend.components.footer')
 
     <script type="text/javascript" src="{{asset('frontend/js/jquery-1.11.1.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('frontend/js/bootstrap.min.js')}}"></script>
