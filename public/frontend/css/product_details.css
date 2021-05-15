@@ -1,6 +1,6 @@
 .size-active {
-    background-color: #242424;
-    color: #fff;
+    background-color: white;
+    color: black;
 }
 .color-active {
     transform: scale(2);
