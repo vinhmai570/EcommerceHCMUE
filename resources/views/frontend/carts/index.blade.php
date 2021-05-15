@@ -19,15 +19,17 @@
                 <th class="product-remove"></th>
             </tr>
         </thead>
-        <tbody>
-            <tr class="item_cart">
-                <td class="product-photo"><img src="assets/images/products/1.jpg" alt="Futurelife" height="100" width="100"></td>
-                <td class="produc-name"><a href="#" title="">Name product 01</a></td>
-                <td class="product-price">$69.60</td>
-                <td class="product-quantity"><input type="number" size="4" class="input-text qty text" title="SL" value="1" min="0" step="1"></td>
-                <td class="total-price">$69.60</td>
-                <td class="product-remove"><a class="remove" href="#" title=""></a></td>
+        <tbody id="cart-items">
+            @foreach ($cart_items as $cart_item )
+            <tr class="item_cart {{ $cart_item->rowId }}">
+                <td class="product-photo"><img src="{{ get_image($cart_item->options['image'], '500x500') }}" alt="Futurelife" height="100" width="100"></td>
+                <td class="produc-name"><a href="#" title="">{{ $cart_item->name }}</a></td>
+                <td class="product-price">${{ $cart_item->price }}</td>
+                <td class="product-quantity"><input type="number" size="4" class="input-text qty text" title="SL" value="{{ $cart_item->qty }}" min="0" step="1"></td>
+                <td class="total-price">${{ $cart_item->subtotal }}</td>
+                <td class="product-remove"><a class="remove" title="" value="{{ $cart_item->rowId }}"></a></td>
             </tr>
+            @endforeach
         </tbody>
     </table>
     <div class="shipping-total">
@@ -55,9 +57,9 @@
                     <h3>Cart totals</h3>
                 </div>
                 <ul>
-                    <li><span class="text">Subtotal</span><span class="number">$ 1,990.00</span></li>
-                    <li><span class="text">Shipping</span><span class="number">$ 50.00</span></li>
-                    <li><span class="text totals">Totals Cart</span><span class="number totals">$ 2,040.00</span></li>
+                    <li><span class="text">Subtotal</span><span class="number" id="subtotal">$ {{ Cart::total() }}</span></li>
+                    <li><span class="text">Shipping</span><span class="number">$ 0.00</span></li>
+                    <li><span class="text totals">Totals Cart</span><span class="number totals" id="total">$ {{ Cart::total() }}</span></li>
                 </ul>
                 <a class="btn link-button link-border-raidus" href="#" title="Proceed to checkout">Proceed to checkout</a>
             </div>
@@ -70,4 +72,38 @@
       <!-- End MainContent -->
 </div>
 <!-- End container -->
+@endsection
+
+@section('scripts')
+<script>
+jQuery(document).ready(function() {
+
+    $(document).on("click", ".remove", function () {
+        let rowId = $(this).attr('value')
+        let state = confirm("Remove this item?");
+
+        if (state) {
+            url = `{{ URL::to('carts/remove') }}/${rowId}`
+
+            fetchAPI('DELETE', url).then(response => {
+                $('#cart-items').find(`.${rowId}`).remove();
+                $("#total").html('$' + response);
+                $("#subtotal").html('$' + response);
+            })
+        }
+    });
+
+    async function fetchAPI(method = 'GET', url = '', data = {}) {
+        const response = await fetch(url, {
+            method: method,
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        return response.json();
+    }
+})
+</script>
 @endsection

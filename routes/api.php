@@ -3,7 +3,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\ProductSkuController;
-use App\Http\Controllers\Api\V1\CartController;
 use App\Http\Controllers\Api\V1\Admin\ProductSkuController as AdminProductSku;
 
 /*
@@ -25,8 +24,6 @@ Route::prefix('v1')->name('api.v1')->group(function () {
     Route::prefix('product-variants')->name('.variants')->group(function (){
         Route::get('/{product_id}', [ProductSkuController::class, 'getVariant'])->name('.show');
     });
-
-    Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('.cart.add_to_cart');
 
     Route::prefix('admin')->name('.admin')->group(function () {
         Route::prefix('product-skus')->name('.product_skus')->group(function () {

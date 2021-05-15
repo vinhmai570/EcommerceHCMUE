@@ -213,7 +213,7 @@ jQuery(document).ready(function() {
         let product_id = $("#product_id").val();
         let product_sku_id = $('#sku_hidden').val();
         let quantity = $('#quantity').val();
-        url = '{{ route('api.v1.cart.add_to_cart') }}'
+        url = '{{ route('cart.add_to_cart') }}'
         body = {
             id: product_id,
             product_sku_id: product_sku_id,
