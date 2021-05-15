@@ -3,7 +3,6 @@
 <form action="{{ route('password.email') }}" method="POST">
 	@csrf
 	<h3>Forget Password ?</h3>
-	<x-auth-session-status class="mb-4 alert alert-success" :status="session('status')" />
 
 	<p>Enter your e-mail address below to reset your password.</p>
 

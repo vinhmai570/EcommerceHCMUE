@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\User\Auth\LoginController as UserLoginController;
+use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 
@@ -22,5 +22,8 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/products/{slug}', [ProductController::class, 'show'])->name('product.details');
 
-// login user
-Route::match(['get', 'post'], '/user', [UserLoginController::class, 'login'])->name('user.login');
+Route::prefix('profile')->name('profile.')->group(function () {
+    Route::get('/', [ProfileController::class, 'index'])->name('show');
+    Route::get('/update', [ProfileController::class, 'edit'])->name('edit');
+    Route::post('/update', [ProfileController::class, 'update'])->name('update');
+});
