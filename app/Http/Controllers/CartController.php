@@ -38,4 +38,16 @@ class CartController extends Controller
         Cart::remove($rowId);
         return response(Cart::total());
     }
+
+    public function update(Request $request)
+    {
+        foreach ($request->cart_items as $item) {
+            Cart::update($item['rowId'], $item['quantity']);
+        }
+        $result = array(
+            "cart_items" => Cart::content(),
+            "total"      => Cart::total()
+        );
+        return response($result);
+    }
 }

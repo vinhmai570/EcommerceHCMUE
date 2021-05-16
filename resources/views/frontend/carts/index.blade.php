@@ -21,12 +21,12 @@
         </thead>
         <tbody id="cart-items">
             @foreach ($cart_items as $cart_item )
-            <tr class="item_cart {{ $cart_item->rowId }}">
+            <tr class="item_cart {{ $cart_item->rowId }}" value="{{ $cart_item->rowId }}">
                 <td class="product-photo"><img src="{{ get_image($cart_item->options['image'], '500x500') }}" alt="Futurelife" height="100" width="100"></td>
                 <td class="produc-name"><a href="#" title="">{{ $cart_item->name }}</a></td>
                 <td class="product-price">${{ $cart_item->price }}</td>
                 <td class="product-quantity"><input type="number" size="4" class="input-text qty text" title="SL" value="{{ $cart_item->qty }}" min="0" step="1"></td>
-                <td class="total-price">${{ $cart_item->subtotal }}</td>
+                <td class="total-price" class="total-price">${{ $cart_item->subtotal }}</td>
                 <td class="product-remove"><a class="remove" title="" value="{{ $cart_item->rowId }}"></a></td>
             </tr>
             @endforeach
@@ -49,7 +49,7 @@
                     </form>
                 </div>
                 <a class="btn link-button link-border-raidus bg-gray" href="#" title="Continue shopping">Continue shopping</a>
-                <a class="btn link-button link-border-raidus bg-gray" href="#" title="Update cart">Update cart</a>
+                <a id="update" class="btn link-button link-border-raidus bg-gray" href="#" title="Update cart">Update cart</a>
             </div>
             <!-- End col-md-6 -->
             <div class="col-md-6 cart-totals text-price">
@@ -91,6 +91,30 @@ jQuery(document).ready(function() {
                 $("#subtotal").html('$' + response);
             })
         }
+    });
+
+    $(document).on("click", "#update", function () {
+        body = {
+            cart_items: []
+        }
+        $('.item_cart').each(function(){
+            item = {
+                rowId: $(this).attr('value'),
+                quantity: $(this).find('.qty').val()
+            }
+            body.cart_items.push(item);
+        })
+
+        url = '{{ route('cart.update') }}'
+
+        fetchAPI('PUT', url, body).then(response => {
+            $("#total").html('$' + response.total);
+            $("#subtotal").html('$' + response.total);
+
+            Object.keys(response.cart_items).map(function(key) {
+                $('#cart-items').find(`.${key}`).find('.total-price').html(`$ ${response.cart_items[key].subtotal}`);
+            });
+        })
     });
 
     async function fetchAPI(method = 'GET', url = '', data = {}) {

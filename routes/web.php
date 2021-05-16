@@ -28,4 +28,5 @@ Route::prefix('carts')->name('cart')->group(function () {
     Route::get('/', [CartController::class, 'index'])->name('.index');
     Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('.add_to_cart');
     Route::delete('/remove/{rowID}', [CartController::class, 'remove'])->name('.remove');
+    Route::put('/update', [CartController::class, 'update'])->name('.update');
 });
