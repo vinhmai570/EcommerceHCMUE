@@ -47,7 +47,7 @@
         <!-- End topbar-right -->
     </div>
     <!-- End container -->
-    
+
     <!-- End Top Bar -->
     <div class="header-top">
         <div class="container">
@@ -156,7 +156,7 @@
                 <div class="cart dropdown">
                     <a class="icon-cart" href="#" title="Cart">
                         <i class="zmdi zmdi-shopping-cart-plus"></i>
-                        <span class="cart-count">4</span>
+                        <span id="cart-count" class="cart-count">{{ Cart::count() }}</span>
                     </a>
                     <div class="cart-list dropdown-menu">
                         <ul class="list">

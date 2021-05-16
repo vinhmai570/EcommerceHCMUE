@@ -30,13 +30,21 @@ class CartController extends Controller
             ),
             'tax'     => 0
         );
-        return response(Cart::add($cart_item));
+        Cart::add($cart_item);
+        $result = array(
+            "cart_count" => Cart::count()
+        );
+
+        return response($result);
     }
 
     public function remove($rowId)
     {
         Cart::remove($rowId);
-        return response(Cart::total());
+        $result = array(
+            "total" => Cart::total()
+        );
+        return response($result);
     }
 
     public function update(Request $request)

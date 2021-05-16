@@ -221,7 +221,12 @@ jQuery(document).ready(function() {
         }
 
         postData(url, body).then(response => {
-            console.log(response);
+            if (response.cart_count) {
+                $('#cart-count').html(response.cart_count);
+                toastr.success('Add to cart successful!');
+            } else {
+                toastr.error('Add to cart error!');
+            }
         })
     });
 
