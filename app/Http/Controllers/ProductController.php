@@ -11,6 +11,25 @@ use App\Services\ProductService;
 class ProductController extends Controller
 {
     private $product_service;
+    private $item_per_page = 2;
+
+    public function index(Request $request)
+    {
+        if ($request->limit) {
+            $this->item_per_page = $request->limit;
+        }
+        $products = $this->product_service->paginate($this->item_per_page);
+        return view('frontend.products.index', compact('products'));
+    }
+
+    public function list(Request $request)
+    {
+        if ($request->limit) {
+            $this->item_per_page = $request->limit;
+        }
+        $products = $this->product_service->paginate($this->item_per_page);
+        return view('frontend.products.list', compact('products'));
+    }
 
     public function __construct(ProductService $product_service)
     {
