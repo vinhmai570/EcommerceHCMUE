@@ -19,11 +19,11 @@ class OrderController extends Controller
 
         foreach(Cart::content() as $item) {
             $order_item = new OrderItem([
-                'product_id' => $item->id,
+                'product_id'     => $item->id,
                 'product_sku_id' => $item['options']['product_sku_id'],
-                'quantity' => $item->qty,
-                'price' => $item->price,
-                'subtotal' => $item->subtotal
+                'quantity'       => $item->qty,
+                'price'          => $item->price,
+                'subtotal'       => $item->subtotal
             ]);
             array_push($order_items, $order_item);
         }
