@@ -86,9 +86,14 @@ jQuery(document).ready(function() {
             url = `{{ URL::to('carts/remove') }}/${rowId}`
 
             fetchAPI('DELETE', url).then(response => {
-                $('#cart-items').find(`.${rowId}`).remove();
-                $("#total").html('$' + response);
-                $("#subtotal").html('$' + response);
+                if (response.total) {
+                    $('#cart-items').find(`.${rowId}`).remove();
+                    $("#total").html('$' + response.total);
+                    $("#subtotal").html('$' + response.total);
+                    toastr.success('Remove item successful!');
+                } else {
+                    toastr.error('Remove item failed!');
+                }
             })
         }
     });
@@ -108,12 +113,17 @@ jQuery(document).ready(function() {
         url = '{{ route('cart.update') }}'
 
         fetchAPI('PUT', url, body).then(response => {
-            $("#total").html('$' + response.total);
-            $("#subtotal").html('$' + response.total);
+            if (response.total) {
+                $("#total").html('$' + response.total);
+                $("#subtotal").html('$' + response.total);
 
-            Object.keys(response.cart_items).map(function(key) {
-                $('#cart-items').find(`.${key}`).find('.total-price').html(`$ ${response.cart_items[key].subtotal}`);
-            });
+                Object.keys(response.cart_items).map(function(key) {
+                    $('#cart-items').find(`.${key}`).find('.total-price').html(`$ ${response.cart_items[key].subtotal}`);
+                });
+                toastr.success('Update cart successful!');
+            } else {
+                toastr.error('Update cart failed!');
+            }
         })
     });
 
