@@ -56,7 +56,7 @@
             </div>
             <!-- End Rating -->
             <div class="wrap-price">
-                <p class="price" id="price">$299</p>
+                <p class="price" value="{{ $default_variant->price }}">${{ $default_variant->price }}</p>
             </div>
             <!-- End Price -->
             <p class="description">{{ $product->description }}</p>
@@ -76,10 +76,10 @@
                     @endforeach
                 </ul>
                 <div class="quantity">
-                    <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" max="100" min="1" step="1">
+                    <input type="number" size="4" id="quantity" class="input-text qty text" title="Qty" value="1" name="quantity" max="100" min="1" step="1">
                 </div>
                 <!-- End quanity -->
-                <a title="link" href="#" class="link-v2"><span>Buy now</span><i class="zmdi zmdi-shopping-cart-plus"></i></a>
+                <a title="link" href="#" id="add-to-cart" class="link-v2"><span>Buy now</span><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                 <a title="link" href="#" class="link-v2 link-v2-bg"><span>Wishlist</span><i class="zmdi zmdi-favorite-outline"></i></a>
             </div>
             <!-- End Options -->
@@ -209,6 +209,22 @@ jQuery(document).ready(function() {
         })
     });
 
+    $(document).on("click", "#add-to-cart", function () {
+        let product_id = $("#product_id").val();
+        let product_sku_id = $('#sku_hidden').val();
+        let quantity = $('#quantity').val();
+        url = '{{ route('cart.add_to_cart') }}'
+        body = {
+            id: product_id,
+            product_sku_id: product_sku_id,
+            quantity: quantity
+        }
+
+        postData(url, body).then(response => {
+            console.log(response);
+        })
+    });
+
     async function fetchAPI(api){
         try {
             let response = await fetch(api);
@@ -217,6 +233,19 @@ jQuery(document).ready(function() {
         } catch (error) {
             console.error(`error is :${error}`);
         }
+    }
+
+    async function postData(url = '', data = {}) {
+        // Default options are marked with *
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        return response.json();
     }
 })
 </script>

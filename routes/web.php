@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,15 @@ require __DIR__.'/auth.php';
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
 Route::get('/products/{slug}', [ProductController::class, 'show'])->name('product.details');
+
+Route::prefix('carts')->name('cart')->group(function () {
+    Route::get('/', [CartController::class, 'index'])->name('.index');
+    Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('.add_to_cart');
+    Route::delete('/remove/{rowID}', [CartController::class, 'remove'])->name('.remove');
+    Route::put('/update', [CartController::class, 'update'])->name('.update');
+});
 
 Route::prefix('profile')->name('profile.')->group(function () {
     Route::get('/', [ProfileController::class, 'index'])->name('show');
