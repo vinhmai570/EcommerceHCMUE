@@ -60,7 +60,7 @@
             </div>
             <!-- End Price -->
             <p class="description">{{ $product->description }}</p>
-            <input type="hidden" id="product_id" value="{{ $product->id }}" >
+            <input type="hidden" id="product_id" value="{{ $product->product_id }}" >
             <input type="hidden" id="sku_hidden" value="{{ $default_variant->id }}" >
             <div class="options">
                 <p>Size</p>
