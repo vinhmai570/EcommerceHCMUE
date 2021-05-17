@@ -6,9 +6,16 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Models\Order;
 use App\Models\OrderItem;
+use Cart;
+
 
 class OrderController extends Controller
 {
+    public function index(){
+        $cart_items = Cart::content();
+        return(view('frontend.checkout.index',compact('cart_items')));
+    }
+
     const DEFAULT_STATUS = 1;
 
     public function checkout(Request $request)
@@ -33,4 +40,5 @@ class OrderController extends Controller
 
         return back()->with('message', 'Create order successful');
     }
+   
 }

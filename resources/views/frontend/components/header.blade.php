@@ -154,27 +154,10 @@
                 <a class="favor" href="#" title="sky"><i class="zmdi zmdi-favorite-outline"></i></a>
 
                 <div class="cart dropdown">
-                    <a class="icon-cart" href="#" title="Cart">
+                    <a class="icon-cart" href="{{route('cart.index')}}" title="Cart">
                         <i class="zmdi zmdi-shopping-cart-plus"></i>
                         <span id="cart-count" class="cart-count">{{ Cart::count() }}</span>
                     </a>
-                    <div class="cart-list dropdown-menu">
-                        <ul class="list">
-                            <li>
-                                <a href="#" title="" class="cart-product-image"><img src="{{ asset('frontend/images/products/1.jpg') }}" alt="Product"></a>
-                                <div class="text">
-                                    <p class="product-name">Duma #2145</p>
-                                    <p class="product-price">1 x $69.90</p>
-                                </div>
-                                <a href="#" class="delete-item">
-                                    <i class="zmdi zmdi-close-circle-o"></i>
-                                </a>
-                            </li>
-                        </ul>
-                        <p class="total"><span>Total cost</span> $1121.98</p>
-                        <a class="checkout" href="#" title="view cart">view cart</a>
-                        <a class="checkout bg-black" href="#" title="check out">Check out</a>
-                    </div>
                 </div>
             </div>
         </div>

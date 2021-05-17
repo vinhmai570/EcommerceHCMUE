@@ -39,3 +39,4 @@ Route::prefix('profile')->name('profile.')->group(function () {
 });
 
 Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
+Route::get('/checkout', [OrderController::class, 'index'])->name('checkout.show')->middleware('auth');
