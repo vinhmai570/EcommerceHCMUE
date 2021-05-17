@@ -1,12 +1,15 @@
 @extends('layouts.frontend')
 @section('styles')
 <link rel="stylesheet" href="{{ asset('frontend/css/checkout.css') }}">
+<link rel="stylesheet" type="text/css" href="{{asset('frontend/css/bootstrap.min.css')}}" />
+
 @endsection
 
 @section('content')
 <div class="container wrapper">
     <div class="row cart-body">
-        <form class="form-horizontal" method="post" action="">
+        <form class="form-horizontal" method="post" action="{{route('checkout')}}" enctype="multipart/form-data">
+            @csrf
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-push-6 col-sm-push-6">
                 <!--REVIEW ORDER-->
                 <div class="panel panel-info">
@@ -47,6 +50,7 @@
                                 <div class="pull-right"><span>$</span><span>{{ Cart::total() }}</span></div>
                             </div>
                         </div>
+                        <input name="total" value="{{ Cart::total() }}" type="hidden" />
                     </div>
                 </div>
                 <!--REVIEW ORDER END-->
@@ -65,7 +69,10 @@
                         <div class="form-group">
                             <div class="col-md-12 col-xs-12">
                                 <strong>Your Name:</strong>
-                                <input type="text" name="name" class="form-control" value="{{Auth::user()->name}}" placeholder="Enter full name"/>
+                                @if ($errors->first('fullname'))
+                                    <p class="text-danger"> {{ $errors->first('fullname') }} </p>
+                                @endif
+                                <input type="text" name="fullname" class="form-control" value="{{Auth::user()->name}}" placeholder="Enter full name"/>
                             </div>
                             <div class="span1"></div>
                             
@@ -73,24 +80,38 @@
                         <div class="form-group">
                             <div class="col-md-12"><strong>Address:</strong></div>
                             <div class="col-md-12">
+                                @if ($errors->first('address'))
+                                    <p class="text-danger"> {{ $errors->first('address') }} </p>
+                                @endif
                                 <input type="text" class="form-control" id="website" placeholder="address" name="address" value="{{Auth::user()->address}}" />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-12"><strong>Email:</strong></div>
                             <div class="col-md-12">
+                                @if ($errors->first('email'))
+                                    <p class="text-danger"> {{ $errors->first('email') }} </p>
+                                @endif
                                 <input  type="email" name="email" class="form-control" id="eMail" placeholder="Enter email ID" value="{{Auth::user()->email }}" />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-12"><strong>Phone:</strong></div>
                             <div class="col-md-12">
+                                @if ($errors->first('phone'))
+                                    <p class="text-danger"> {{ $errors->first('phone') }} </p>
+                                @endif
                                 <input type="text" name="phone" class="form-control" id="phone" placeholder="Enter phone number" value="{{Auth::user()->phone}}"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-12"><strong>Note:</strong></div>
-                            <div class="col-md-12"><textarea type="text" name="note" class="form-control" value="" ></textarea></div>
+                            <div class="col-md-12">
+                                @if ($errors->first('phone'))
+                                    <p class="text-danger"> {{ $errors->first('note') }} </p>
+                                @endif
+                                <textarea type="text" name="note" class="form-control" value="" ></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
