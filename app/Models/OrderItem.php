@@ -11,6 +11,17 @@ class OrderItem extends Model
 
     protected $fillable = ['order_id', 'product_id', 'product_sku_id', 'quantity', 'price', 'sub_total'];
 
+    public static function boot() {
+        parent::boot();
+
+        static::saving(function($order_item) {
+            $order_item->product_sku->quantity -= $order_item->quantity;
+            $order_item->product->selled_count += $order_item->quantity;
+            $order_item->product->save();
+            $order_item->product_sku->save();
+        });
+    }
+
     public function order()
     {
         return $this->belongsTo(order::class);
