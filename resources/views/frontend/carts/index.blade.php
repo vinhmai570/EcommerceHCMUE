@@ -61,7 +61,7 @@
                     <li><span class="text">Shipping</span><span class="number">$ 0.00</span></li>
                     <li><span class="text totals">Totals Cart</span><span class="number totals" id="total">$ {{ Cart::total() }}</span></li>
                 </ul>
-                <a class="btn link-button link-border-raidus" href="#" title="Proceed to checkout">Proceed to checkout</a>
+                <a class="btn link-button link-border-raidus" href="{{route('checkout')}}" title="Proceed to checkout">Proceed to checkout</a>
             </div>
             <!-- End col-md-6 -->
         </div>
