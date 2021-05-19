@@ -3,35 +3,35 @@
 <!-- BEGIN PAGE HEADER-->
 <h3 class="page-title">
   Category
-  </h3>
-  <div class="page-bar">
-    <ul class="page-breadcrumb">
-      <li>
-        <i class="fa fa-home"></i>
-        <a href="index.html">Admin</a>
-        <i class="fa fa-angle-right"></i>
-      </li>
-      <li>
-        <a href="#">Product</a>
-        <i class="fa fa-angle-right"></i>
-      </li>
-      <li>
-        <a href="#">List</a>
-      </li>
-    </ul>
-    <div class="page-toolbar">
-      <div class="btn-group pull-right">
-        <button type="button" class="btn btn-fit-height grey-salt dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
+</h3>
+<div class="page-bar">
+  <ul class="page-breadcrumb">
+    <li>
+      <i class="fa fa-home"></i>
+      <a href="index.html">Admin</a>
+      <i class="fa fa-angle-right"></i>
+    </li>
+    <li>
+      <a href="#">Product</a>
+      <i class="fa fa-angle-right"></i>
+    </li>
+    <li>
+      <a href="#">List</a>
+    </li>
+  </ul>
+  <div class="page-toolbar">
+    <div class="btn-group pull-right">
+      <button type="button" class="btn btn-fit-height grey-salt dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
         Actions <i class="fa fa-angle-down"></i>
-        </button>
-        <ul class="dropdown-menu pull-right" role="menu">
-          <li>
-            <a href="#">Action</a>
-          </li>
-        </ul>
-      </div>
+      </button>
+      <ul class="dropdown-menu pull-right" role="menu">
+        <li>
+          <a href="#">Action</a>
+        </li>
+      </ul>
     </div>
   </div>
+</div>
 <!-- END PAGE HEADER-->
 
 <div class="table-responsive">
@@ -49,7 +49,7 @@
       </tr>
     </thead>
     <tbody>
-    @foreach ($products as $product)
+      @foreach ($products as $product)
       <tr>
         <td>{{ $product->product_id }}</td>
         <td><img src="{{ get_image($product->image, '60x60') }}" alt=""></td>
@@ -67,11 +67,11 @@
               @method('DELETE')
               @csrf
               <button type="submit" class="btn btn-circle btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete this item?');">&nbsp;Delete&nbsp;</button>
-             </form>
+            </form>
           </div>
         </td>
       </tr>
-    @endforeach
+      @endforeach
     </tbody>
   </table>
   {{ $products->links() }}
