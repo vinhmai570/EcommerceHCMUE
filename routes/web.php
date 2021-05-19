@@ -5,6 +5,7 @@ use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,3 +42,6 @@ Route::prefix('profile')->name('profile.')->group(function () {
     Route::get('/update', [ProfileController::class, 'edit'])->name('edit');
     Route::post('/update', [ProfileController::class, 'update'])->name('update');
 });
+
+Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
+Route::get('/checkout', [OrderController::class, 'index'])->name('checkout.show')->middleware('auth');

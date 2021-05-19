@@ -28,8 +28,8 @@ class ProductSkuRequest extends ApiRequest
             'product_attributes.*' => 'required|integer',
             'image'                => 'mimes:jpg,gif,png',
             'sku'                  => 'required|string|min:3|max:12',
-            'price'                => 'required|integer',
-            'sale_price'           => 'required|integer',
+            'price'                => 'required|numeric',
+            'sale_price'           => 'required|numeric',
             'quantity'             => 'required|integer'
         ];
     }
