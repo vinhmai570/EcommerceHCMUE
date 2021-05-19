@@ -2,6 +2,7 @@
 @section('styles')
 <link rel="stylesheet" href="{{ asset('frontend/css/checkout.css') }}">
 <link rel="stylesheet" type="text/css" href="{{asset('frontend/css/bootstrap.min.css')}}" />
+<script src="{{ asset ('ckeditor/ckeditor.js')}}"></script>
 
 @endsection
 
@@ -110,7 +111,7 @@
                                 @if ($errors->first('phone'))
                                     <p class="text-danger"> {{ $errors->first('note') }} </p>
                                 @endif
-                                <textarea type="text" name="note" class="form-control" value="" ></textarea>
+                                <textarea type="text" name="note" id="note" class="form-control" value="" ></textarea>
                             </div>
                         </div>
                     </div>
@@ -129,5 +130,11 @@
     @endsection
 
     @section('scripts')
-
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#note' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
     @endsection
