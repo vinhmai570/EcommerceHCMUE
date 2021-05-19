@@ -11,7 +11,7 @@ use App\Services\ProductService;
 class ProductController extends Controller
 {
     private $product_service;
-    private $item_per_page = 2;
+    private $item_per_page = 6;
 
     public function index(Request $request)
     {
@@ -27,7 +27,13 @@ class ProductController extends Controller
         if ($request->limit) {
             $this->item_per_page = $request->limit;
         }
-        $products = $this->product_service->paginate($this->item_per_page);
+
+        $order_by = 'created_at';
+        if ($request->order) {
+            $order_by = $request->order;
+        }
+
+        $products = $this->product_service->paginate($this->item_per_page, $order_by);
         return view('frontend.products.list', compact('products'));
     }
 

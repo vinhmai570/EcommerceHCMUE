@@ -17,9 +17,9 @@ class ProductService {
         $this->product_repostitory = new ProductRepository;
     }
 
-    public function paginate($item_per_page)
+    public function paginate($item_per_page, $order_by = 'created_at')
     {
-        return $this->product_repostitory->withVariantionDefault()->paginate($item_per_page);
+        return $this->product_repostitory->withVariantionDefault()->orderBy("product_skus.$order_by")->paginate($item_per_page);
     }
 
     public function find($id)

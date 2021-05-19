@@ -8,8 +8,8 @@
             <div class="ordering">
                 <div class="ordering-left">
                     <span>Short by:</span>
-                    <a href="#" title="NewestArrivals">NewestArrivals</a>
-                    <a href="#" title="Price high to low">Price high to low</a>
+                    <a class="order-by" value="created_at" title="NewestArrivals">NewestArrivals</a>
+                    <a class="order-by" value="price" title="Price high to low">Price high to low</a>
                 </div>
                 <!-- end left -->
                 <div class="ordering-right">
@@ -47,6 +47,16 @@ jQuery(document).ready(function() {
     $(document).on("change", "#change-limit", function () {
         limit = $('#limit').val()
         url = `{{ route('product.list') }}?limit=${limit}`
+
+        fetchAPI(url).then(response => {
+            $('#products').html(response);
+            console.log(response);
+        })
+    });
+
+    $(document).on("click", ".order-by", function () {
+        orderField = $(this).attr('value')
+        url = `{{ route('product.list') }}?order=${orderField}`
 
         fetchAPI(url).then(response => {
             $('#products').html(response);
