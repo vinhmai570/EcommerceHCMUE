@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Order;
 use App\Http\Requests\UserRequest;
 Use Illuminate\Support\Facades\Auth;
 
@@ -11,7 +12,8 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        return view('frontend.pages.profile.show');
+        $orders = Order::where('user_id', Auth::user()->id)->get();
+        return view('frontend.pages.profile.show',compact('orders'));
     }
 
     public function edit()
