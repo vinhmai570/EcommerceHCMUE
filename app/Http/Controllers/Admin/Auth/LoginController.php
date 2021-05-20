@@ -24,7 +24,7 @@ class LoginController extends Controller
             return redirect()->route('admin.dashboard');
         } else {
             session::put('message','Username or password incorret');
-            return Redirect::to('/login');
+            return back();
         }
     }
 }
