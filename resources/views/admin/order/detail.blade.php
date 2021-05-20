@@ -57,7 +57,7 @@
                 <td>{{ $order_item->name }}</td>
                 <td>${{ number_format( $order_item->price) }}</td>
                 <td>${{ number_format($order_item->sale_price) }}</td>
-                <td>${{ $order_item->quantity }}</td>
+                <td>{{ $order_item->quantity }}</td>
                 <td>${{ number_format($order_item->subtotal) }}</td>
             </tr>
             @endforeach

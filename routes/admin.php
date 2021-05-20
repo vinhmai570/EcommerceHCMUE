@@ -35,5 +35,6 @@ Route::middleware('auth:admin')->name('admin.')->group(function () {
     Route::prefix('order')->name('order.')->group(function () {
         Route::get('/', [OrderController::class, 'index'])->name('index');
         Route::get('/detail/{id}', [OrderController::class, 'detail'])->name('detail');
+        Route::get('/update/{id}', [OrderController::class, 'update'])->name('update');
     });
 });

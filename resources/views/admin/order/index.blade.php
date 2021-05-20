@@ -1,4 +1,7 @@
 @extends('layouts.admin')
+@section('css')
+@endsection
+
 @section('content')
 <!-- BEGIN PAGE HEADER-->
 <h3 class="page-title">
@@ -59,20 +62,20 @@
         <td>${{ number_format( $order->total ) }}</td>
         <td>{{$order->note}}</td>
         <td class="text-center">
-          <form action="" method="POST">
-            @method('UPDATE')
-            @csrf
-            @if( $order->status == 0 )
-            <button type="submit" class="btn btn-circle btn-success btn-xs" onclick="return confirm('Has the order been completed?');"> &nbsp;slacking&nbsp;</button>
-            @else
-            <button type="submit" class="btn btn-circle btn-danger btn-xs" onclick="return confirm('Orders awaiting delivery?');"> &nbsp;completed&nbsp;</button>
-            @endif
-          </form>
+          @if( $order->status == 0 )
+          <a class="btn btn-circle btn-success btn-xs" href="{{ route('admin.order.update', $order->id)}}" onclick="return confirm('Has the order been completed?');"> &nbsp;slacking&nbsp;</a>
+          @else
+          <a class="btn btn-circle btn-danger btn-xs" href="{{ route('admin.order.update', $order->id)}}" onclick="return confirm('Orders awaiting delivery?');"> &nbsp;completed&nbsp;</a>
+          @endif
         </td>
         <td><a class="btn btn-circle btn-primary btn-xs" href="{{ route('admin.order.detail', $order->id) }}" role="button">detail</a></td>
       </tr>
       @endforeach
     </tbody>
   </table>
+  {{$order->link}}
 </div>
+@endsection
+
+@section('script')
 @endsection

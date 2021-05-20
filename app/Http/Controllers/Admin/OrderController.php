@@ -25,4 +25,16 @@ class OrderController extends Controller
         ->get();
         return view('admin.order.detail', compact('order_items'));
     }
+
+    public function update($id){
+        $order = Order::find($id);
+        if($order->status == 0 ){
+            $order->update(['status' => 1]);
+        }
+        else{
+            $order->update(['status' => 0]);
+        }
+        return back()->with('message', 'update status successful');
+        echo ('hhh');
+    }
 }
