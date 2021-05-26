@@ -23,6 +23,7 @@
                 </ul>
             </div>
         </div>
+
         <div class="profile-info col-md-9">
             <div class="panel">
                 <div class="bio-graph-heading">
@@ -50,6 +51,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="row">
                 @foreach($orders as $order)
                 <div class="col-md-6">
@@ -64,6 +66,7 @@
                                 <p>Address : {{$order->address}}</p>
                                 <p>Phone : {{$order->phone}}</p>
                                 <p>order date : {{$order->created_at}}</p>
+                                <p style="text-align:right;"><a class="btn btn-primary" href="{{route('profile.order_history',$order->id )}}" role="button"><i class="fa fa-eye"></i></a></p>
                             </div>
                         </div>
                     </div>
@@ -73,51 +76,4 @@
         </div>
     </div>
     @endsection
-    @section('order')
-    <div>
-
-
-        <!-- <div class="col-md-6">
-            <div class="panel">
-                <div class="panel-body">
-                    <div class="bio-chart">
-                        <div style="display:inline;width:100px;height:100px;"><canvas width="100" height="100px"></canvas><input class="knob edit-profile" data-width="100" data-height="100" data-displayprevious="true" data-thickness=".2" value="63" data-fgcolor="#4CC5CD" data-bgcolor="#e8e8e8" ></div>
-                    </div>
-                    <div class="bio-desk">
-                        <h4 class="terques">ThemeForest CMS </h4>
-                        <p>Started : 15 July</p>
-                        <p>Deadline : 15 August</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="panel">
-                <div class="panel-body">
-                    <div class="bio-chart">
-                        <div style="display:inline;width:100px;height:100px;"><canvas width="100" height="100px"></canvas><input class="knob edit-profile" data-width="100" data-height="100" data-displayprevious="true" data-thickness=".2" value="75" data-fgcolor="#96be4b" data-bgcolor="#e8e8e8"></div>
-                    </div>
-                    <div class="bio-desk">
-                        <h4 class="green">VectorLab Portfolio</h4>
-                        <p>Started : 15 July</p>
-                        <p>Deadline : 15 August</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="panel">
-                <div class="panel-body">
-                    <div class="bio-chart">
-                        <div style="display:inline;width:100px;height:100px;"><canvas width="100" height="100px"></canvas><input class="knob edit-profile" data-width="100" data-height="100" data-displayprevious="true" data-thickness=".2" value="50" data-fgcolor="#cba4db" data-bgcolor="#e8e8e8"></div>
-                    </div>
-                    <div class="bio-desk">
-                        <h4 class="purple">Adobe Muse Template</h4>
-                        <p>Started : 15 July</p>
-                        <p>Deadline : 15 August</p>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-    </div>
-    @endsection
+ 

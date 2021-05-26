@@ -36,6 +36,7 @@ Route::prefix('profile')->name('profile.')->group(function () {
     Route::get('/', [ProfileController::class, 'index'])->name('show');
     Route::get('/update', [ProfileController::class, 'edit'])->name('edit');
     Route::post('/update', [ProfileController::class, 'update'])->name('update');
+    Route::get('/order-history/{id}', [ProfileController::class, 'orderHistory'])->name('order_history');
 });
 
 Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
