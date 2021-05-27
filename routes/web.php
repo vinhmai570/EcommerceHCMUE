@@ -24,7 +24,7 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('products')->name('product')->group(function () {
-    Route::get('/', [ProductController::class, 'index'])->name('.index');
+    Route::get('/search', [ProductController::class, 'index'])->name('.index');
     Route::get('/list', [ProductController::class, 'list'])->name('.list');
     Route::get('/{slug}', [ProductController::class, 'show'])->name('.details');
 });

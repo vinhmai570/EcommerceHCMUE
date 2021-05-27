@@ -6,35 +6,41 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Models\ProductSku;
 use App\Models\SkuValue;
+use App\Models\Product;
 use App\Models\Category;
 use App\Models\Attribute;
 
 class ProductService {
-    private $product_repostitory;
+    private $model;
 
-    public function __construct(ProductRepository $product_repostitory)
+    public function __construct()
     {
-        $this->product_repostitory = new ProductRepository;
+        $this->model = new Product;
     }
 
     public function paginate($item_per_page, $order_by = 'created_at')
     {
-        return $this->product_repostitory->withVariantionDefault()->orderBy("product_skus.$order_by")->paginate($item_per_page);
+        return $this->model->withVariantionDefault()->orderBy("product_skus.$order_by")->paginate($item_per_page);
     }
 
     public function find($id)
     {
-        return $this->product_repostitory->find($id);
+        return $this->model->find($id);
+    }
+
+    public function search($request, $item_per_page)
+    {
+        return $this->buildSearchQuery($request)->withVariantionDefault()->paginate($item_per_page);
     }
 
     public function withVariantionDefault()
     {
-        return $this->product_repostitory->withVariantionDefault();
+        return $this->model->withVariantionDefault();
     }
 
     public function findBySlug($slug)
     {
-        return $this->product_repostitory->findBySlug($slug);
+        return $this->model->where('slug', '=', $slug);
     }
 
     public function store($request)
@@ -45,7 +51,7 @@ class ProductService {
 
         try {
             DB::beginTransaction();
-            $product = $this->product_repostitory->create($product_params);
+            $product = $this->model->create($product_params);
             $product_sku_params = $request->only(['sku', 'price', 'sale_price', 'quantity']);
             $product_sku_params['is_default'] = true;
             $product_sku_params['image'] = save_image($request->image, $product->slug, 'product_sku');
@@ -67,7 +73,7 @@ class ProductService {
 
     public function update($request, $id)
     {
-        $product = $this->product_repostitory->find($id);
+        $product = $this->model->find($id);
         $product_params = $request->product;
         if ($product->variantion_default_id != $product_params['variantion_default_id']) {
             $product->product_skus()->where('is_default', 1)->update(['is_default'=> 0]);
@@ -82,7 +88,7 @@ class ProductService {
     {
         try {
             DB::beginTransaction();
-                $product = $this->product_repostitory->find($id);
+                $product = $this->model->find($id);
                 $product_sku_ids = $product->product_skus()->pluck('id');
                 SkuValue::where('product_sku_id', $product_sku_ids)->delete();
                 $product->delete();
@@ -92,6 +98,23 @@ class ProductService {
             DB::rollback();
             return false;
         }
+    }
+
+    public function buildSearchQuery($request)
+    {
+        $query = $this->model;
+
+        if ($request->has('q')) {
+            $query = $query->where('name', 'like', "%$request->q%");
+            $query = $query->orWhere('description', 'like', "%$request->q%");
+            $query = $query->orWhere('content', 'like', "%$request->q%");
+        }
+
+        if ($request->has('category_id')) {
+            $query = $query->where('category_id', '=', $request->category_id);
+        }
+
+        return $query;
     }
 
     public function getAllAttributes()

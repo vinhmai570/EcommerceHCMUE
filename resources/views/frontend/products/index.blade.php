@@ -9,13 +9,13 @@
                 <div class="ordering-left">
                     <span>Short by:</span>
                     <a class="order-by" value="created_at" title="NewestArrivals">NewestArrivals</a>
-                    <a class="order-by" value="price" title="Price high to low">Price high to low</a>
+                    <a class="order-by" value="sale_price" title="Price high to low">Price low to high</a>
                 </div>
                 <!-- end left -->
                 <div class="ordering-right">
                     <span class="list"></span>
                     <span class="col active"></span>
-                    <form action="{{ route('product.index') }}" method="GET" id="change-limit" class="order-by">
+                    <form action="{{ route('product.index') }}" method="GET" id="change-limit">
                         <select class="orderby" name="limit" onchange="" id="limit">
                                 <option value="12">12 per page</option>
                                 <option value="20">20 per page</option>

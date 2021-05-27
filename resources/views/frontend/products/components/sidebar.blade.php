@@ -50,22 +50,5 @@
             </form>
         </div>
     </aside>
-    <aside class="widget widget_size_option">
-        <h4>Color</h4>
-        <ul class="color">
-            <li><a class="gray" href="#" title="gray"></a></li>
-            <li><a class="blue" href="#" title="blue"></a></li>
-        </ul>
-    </aside>
-     <aside class="widget">
-        <h4>Discount</h4>
-        <div class="discount-down">
-            <button class="discount_selector">Choose your discount</button>
-            <ul class="discount-list">
-                <li>Discount 1</li>
-                <li>Discount 2</li>
-            </ul>
-        </div>
-    </aside>
 </div>
 <!-- End Secondary -->
