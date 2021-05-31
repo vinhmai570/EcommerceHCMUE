@@ -12,6 +12,13 @@ Route::match(['get', 'post'], '/login', [LoginController::class, 'login'])->name
 Route::get('/logout', [LogoutController::class, 'logout'])->name('admin.logout');
 
 Route::middleware('auth:admin')->name('admin.')->group(function () {
+    Route::prefix('dashboard')->name('dashboard.')->group(function () {
+        Route::get('/index', [DashboardController::class, 'index'])->name('index');
+        Route::post('/filter_by_date', [DashboardController::class, 'filterByDate'])->name('filter_by_date');
+
+
+    });
+
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::prefix('categories')->name('categories.')->group(function () {
