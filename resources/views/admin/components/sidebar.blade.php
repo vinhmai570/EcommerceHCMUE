@@ -17,6 +17,13 @@
         <span class="title">Dashboard</span>
         <span class="selected"></span>
         </a>
+        <ul class="sub-menu">
+          <li>
+            <a href="{{route('admin.dashboard.index')}}">
+            <i class="icon-bar-chart"></i>
+            chart</a>
+          </li>
+        </ul>
       </li>
       <li>
         <a href="{{ route('admin.categories.index') }}">
