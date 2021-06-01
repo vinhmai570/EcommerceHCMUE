@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 Use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 class DashboardController extends Controller
 {
     public function index()
@@ -38,5 +39,28 @@ class DashboardController extends Controller
             );
         }
         echo $data = json_encode($chart_data);
+    }
+
+    public function monthly_chart(){
+        $day = Carbon::now ('Asia/Ho_Chi_Minh')->subdays(30)->toDateString();
+        $now = Carbon::now ('Asia/Ho_Chi_Minh')->toDateString();
+        $get = Order::whereBetween('orders.created_at', [$day, $now])
+        ->join('order_items', 'order_items.order_id' , '=' , 'orders.id' )
+        ->whereRaw('DATE( orders.created_at)','DATE( order_items.created_at)')
+        ->select(DB::raw('sum(quantity) as quantity, DATE( orders.created_at) as order_date, count(order_id) as total_order, SUM(orders.total) as total_price'))
+        ->groupByRaw('DATE(orders.created_at)')
+        ->orderByRaw('DATE(orders.created_at)' , 'ASC')
+        ->get();
+
+       foreach ($get as $key => $val){
+           $chart_data[] = array(
+               'period'    => $val -> order_date,
+               'order'     => $val -> total_order,
+               'sales'     => $val -> total_price,
+               'profit'    => $val -> total_price * 15/100,
+               'quantity'  => $val -> quantity
+           );
+       }
+       echo $data = json_encode($chart_data);
     }
 }

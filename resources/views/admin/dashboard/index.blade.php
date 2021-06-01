@@ -63,6 +63,8 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
+        monthly_chart();
+
         var chart = new Morris.Bar({
             element: 'myfirstchart',
             parseTime: false,
@@ -71,6 +73,19 @@
             ykeys: ['order', 'sales', 'profit', 'quantity'],
             labels: ['order', 'sales', 'profit', 'quantity']
         });
+
+        function monthly_chart(){
+            var _token = $('input[name = "_token"]').val();
+            $.ajax({
+                url : "{{route('admin.dashboard.monthly_chart')}}",
+                method : "post",
+                dataType: "JSON",
+                data: {_token: _token},
+                success: function(data){
+                    chart.setData(data);
+                }
+            })
+        };
 
         $('#btn-dashboard-filter').click(function() {
             var _token = $('input[name = "_token"]').val();

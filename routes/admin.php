@@ -15,8 +15,7 @@ Route::middleware('auth:admin')->name('admin.')->group(function () {
     Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('/index', [DashboardController::class, 'index'])->name('index');
         Route::post('/filter_by_date', [DashboardController::class, 'filterByDate'])->name('filter_by_date');
-
-
+        Route::post('/monthly_chart', [DashboardController::class, 'monthly_chart'])->name('monthly_chart');
     });
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
