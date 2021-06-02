@@ -64,14 +64,24 @@
 <script type="text/javascript">
     $(document).ready(function() {
         monthly_chart();
+        category_chart();
 
-        var chart = new Morris.Bar({
+        var chart = new Morris.Line({
             element: 'myfirstchart',
             parseTime: false,
             lineColers: ['#819c79', '#819c79', '#819c79', '#819c79', '#819c79'],
             xkey: 'period',
             ykeys: ['order', 'sales', 'profit', 'quantity'],
             labels: ['order', 'sales', 'profit', 'quantity']
+        });
+
+        var category_chart = new Morris.Bar({
+            element: 'category-quantity',
+            parseTime: false,
+            lineColers: ['#819c79', '#819c79', '#819c79', '#819c79', '#819c79'],
+            xkey: 'name',
+            ykeys: ['quantity'],
+            labels: ['quantity']
         });
 
         function monthly_chart(){
@@ -105,6 +115,19 @@
                 }
             })
         });
+
+        function category_chart(){
+            var _token = $('input[name = "_token"]').val();
+            $.ajax({
+                url : "{{route('admin.dashboard.category_chart')}}",
+                method : "post",
+                dataType: "JSON",
+                data: {_token: _token},
+                success: function(data){
+                    category_chart.setData(data);
+                }
+            })
+        };
     });
 </script>
 @endsection

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\Category;
 Use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -13,6 +14,7 @@ class DashboardController extends Controller
     public function index()
     {
         $user = Auth::guard('admin')->user();
+        
         return view('admin.dashboard.index');
     }
 
@@ -62,5 +64,21 @@ class DashboardController extends Controller
            );
        }
        echo $data = json_encode($chart_data);
+    }
+
+    public function category_chart(){
+        $cat_quantitys = Category::where('active', 1)
+        ->join('products', 'categories.id', '=', 'products.category_id')
+        ->select(DB::raw('categories.name as name, count(products.id) as quantity'))
+        ->groupBy ('categories.id')
+        ->get();
+
+        foreach ($cat_quantitys as $key => $val){
+            $chart_data[] = array(
+                'name'    => $val -> name,
+                'quantity'     => $val -> quantity,
+            );
+        }
+        echo $data = json_encode($chart_data);
     }
 }

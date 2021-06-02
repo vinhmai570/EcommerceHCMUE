@@ -1,5 +1,4 @@
 <div class="row">
-
     <div class="col-md-12">
         <div class="portlet light bordered">
 
@@ -24,8 +23,39 @@
                 </div>
             </div>
             <div class="portlet-body">
-                    <div id="myfirstchart" style="height: 250px;"></div>
+                <div id="myfirstchart" style="height: 250px;"></div>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-sm-6">
+        <!-- BEGIN PORTLET-->
+        <div class="portlet solid bordered grey-cararra">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-bar-chart-o"></i>Site Visits
+                </div>
+            </div>
+            <div class="portlet-body">
+            <div id="category-quantity"></div>
+            </div>
+        </div>
+        <!-- END PORTLET-->
+    </div>
+    <div class="col-md-6 col-sm-6">
+        <!-- BEGIN PORTLET-->
+        <div class="portlet solid grey-cararra bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-bullhorn"></i>Revenue
+                </div>
+            </div>
+            <div class="portlet-body">
+                
+            </div>
+        </div>
+        <!-- END PORTLET-->
     </div>
 </div>
