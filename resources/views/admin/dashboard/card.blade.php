@@ -6,10 +6,10 @@
             </div>
             <div class="details">
                 <div class="number">
-                    1349
+                    {{$admin_quantity}}
                 </div>
                 <div class="desc">
-                    New Feedbacks
+                    admin
                 </div>
             </div>
             <a class="more" href="#">
@@ -24,7 +24,7 @@
             </div>
             <div class="details">
                 <div class="number">
-                    12,5M$
+                    ${{$total_profit * 15 / 100}}
                 </div>
                 <div class="desc">
                     Total Profit
@@ -42,7 +42,7 @@
             </div>
             <div class="details">
                 <div class="number">
-                    549
+                    {{$new_order}}
                 </div>
                 <div class="desc">
                     New Orders
@@ -60,10 +60,10 @@
             </div>
             <div class="details">
                 <div class="number">
-                    +89%
+                    {{$user_quantity}}
                 </div>
                 <div class="desc">
-                    Brand Popularity
+                    User
                 </div>
             </div>
             <a class="more" href="#">

@@ -35,7 +35,7 @@
         <div class="portlet solid bordered grey-cararra">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-bar-chart-o"></i>Site Visits
+                    <i class="fa fa-bar-chart-o"></i>catalog number statistics
                 </div>
             </div>
             <div class="portlet-body">
@@ -49,11 +49,11 @@
         <div class="portlet solid grey-cararra bordered">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-bullhorn"></i>Revenue
+                    <i class="fa fa-bullhorn"></i> Statistics order of the day
                 </div>
             </div>
             <div class="portlet-body">
-                
+            <div id="Statistics_order"></div>
             </div>
         </div>
         <!-- END PORTLET-->
