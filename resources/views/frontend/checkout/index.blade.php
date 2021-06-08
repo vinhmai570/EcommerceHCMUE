@@ -2,7 +2,6 @@
 @section('styles')
 <link rel="stylesheet" href="{{ asset('frontend/css/checkout.css') }}">
 <link rel="stylesheet" type="text/css" href="{{asset('frontend/css/bootstrap.min.css')}}" />
-<script src="{{ asset ('ckeditor/ckeditor.js')}}"></script>
 
 @endsection
 
@@ -130,6 +129,7 @@
     @endsection
 
     @section('scripts')
+    <script src="{{ asset ('ckeditor/ckeditor.js')}}"></script>
     <script>
         ClassicEditor
             .create( document.querySelector( '#note' ) )

@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 
 @section('css')
-  <link href="{{ asset('admin/plugins/bootstrap-switch/css/bootstrap-switch.min.css') }}" rel="stylesheet" type="text/css"/>
-  <link href="{{ asset('admin/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css') }}" rel="stylesheet" type="text/css"/>
-  <link href="{{ asset('admin/plugins/bootstrap-modal/css/bootstrap-modal.css') }}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset('admin/plugins/bootstrap-switch/css/bootstrap-switch.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('admin/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('admin/plugins/bootstrap-modal/css/bootstrap-modal.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -19,7 +19,7 @@
             <div class="caption">
               <i class="icon-basket font-green-sharp"></i>
               <span class="caption-subject font-green-sharp bold uppercase">
-              Edit Product </span>
+                Edit Product </span>
               <span class="caption-helper">Man Tops</span>
             </div>
             <div class="actions btn-set">
@@ -41,7 +41,7 @@
                 @if ($errors->first('product.description'))
                 <p class="text-danger"> {{ $errors->first('product.description') }} </p>
                 @endif
-                <textarea class="form-control" name="product[description]">{{ $product->description }}</textarea>
+                <textarea class="form-control" id = "description" name="product[description]">{{ $product->description }}</textarea>
               </div>
               <div class="form-group @error('product.content') has-error @enderror">
                 <label>Content</label>
@@ -143,41 +143,41 @@
             <div class="form-body">
               <div class="table-responsive">
                 <table class="table">
-                <thead>
-                <tr>
-                  <th>IMAGE</th>
-                  @foreach ($attributes as $attribute)
-                  <th>{{ strtoupper($attribute->name) }}</th>
-                  @endforeach
-                  <th>PRICE</th>
-                  <th>QUANTITY</th>
-                  <th>SKU</th>
-                  <th>IS DEFAULT</th>
-                  <th class="text-center">ACTION</th>
-                </tr>
-                </thead>
-                <tbody id="list_product_sku">
-                @foreach ($product_skus as $product_sku)
-                  <tr id="{{ $product_sku->id }}">
-                    <td><img src="{{ get_image($product_sku->image, '60x60') }}" alt=""></td>
-                    @foreach ($product_sku->sku_values as $sku_value)
+                  <thead>
+                    <tr>
+                      <th>IMAGE</th>
+                      @foreach ($attributes as $attribute)
+                      <th>{{ strtoupper($attribute->name) }}</th>
+                      @endforeach
+                      <th>PRICE</th>
+                      <th>QUANTITY</th>
+                      <th>SKU</th>
+                      <th>IS DEFAULT</th>
+                      <th class="text-center">ACTION</th>
+                    </tr>
+                  </thead>
+                  <tbody id="list_product_sku">
+                    @foreach ($product_skus as $product_sku)
+                    <tr id="{{ $product_sku->id }}">
+                      <td><img src="{{ get_image($product_sku->image, '60x60') }}" alt=""></td>
+                      @foreach ($product_sku->sku_values as $sku_value)
                       <td>{{ $sku_value->attribute_value->value_name }}</td>
+                      @endforeach
+                      <td>{{ $product_sku->sale_price }}</td>
+                      <td>{{ $product_sku->quantity }}</td>
+                      <td>{{ $product_sku->sku }}</td>
+                      <td>
+                        <label>
+                          <input type="radio" name="product[variantion_default_id]" @if($product_sku->is_default) checked @endif value="{{ $product_sku->id }}">
+                        </label>
+                      </td>
+                      <td class="text-center">
+                        <a class="btn btn-info btn-circle btn-edit-variant" data="{{ $product_sku->id }}" data-toggle="modal" href="#product_sku_modal">Edit</a>
+                        <a class="btn btn-danger btn-circle btn-delete-variant" data="{{ $product_sku->id }}" onclick="deleteVariant($(this))">Delete</a>
+                      </td>
+                    </tr>
                     @endforeach
-                    <td>{{ $product_sku->sale_price }}</td>
-                    <td>{{ $product_sku->quantity }}</td>
-                    <td>{{ $product_sku->sku }}</td>
-                    <td>
-                      <label>
-                        <input type="radio" name="product[variantion_default_id]" @if($product_sku->is_default) checked @endif value="{{ $product_sku->id }}">
-                      </label>
-                    </td>
-                    <td class="text-center">
-                      <a class="btn btn-info btn-circle btn-edit-variant" data="{{ $product_sku->id }}" data-toggle="modal" href="#product_sku_modal">Edit</a>
-                      <a class="btn btn-danger btn-circle btn-delete-variant" data="{{ $product_sku->id }}" onclick="deleteVariant($(this))">Delete</a>
-                    </td>
-                  </tr>
-                @endforeach
-                </tbody>
+                  </tbody>
                 </table>
               </div>
             </div>
@@ -192,9 +192,9 @@
             <p class="text-danger"> {{ $errors->first('product.category_id') }} </p>
             @endif
             <select class="table-group-action-input form-control input-medium" name="product[category_id]">
-            @foreach ($categories as $category)
+              @foreach ($categories as $category)
               <option value="{{ $category->id }}" {{ $product->category_id ? 'selected' : '' }}>{{ $category->name }}</option>
-            @endforeach
+              @endforeach
             </select>
           </div>
         </div>
@@ -202,7 +202,7 @@
           <div class="form-group">
             <label class="control-label" style="margin:0">Is published?</label>
             <hr>
-            <input type="checkbox"  @if($product->is_published) checked @endif class="make-switch" data-size="small" name="product[is_published]">
+            <input type="checkbox" @if($product->is_published) checked @endif class="make-switch" data-size="small" name="product[is_published]">
           </div>
         </div>
         <div class="portlet light">
@@ -220,8 +220,16 @@
 @endsection
 
 @section('script')
-  <script src="{{ asset('admin/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}" type="text/javascript"></script>
-  <script src="{{ asset('admin/plugins/bootstrap-modal/js/bootstrap-modalmanager.js') }}" type="text/javascript"></script>
-  <script src="{{ asset('admin/plugins/bootstrap-modal/js/bootstrap-modal.js') }}" type="text/javascript"></script>
-  @include('admin.scripts.product')
+<script src="{{ asset('admin/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('admin/plugins/bootstrap-modal/js/bootstrap-modalmanager.js') }}" type="text/javascript"></script>
+<script src="{{ asset('admin/plugins/bootstrap-modal/js/bootstrap-modal.js') }}" type="text/javascript"></script>
+@include('admin.scripts.product')
+<script src="{{ asset ('ckeditor/ckeditor.js')}}"></script>
+<script>
+  ClassicEditor
+    .create(document.querySelector('#description'))
+    .catch(error => {
+      console.error(error);
+    });
+</script>
 @endsection
