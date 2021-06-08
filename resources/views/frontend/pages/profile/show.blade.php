@@ -55,17 +55,18 @@
             <div class="row">
                 @foreach($orders as $order)
                 <div class="col-md-6">
-                    <div class="panel">
+                    <div class="panel" style = "{{$order->status == 1 ? 'border-color:#77c063; border-width: 2px;' : '' }}" >
                         <div class="panel-body">
                             <div class="bio-chart">
                                 <div style="display:inline;width:100px;height:100px;"><canvas width="100" height="100px"></canvas><input class="edit-profile knob" data-width="100" data-height="100" data-displayprevious="true" data-thickness=".2" value="{{$order->id}}" data-fgcolor="#e06b7d" data-bgcolor="#e8e8e8"></div>
                             </div>
                             <div class="bio-desk">
-                                <h4 class="red">${{$order->total}}</h4>
+                                <h4 class="red">${{number_format($order->total)}}</h4>
                                 <p>Name : {{$order->fullname}}</p>
                                 <p>Address : {{$order->address}}</p>
                                 <p>Phone : {{$order->phone}}</p>
                                 <p>order date : {{$order->created_at}}</p>
+                                <p>Status : {{$order->status == 1 ? 'finish' : 'Processing' }}
                                 <p style="text-align:right;"><a class="btn btn-primary" href="{{route('profile.order_history',$order->id )}}" role="button"><i class="fa fa-eye"></i></a></p>
                             </div>
                         </div>

@@ -38,14 +38,13 @@ class ProfileController extends Controller
     }
 
     public function orderHistory($id){
-        $total = Order::where('id',$id)->select('total')->first()->value('total');
+        $total = Order::where('id',$id)->value('total');
 
         $orderItems = OrderItem :: where ('order_id', $id)
         ->join('product_skus','order_items.product_sku_id','=','product_skus.id')
         ->join ('products','order_items.product_id','=','products.id')
         ->select('product_skus.product_id','order_items.quantity','subtotal','sku','image','order_items.price','sale_price','name')
         ->get();
-
-        return view('frontend.pages.profile.order_detail', compact('orderItems','id','total'));
+        return view('frontend.order_history.order_detail', compact('orderItems','total','id'));
     }
 }
