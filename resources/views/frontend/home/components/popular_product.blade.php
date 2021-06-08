@@ -55,7 +55,7 @@
                         </div>
                     </div>
                     <!-- End product -->
-                    @each('frontend.products.product_item', $popular_products, 'product')
+                    @each('frontend.home.components.product_item', $popular_products, 'product')
                 </div>
                 <!-- End product-tab-content products                                     -->
             </div>

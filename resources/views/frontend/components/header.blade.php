@@ -56,20 +56,20 @@
                 <div class="logo"><a href="{{ URL::to('') }}" title="Dana-Logo"><img src="{{asset('frontend/images/Dana-menu-logo.png')}}" alt="Dana-Logo"></a></div>
                 <div class="search">
                     <div class="search-form">
-                        <form action="#" method="get">
+                        <form action="{{ route('product.index') }}" method="GET">
                             <div class="search-select">
                                 <i class="zmdi zmdi-chevron-down"></i>
-                                <select name="orderby" class="category-search">
+                                <select name="category_id" class="category-search">
                                     <option value="">Select Category</option>
-                                    <option value="Headphone">Headphone</option>
-                                    <option value="Smart phone">Smart phone</option>
-                                    <option value="game consoles">game consoles</option>
-                                    <option value="Laptop">Laptop</option>
-                                    <option value="televison">televison</option>
+                                    <option value="2">Headphone</option>
+                                    <option value="3">Smart phone</option>
+                                    <option value="4">Game consoles</option>
+                                    <option value="5">Laptop</option>
+                                    <option value="6">Televison</option>
                                 </select>
                             </div>
                             <!-- End search Select -->
-                            <input type="text" autocomplete="off" placeholder="search Keywork " value="" class="ajax_autosuggest_input ac_input" name="s">
+                            <input type="text" autocomplete="off" placeholder="search Keywork " value="" class="ajax_autosuggest_input ac_input" name="q">
                             <button type="submit" class="icon-search">
                                 <i class="zmdi zmdi-search"></i>
                             </button>
