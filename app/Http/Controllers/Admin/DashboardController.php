@@ -11,16 +11,17 @@ use App\Models\User;
 Use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Http\Resources\ChartDataResource;
 class DashboardController extends Controller
 {
     public function index()
     {
-        $now = Carbon::now ('Asia/Ho_Chi_Minh')->toDateString();
+        $now = Carbon::now ()->toDateString();
         $user = Auth::guard('admin')->user();
         $new_order = Order::where('status',0)->count();
-        $total_profit = Order::all()->sum('total');
-        $admin_quantity = Admin::all()->count();
-        $user_quantity = User::all()->count();
+        $total_profit = Order::sum('total');
+        $admin_quantity = Admin::count();
+        $user_quantity = User::count();
         $order_Processing = Order::where('status', 0)->count();
         $order_done = Order::where('status', 1)->count();
         return view('admin.dashboard.index',compact('new_order','total_profit','user_quantity','admin_quantity','order_done','order_Processing'));
@@ -52,8 +53,8 @@ class DashboardController extends Controller
     }
 
     public function monthly_chart(){
-        $day = Carbon::now ('Asia/Ho_Chi_Minh')->subdays(30)->toDateString();
-        $now = Carbon::now ('Asia/Ho_Chi_Minh')->toDateString();
+        $day = Carbon::now ()->subdays(30)->toDateString();
+        $now = Carbon::now ()->toDateString();
 
         $get = Order::whereBetween('orders.created_at', [$day, $now])
         ->join('order_items', 'order_items.order_id' , '=' , 'orders.id' )
