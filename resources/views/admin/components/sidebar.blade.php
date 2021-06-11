@@ -72,7 +72,7 @@
       </li>
       <li>
         <a href="{{ route('admin.users.index') }}">
-        <i class="icon-bell"></i>
+        <i class="icon-user"></i>
         <span class="title">User</span>
         <span class="arrow "></span>
         </a>

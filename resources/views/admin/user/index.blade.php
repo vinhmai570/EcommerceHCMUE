@@ -58,6 +58,18 @@
         <td>{{ $user->address }}</td>
         <td>{{ $user->phone }}</td>
         <td>{{ $user->created_at}}</td>
+        <td class="text-center">
+          <div class="row">
+            <div class="col-md-4">
+              <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-circle btn-info btn-xs">&nbsp;Edit&nbsp;</a>
+            </div>
+            <form action="{{ route('admin.users.destroy', [$user->id]) }}" method="POST" class="col-md-8">
+              @method('DELETE')
+              @csrf
+              <button type="submit" class="btn btn-circle btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete this user?');">&nbsp;Delete&nbsp;</button>
+            </form>
+          </div>
+        </td>
       </tr>
       @endforeach
     </tbody>
