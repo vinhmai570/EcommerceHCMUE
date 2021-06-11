@@ -70,6 +70,13 @@
           </li>
         </ul>
       </li>
+      <li>
+        <a href="{{ route('admin.users.index') }}">
+        <i class="icon-bell"></i>
+        <span class="title">User</span>
+        <span class="arrow "></span>
+        </a>
+      </li>
     </ul>
     <!-- END SIDEBAR MENU -->
   </div>
