@@ -34,4 +34,12 @@ class UserController extends Controller
         $user->update($user_params);
         return back()->withInput();
     }
+
+    public function destroy($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        delete_image($user->image, 'user');
+        return back()->with('message', 'Delete user successful');
+    }
 }
