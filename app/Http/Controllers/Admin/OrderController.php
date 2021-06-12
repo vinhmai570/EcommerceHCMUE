@@ -13,7 +13,7 @@ class OrderController extends Controller
     const ITEM_PER_PAGE = 12;
 
     public function index(){
-        $orders = Order::paginate(self::ITEM_PER_PAGE);
+        $orders = Order::sortable()->paginate(self::ITEM_PER_PAGE);
         return view('admin.order.index', compact('orders'));
     }
 

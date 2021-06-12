@@ -41,14 +41,14 @@
   <table class="table">
     <thead>
       <tr>
-        <th>id</th>
-        <th>receiver</th>
-        <th>phone</th>
-        <th>address</th>
-        <th>booking date</th>
-        <th>total</th>
+        <th>@sortablelink('id','Id')</th>
+        <th>@sortablelink('fullname','Receiver')</th>
+        <th>@sortablelink('phone', 'Phone')</th>
+        <th>@sortablelink('address','Address')</th>
+        <th>@sortablelink('created_at','Booking date')</th>
+        <th>@sortablelink('total','Total')</th>
         <th>note</th>
-        <th class="text-center">status</th>
+        <th class="text-center">@sortablelink('status','Status')</th>
       </tr>
     </thead>
     <tbody>
