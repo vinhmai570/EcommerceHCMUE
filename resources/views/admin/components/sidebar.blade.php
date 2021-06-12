@@ -38,7 +38,7 @@
         </ul>
       </li>
       <li>
-        <a href="{{ route('admin.categories.index') }}">
+        <a href="/">
         <i class="icon-handbag"></i>
         <span class="title">Product</span>
         <span class="arrow "></span>
@@ -57,24 +57,15 @@
         </ul>
       </li>
       <li>
-        <a href="{{ route('admin.categories.index') }}">
-        <i class="icon-bell"></i>
-        <span class="title">Order list</span>
-        <span class="arrow "></span>
+        <a href="{{ route('admin.order.index') }}">
+            <i class="icon-bell"></i>
+            <span class="title">Order</span>
         </a>
-        <ul class="sub-menu">
-          <li>
-            <a href="{{ route('admin.order.index') }}">
-            <i class="fa fa-list"></i>
-            list order</a>
-          </li>
-        </ul>
       </li>
       <li>
         <a href="{{ route('admin.users.index') }}">
         <i class="icon-user"></i>
         <span class="title">User</span>
-        <span class="arrow "></span>
         </a>
       </li>
     </ul>

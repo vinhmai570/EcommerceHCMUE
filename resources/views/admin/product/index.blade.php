@@ -2,7 +2,7 @@
 @section('content')
 <!-- BEGIN PAGE HEADER-->
 <h3 class="page-title">
-  Category
+  Product
 </h3>
 <div class="page-bar">
   <ul class="page-breadcrumb">
