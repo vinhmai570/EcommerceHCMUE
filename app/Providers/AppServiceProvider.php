@@ -6,8 +6,6 @@ use DB;
 use Log;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
-use DB;
-use Log;
 
 class AppServiceProvider extends ServiceProvider
 {

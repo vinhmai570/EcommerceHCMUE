@@ -15,7 +15,7 @@
         <div class="tab-container space-30">
             <div id="tab_01" class="tab-content">
                 <div class="products">
-                    @each('frontend.products.product_item', $popular_products['Headphone'], 'product')
+                    @each('frontend.products.components.product_item', $popular_products['Headphone'], 'product')
                 </div>
                 <!-- End product-tab-content products                                     -->
             </div>
@@ -23,7 +23,7 @@
             <div id="tab_02" class="tab-content">
                 <div class="products">
                     @isset($popular_products['Watch'])
-                        @each('frontend.products.product_item', $popular_products['Watch'], 'product')
+                        @each('frontend.products.components.product_item', $popular_products['Watch'], 'product')
                     @endisset
                 </div>
             </div>
@@ -31,7 +31,7 @@
             <div id="tab_03" class="tab-content">
                 <div class="products">
                     @isset($popular_products['Phone'])
-                        @each('frontend.products.product_item', $popular_products['Phone'], 'product')
+                        @each('frontend.products.components.product_item', $popular_products['Phone'], 'product')
                     @endisset
                 </div>
             </div>
@@ -39,21 +39,21 @@
             <div id="tab_04" class="tab-content">
                 <div class="products">
                     @isset($popular_products['Game'])
-                        @each('frontend.products.product_item', $popular_products['Game'], 'product')
+                        @each('frontend.products.components.product_item', $popular_products['Game'], 'product')
                     @endisset
                 </div>
             </div>
             <div id="tab_05" class="tab-content">
                 <div class="products">
                     @isset($popular_products['Laptop'])
-                        @each('frontend.products.product_item', $popular_products['Laptop'], 'product')
+                        @each('frontend.products.components.product_item', $popular_products['Laptop'], 'product')
                     @endisset
                 </div>
             </div>
             <div id="tab_06" class="tab-content">
                 <div class="products">
                     @isset($popular_products['Televison'])
-                        @each('frontend.products.product_item', $popular_products['Televison'], 'product')
+                        @each('frontend.products.components.product_item', $popular_products['Televison'], 'product')
                     @endisset
                 </div>
             </div>

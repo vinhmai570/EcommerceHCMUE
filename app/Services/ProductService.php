@@ -7,7 +7,6 @@ use Illuminate\Support\Str;
 use App\Models\ProductSku;
 use App\Models\Product;
 use App\Models\SkuValue;
-use App\Models\Product;
 use App\Models\Category;
 use App\Models\Attribute;
 
