@@ -12,6 +12,15 @@ class Product extends Model
 
     protected $fillable = ['name', 'slug', 'description', 'content', 'category_id', 'is_published', 'is_featured', 'variantion_default_id'];
 
+    const MAIN_CATEGORIES = array(
+        2 => 'Headphone',
+        3 => 'Watch',
+        4 => 'Phone',
+        5 => 'Game',
+        6 => 'Laptop',
+        7 => 'Televison'
+    );
+
     public function category()
     {
         return $this->beLongsTo(Category::class);
