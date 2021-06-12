@@ -118,36 +118,10 @@
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <ul class="nav navbar-nav" id="navbar">
-                <li class="level1 active"><a href="#" title="Headphone">Headphone</a>
-                    <ul class="menu-level-1">
-                        <li class="level2"><a href="#" title="Home 1">Headphone 1</a></li>
-                    </ul>
-                </li>
-                <li class="level1 dropdown">
-                    <a href="#" title="men">Smart watch</a>
-                    <div class="sub-menu dropdown-menu">
-                        <ul class="menu-level-1">
-                            <li class="level2"><a href="#">Laptop</a>
-                                <ul class="menu-level-2">
-                                    <li class="level3"><a href="#" title="Apple">Apple</a></li>
-                                </ul>
-                            </li>
-                            <li class="level2"><a href="#">Accessories</a>
-                                <ul class="menu-level-2">
-                                    <li class="level3"><a href="#" title="Submenu1">Submenu1</a></li>
-                                </ul>
-                            </li>
-                            <li class="level2">
-                                <img src="{{ asset('frontend/images/products/1.jpg') }}" alt="Sub-Menu" />
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- End Dropdow Menu -->
-                </li>
-                <li class="level1"><a href="#" title="Smart phone ">Smart phone </a></li>
-                <li class="level1"><a href="#">game consoles</a></li>
-                <li class="level1"><a href="#" title="Laptop">Laptop</a></li>
-                <li class="level1"><a href="#" title="televison">televison</a></li>
+                <li class="level1 active"><a href="/" title="Home">Home</a></li>
+                @foreach (App\Models\Product::MAIN_CATEGORIES as $id => $name)
+                    <li class="level1"><a href="{{ route('product.index') }}?category_id={{ $id }}" title="{{ $name }}">{{ $name }}</a></li>
+                @endforeach
             </ul>
             <div class="menu-icon-right">
                 <a class="refresh" href="#" title="twitter"><i class="zmdi zmdi-refresh-sync"></i></a>
