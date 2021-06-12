@@ -5,5 +5,5 @@
     @include('frontend.home.components.popular_product')
     @include('frontend.home.components.banner')
     {{-- @include('frontend.home.components.best_seller_product') --}}
-    {{-- @include('frontend.components.bottom_product') --}}
+    @include('frontend.components.bottom_product')
 @endsection

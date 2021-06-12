@@ -45,7 +45,7 @@
         <th>@sortablelink('address','Email')</th>
         <th>@sortablelink('phone','Phone')</th>
         <th>@sortablelink('created_at','Created at')</th>
-        <th class="text-center" style="width: 130px;">Action</th>
+        <th class="text-center" style="width: 220px;">Action</th>
       </tr>
     </thead>
     <tbody>
@@ -60,10 +60,13 @@
         <td>{{ $user->created_at}}</td>
         <td class="text-center">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-5">
+                <a href="{{ route('admin.order.index') }}?user_id={{$user->id}}" class="btn btn-circle btn-info btn-xs">&nbsp;View Orders&nbsp;</a>
+            </div>
+            <div class="col-md-2">
               <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-circle btn-info btn-xs">&nbsp;Edit&nbsp;</a>
             </div>
-            <form action="{{ route('admin.users.destroy', [$user->id]) }}" method="POST" class="col-md-8">
+            <form action="{{ route('admin.users.destroy', [$user->id]) }}" method="POST" class="col-md-5">
               @method('DELETE')
               @csrf
               <button type="submit" class="btn btn-circle btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete this user?');">&nbsp;Delete&nbsp;</button>
