@@ -13,7 +13,7 @@ class UserController extends Controller
     const ITEM_PER_PAGE = 12;
 
     public function index(){
-        $users = User::paginate(self::ITEM_PER_PAGE);
+        $users = User::sortable()->paginate(self::ITEM_PER_PAGE);
         return view('admin.user.index', compact('users'));
     }
 
