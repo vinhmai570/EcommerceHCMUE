@@ -73,7 +73,7 @@
       @endforeach
     </tbody>
   </table>
-  {{$order->link}}
+  {{ $orders->links() }}
 </div>
 @endsection
 

@@ -82,7 +82,7 @@
                                                     <div class="form-group">
                                                         <label for="website">birthday</label>
                                                         @if ($errors->first('birthday'))
-                                                        <p class="text-danger"> {{ $errors->first('birthday') }} </p>
+                                                       <p class="text-danger"> {{ $errors->first('birthday') }} </p>
                                                         @endif
                                                         <input type="date" class="form-control-bootstrap" id="birthday" placeholder="birthday" name="birthday" value="{{Auth::user()->birthday}}">
                                                     </div>
