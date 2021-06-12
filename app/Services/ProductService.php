@@ -5,6 +5,7 @@ use App\Repositories\ProductRepository;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Models\ProductSku;
+use App\Models\Product;
 use App\Models\SkuValue;
 use App\Models\Category;
 use App\Models\Attribute;
@@ -20,6 +21,20 @@ class ProductService {
     public function paginate($item_per_page)
     {
         return $this->product_repostitory->withVariantionDefault()->paginate($item_per_page);
+    }
+
+    public function popularProducts($main_categories,$item_per_page)
+    {
+        $popular_products = array();
+        foreach ($main_categories as $id => $name) {
+            $popular_products[$name] = Product::where('category_id', '=', $id);
+            if (count($popular_products[$name]->get())>0) {
+                $popular_products[$name] = $popular_products[$name]->withVariantionDefault()->get();
+            } else {
+                $popular_products[$name] = [];
+            }
+        }
+        return $popular_products;
     }
 
     public function find($id)
