@@ -11,10 +11,28 @@ use App\Services\ProductService;
 class ProductController extends Controller
 {
     private $product_service;
+    private $item_per_page = 6;
 
     public function __construct(ProductService $product_service)
     {
         $this->product_service = $product_service;
+    }
+
+    public function index(Request $request)
+    {
+        $products = $this->product_service->search($request, $this->item_per_page);
+        return view('frontend.products.index', compact('products'));
+    }
+
+    public function list(Request $request)
+    {
+        $order_by = 'created_at';
+        if ($request->order) {
+            $order_by = $request->order;
+        }
+
+        $products = $this->product_service->paginate($this->item_per_page, $order_by);
+        return view('frontend.products.list', compact('products'));
     }
 
     public function show($slug)

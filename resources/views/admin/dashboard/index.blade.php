@@ -35,8 +35,8 @@
     </div>
 </div>
 
-@include('admin.dashboard.filter')
 @include('admin.dashboard.card')
+@include('admin.dashboard.filter')
 @include('admin.dashboard.chart')
 @endsection
 

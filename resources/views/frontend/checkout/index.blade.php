@@ -110,7 +110,7 @@
                                 @if ($errors->first('phone'))
                                     <p class="text-danger"> {{ $errors->first('note') }} </p>
                                 @endif
-                                <textarea type="text" name="note" class="form-control" value="" ></textarea>
+                                <textarea type="text" name="note" id="note" class="form-control" value="" ></textarea>
                             </div>
                         </div>
                     </div>
@@ -129,5 +129,12 @@
     @endsection
 
     @section('scripts')
-
+    <script src="{{ asset ('ckeditor/ckeditor.js')}}"></script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#note' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
     @endsection

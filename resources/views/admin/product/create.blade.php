@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('css')
-  <link href="{{ asset('admin/plugins/bootstrap-switch/css/bootstrap-switch.min.css') }}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset('admin/plugins/bootstrap-switch/css/bootstrap-switch.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -16,7 +16,7 @@
             <div class="caption">
               <i class="icon-basket font-green-sharp"></i>
               <span class="caption-subject font-green-sharp bold uppercase">
-              Add Product </span>
+                Add Product </span>
               <span class="caption-helper">Man Tops</span>
             </div>
             <div class="actions btn-set">
@@ -38,7 +38,7 @@
                 @if ($errors->first('description'))
                 <p class="text-danger"> {{ $errors->first('description') }} </p>
                 @endif
-                <textarea class="form-control" name="description">{{ old('description') }}</textarea>
+                <textarea id="description" class="form-control" name="description">{{ old('description') }}</textarea>
               </div>
               <div class="form-group @error('content') has-error @enderror">
                 <label>Content</label>
@@ -62,7 +62,7 @@
                       <label>{{ $attribute->name }}</label>
                       <select class="table-group-action-input form-control input-medium" name="product_attributes[{{ $attribute->id }}]">
                         @foreach ($attribute->attribute_values as $value)
-                          <option value="{{ $value->id }}">{{ $value->value_name }}</option>
+                        <option value="{{ $value->id }}">{{ $value->value_name }}</option>
                         @endforeach
                       </select>
                     </div>
@@ -126,9 +126,9 @@
             <p class="text-danger"> {{ $errors->first('category_id') }} </p>
             @endif
             <select class="table-group-action-input form-control input-medium" name="category_id">
-            @foreach ($categories as $category)
+              @foreach ($categories as $category)
               <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
-            @endforeach
+              @endforeach
             </select>
           </div>
         </div>
@@ -154,5 +154,13 @@
 @endsection
 
 @section('script')
-  <script src="{{ asset('admin/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('admin/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset ('ckeditor/ckeditor.js')}}"></script>
+<script>
+  ClassicEditor
+    .create(document.querySelector('#description'))
+    .catch(error => {
+      console.error(error);
+    });
+</script>
 @endsection

@@ -38,9 +38,9 @@
   <table class="table">
     <thead>
       <tr>
-        <th>#</th>
+        <th>@sortablelink('id','Id')</th>
         <th>Image</th>
-        <th>Name</th>
+        <th>@sortablelink('name','Name')</th>
         <th>Parent</th>
         <th>Published</th>
         <th class="text-center" style="width: 130px;">Action</th>

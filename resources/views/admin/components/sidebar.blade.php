@@ -17,13 +17,6 @@
         <span class="title">Dashboard</span>
         <span class="selected"></span>
         </a>
-        <ul class="sub-menu">
-          <li>
-            <a href="{{route('admin.dashboard.index')}}">
-            <i class="icon-bar-chart"></i>
-            chart</a>
-          </li>
-        </ul>
       </li>
       <li>
         <a href="{{ route('admin.categories.index') }}">
@@ -76,6 +69,13 @@
             list order</a>
           </li>
         </ul>
+      </li>
+      <li>
+        <a href="{{ route('admin.users.index') }}">
+        <i class="icon-user"></i>
+        <span class="title">User</span>
+        <span class="arrow "></span>
+        </a>
       </li>
     </ul>
     <!-- END SIDEBAR MENU -->

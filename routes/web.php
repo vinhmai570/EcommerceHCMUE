@@ -23,7 +23,12 @@ require __DIR__.'/auth.php';
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/products/{slug}', [ProductController::class, 'show'])->name('product.details');
+Route::prefix('products')->name('product')->group(function () {
+    Route::get('/search', [ProductController::class, 'index'])->name('.index');
+    Route::get('/list', [ProductController::class, 'list'])->name('.list');
+    Route::get('/{slug}', [ProductController::class, 'show'])->name('.details');
+});
+
 
 Route::prefix('carts')->name('cart')->group(function () {
     Route::get('/', [CartController::class, 'index'])->name('.index');
@@ -36,6 +41,7 @@ Route::prefix('profile')->name('profile.')->group(function () {
     Route::get('/', [ProfileController::class, 'index'])->name('show');
     Route::get('/update', [ProfileController::class, 'edit'])->name('edit');
     Route::post('/update', [ProfileController::class, 'update'])->name('update');
+    Route::get('/order-history/{id}', [ProfileController::class, 'orderHistory'])->name('order_history');
 });
 
 Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
