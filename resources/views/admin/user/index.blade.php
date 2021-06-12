@@ -38,13 +38,13 @@
   <table class="table">
     <thead>
       <tr>
-        <th>id</th>
+        <th>@sortablelink('id','Id')</th>
         <th>Image</th>
-        <th>Name</th>
-        <th>email</th>
-        <th>address</th>
-        <th>phone</th>
-        <th>created_at</th>
+        <th>@sortablelink('name','Name')</th>
+        <th>@sortablelink('email','email')</th>
+        <th>@sortablelink('address','Email')</th>
+        <th>@sortablelink('phone','Phone')</th>
+        <th>@sortablelink('created_at','Created at')</th>
         <th class="text-center" style="width: 130px;">Action</th>
       </tr>
     </thead>
