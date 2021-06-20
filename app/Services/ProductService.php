@@ -13,6 +13,8 @@ use App\Models\Attribute;
 class ProductService {
     private $model;
 
+    const ITEM_OF_RELATED = 4;
+
     public function __construct()
     {
         $this->model = new Product;
@@ -145,6 +147,11 @@ class ProductService {
         }
 
         return $query;
+    }
+
+    public function getRelatedProducts($product)
+    {
+        return $this->model->where('category_id', '=', $product->category_id)->where('name', '<>', $product->name)->take(self::ITEM_OF_RELATED)->withVariantionDefault()->get();
     }
 
     public function getAllAttributes()
