@@ -39,11 +39,14 @@ class ProductController extends Controller
     public function show($slug)
     {
         $product = $this->product_service->withVariantionDefault()->firstWhere('slug', $slug);
+
         $product_variants = ProductSku::where('product_id', $product->product_id)->get();
         $default_variant = $product_variants->Where('is_default', 1)->first();
+        $related_products = $this->product_service->getRelatedProducts($product);
         $sizes = Attribute::firstWhere('name', 'Size')->sku_values->whereIn('product_sku_id', $product_variants->pluck('id'))->unique('attribute_value_id');
         $colors = Attribute::firstWhere('name', 'Color')->sku_values->whereIn('product_sku_id', $product_variants->pluck('id'))->unique('attribute_value_id');
 
-        return view('frontend.products.details', compact('product', 'product_variants', 'default_variant', 'sizes', 'colors'));
+
+        return view('frontend.products.details', compact('product', 'product_variants', 'default_variant', 'related_products', 'sizes', 'colors'));
     }
 }
