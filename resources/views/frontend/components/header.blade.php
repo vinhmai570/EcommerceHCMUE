@@ -61,11 +61,9 @@
                                 <i class="zmdi zmdi-chevron-down"></i>
                                 <select name="category_id" class="category-search">
                                     <option value="">Select Category</option>
-                                    <option value="2">Headphone</option>
-                                    <option value="3">Smart phone</option>
-                                    <option value="4">Game consoles</option>
-                                    <option value="5">Laptop</option>
-                                    <option value="6">Televison</option>
+                                    @foreach (App\Models\Product::MAIN_CATEGORIES as $id => $name)
+                                        <option value="{{ $id }}">{{ $name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <!-- End search Select -->
