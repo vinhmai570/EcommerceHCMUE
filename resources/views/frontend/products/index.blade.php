@@ -30,7 +30,7 @@
             </div>
             <!-- End product-content products  -->
             <div class="pagination-container">
-                {{ $products->links() }}
+                {{ $products->appends(request()->input())->links() }}
             </div>
             <!-- End pagination-container -->
     </div>

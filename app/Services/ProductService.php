@@ -128,6 +128,22 @@ class ProductService {
             $query = $query->where('category_id', '=', $request->category_id);
         }
 
+        if ($request->has('price_from')) {
+            $query = $query->join('product_skus as skus_from', function($join) use ($request) {
+                $join->on('products.id', '=', 'skus_from.product_id')
+                    ->where('skus_from.is_default', '=', 1)
+                    ->where('skus_from.sale_price', '>=', $request->price_from);
+            });
+        }
+
+        if ($request->has('price_to')) {
+            $query = $query->join('product_skus as skus_to', function($join) use ($request) {
+                $join->on('products.id', '=', 'skus_to.product_id')
+                    ->where('skus_to.is_default', '=', 1)
+                    ->where('skus_to.sale_price', '<=', $request->price_to);
+            });
+        }
+
         return $query;
     }
 

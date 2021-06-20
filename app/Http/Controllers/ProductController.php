@@ -21,7 +21,8 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $products = $this->product_service->search($request, $this->item_per_page);
-        return view('frontend.products.index', compact('products'));
+        $input = request()->input();
+        return view('frontend.products.index', compact('products', 'input'));
     }
 
     public function list(Request $request)
