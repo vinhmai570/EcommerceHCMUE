@@ -11,14 +11,14 @@
     <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
     <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
     <ul class="page-sidebar-menu page-sidebar-menu-closed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-      <li class="start active ">
-        <a href="{{route('admin.dashboard.index')}}">
+      <li class="start {{ Route::currentRouteNamed('admin.dashboard.index') ? 'active' : '' }} ">
+        <a href="{{ route('admin.dashboard.index') }}">
         <i class="icon-home"></i>
         <span class="title">Dashboard</span>
         <span class="selected"></span>
         </a>
       </li>
-      <li>
+      <li class="{{ Route::currentRouteNamed('admin.categories.index', 'admin.categories.create') ? 'active' : '' }}">
         <a href="{{ route('admin.categories.index') }}">
         <i class="fa fa-list-alt"></i>
         <span class="title">Category</span>
@@ -37,7 +37,7 @@
           </li>
         </ul>
       </li>
-      <li>
+      <li class="{{ Route::currentRouteNamed('admin.products.index', 'admin.products.create') ? 'active' : '' }}">
         <a href="/">
         <i class="icon-handbag"></i>
         <span class="title">Product</span>
@@ -56,13 +56,13 @@
           </li>
         </ul>
       </li>
-      <li>
+      <li class="{{ Route::currentRouteNamed('admin.order.index') ? 'active' : '' }}">
         <a href="{{ route('admin.order.index') }}">
             <i class="icon-bell"></i>
             <span class="title">Order</span>
         </a>
       </li>
-      <li>
+      <li class="{{ Route::currentRouteNamed('admin.users.index') ? 'active' : '' }}">
         <a href="{{ route('admin.users.index') }}">
         <i class="icon-user"></i>
         <span class="title">User</span>
