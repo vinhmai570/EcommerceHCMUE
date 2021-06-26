@@ -159,7 +159,7 @@
                   <tbody id="list_product_sku">
                     @foreach ($product_skus as $product_sku)
                     <tr id="{{ $product_sku->id }}">
-                      <td><img src="{{ get_image($product_sku->image, '60x60') }}" alt=""></td>
+                      <td><img src="{{ get_image($product_sku->image, App\Models\Product::IMAGE_SIZE['small']) }}" alt=""></td>
                       @foreach ($product_sku->sku_values as $sku_value)
                       <td>{{ $sku_value->attribute_value->value_name }}</td>
                       @endforeach

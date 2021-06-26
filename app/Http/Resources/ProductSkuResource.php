@@ -18,7 +18,7 @@ class ProductSkuResource extends JsonResource
         return [
             'id'         => $this->id,
             'sku'        => $this->sku,
-            'image'      => get_image($this->image, '60x60'),
+            'image'      => get_image($this->image, App\Models\Product::IMAGE_SIZE['small']),
             'price'      => $this->price,
             'sale_price' => $this->sale_price,
             'quantity'   => $this->quantity,

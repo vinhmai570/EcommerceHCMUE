@@ -20,7 +20,7 @@
                         @foreach ($cart_items as $cart_item )
                             <div class="form-group">
                             <div class="col-sm-3 col-xs-3">
-                                <img class="img-responsive" src="{{ get_image($cart_item->options['image'], '60x60') }}" />
+                                <img class="img-responsive" src="{{ get_image($cart_item->options['image'], App\Models\Product::IMAGE_SIZE['small']) }}" />
                             </div>
                             <div class="col-sm-6 col-xs-6">
                                 <div class="col-xs-12">{{ $cart_item->name }}</div>

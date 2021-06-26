@@ -5,7 +5,7 @@
     </div>
     <!-- End wrap-title -->
     <a class="product-images" href="{{ route('product.details', $product->slug) }}" title="">
-        <img class="primary_image" src="{{ get_image($product->image, '400x480') }}" alt="{{ $product->name }}" />
+        <img class="primary_image" src="{{ get_image($product->image, App\Models\Product::IMAGE_SIZE['featured']) }}" alt="{{ $product->name }}" />
     </a>
     <div class="action">
             <a title="add-to-cart" href="#"><i class="zmdi zmdi-shopping-cart-plus"></i></a>

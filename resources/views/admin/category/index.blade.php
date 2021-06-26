@@ -50,7 +50,7 @@
     @foreach ($categories as $category)
       <tr>
         <td>{{ $category->id }}</td>
-        <td><img src="{{ get_image($category->image, '60x60') }}" alt=""></td>
+        <td><img src="{{ get_image($category->image, App\Models\Product::IMAGE_SIZE['small']) }}" alt=""></td>
         <td>{{ $category->name }}</td>
         <td>{{ $category->parent ? $category->parent->name : ''}}</td>
         <td>{{ $category->id }}</td>

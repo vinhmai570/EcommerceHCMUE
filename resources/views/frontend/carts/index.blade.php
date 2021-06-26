@@ -22,7 +22,7 @@
         <tbody id="cart-items">
             @foreach ($cart_items as $cart_item )
             <tr class="item_cart {{ $cart_item->rowId }}" value="{{ $cart_item->rowId }}">
-                <td class="product-photo"><img src="{{ get_image($cart_item->options['image'], '500x500') }}" alt="Futurelife" height="100" width="100"></td>
+                <td class="product-photo"><img src="{{ get_image($cart_item->options['image'], App\Models\Product::IMAGE_SIZE['list']) }}" alt="Futurelife" height="100" width="100"></td>
                 <td class="produc-name"><a href="#" title="">{{ $cart_item->name }}</a></td>
                 <td class="product-price">${{ $cart_item->price }}</td>
                 <td class="product-quantity"><input type="number" size="4" class="input-text qty text" title="SL" value="{{ $cart_item->qty }}" min="0" step="1"></td>

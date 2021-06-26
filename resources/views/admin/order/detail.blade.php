@@ -53,7 +53,7 @@
             <tr>
                 <td>{{ $order_item->product_id }}</td>
                 <td>{{ $order_item->sku }}</td>
-                <td><img src="{{ get_image($order_item->image, '60x60') }}" alt=""></td>
+                <td><img src="{{ get_image($order_item->image, App\Models\Product::IMAGE_SIZE['small']) }}" alt=""></td>
                 <td>{{ $order_item->name }}</td>
                 <td>${{ number_format( $order_item->price) }}</td>
                 <td>${{ number_format($order_item->sale_price) }}</td>

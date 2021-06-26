@@ -21,6 +21,14 @@ class Product extends Model
         7 => 'Televison'
     );
 
+    const IMAGE_SIZE = array(
+        'small'    => '60x60',
+        "medium"   => '256x360',
+        "large"    => '600x600',
+        "list"     => '500x500',
+        "featured" => '400x480',
+    );
+
     public function category()
     {
         return $this->beLongsTo(Category::class);

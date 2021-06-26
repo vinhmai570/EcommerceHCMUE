@@ -52,7 +52,7 @@
       @foreach ($products as $product)
       <tr>
         <td>{{ $product->product_id }}</td>
-        <td><img src="{{ get_image($product->image, '60x60') }}" alt=""></td>
+        <td><img src="{{ get_image($product->image, App\Models\Product::IMAGE_SIZE['small']) }}" alt=""></td>
         <td>{{ $product->name }}</td>
         <td>{{ $product->price }}</td>
         <td>{{ $product->quantity }}</td>

@@ -8,14 +8,14 @@
         <div class="col-md-6 col-sm-6">
             <div class="product-img-box">
                 <a id="image-view" title="Product Image">
-                <img id="image" src="{{ get_image($product->image, '600x600') }}" alt="Product"/>
+                <img id="image" src="{{ get_image($product->image, App\Models\Product::IMAGE_SIZE['large']) }}" alt="Product"/>
                 </a>
                 <div class="product-thumb">
                     <ul class="thumb-content">
                         @foreach ($product_variants as $variant)
                         <li class="thumb">
-                            <a href="{{ get_image($variant->image, '600x600') }}" title="thumb product view1" onclick="swap(this);return false;">
-                            <img src="{{ get_image($variant->image, '600x600') }}" alt="thumb product1">
+                            <a href="{{ get_image($variant->image, App\Models\Product::IMAGE_SIZE['large']) }}" title="thumb product view1" onclick="swap(this);return false;">
+                            <img src="{{ get_image($variant->image, App\Models\Product::IMAGE_SIZE['large']) }}" alt="thumb product1">
                         </a>
                         </li>
                         @endforeach
@@ -163,8 +163,8 @@
                 <p class="product-title">{{ $product->name }}</p>
                 <p class="product-price"><span>price: </span>$ {{ $product->sale_price}}</p>
                 <a class="product-images" href="{{ route('product.details', $product->slug) }}" title="">
-                    <img class="primary_image" src="{{ get_image($product->image, '600x600') }}" alt="{{ $product->name }}"/>
-                    <img class="secondary_image" src="{{ get_image($product->image, '600x600') }}" alt="{{ $product->name }}"/>
+                    <img class="primary_image" src="{{ get_image($product->image, App\Models\Product::IMAGE_SIZE['large']) }}" alt="{{ $product->name }}"/>
+                    <img class="secondary_image" src="{{ get_image($product->image, App\Models\Product::IMAGE_SIZE['large']) }}" alt="{{ $product->name }}"/>
                 </a>
                 <p class="description">{{ $product->short_description }}</p>
                 <div class="action">
