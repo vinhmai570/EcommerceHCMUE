@@ -10,7 +10,9 @@ class Order extends Model
     use Sortable, HasFactory;
 
     protected $fillable = ['user_id', 'total', 'address', 'fullname', 'phone', 'status'];
+
     public $sortable = ['id', 'fullname', 'status', 'total', 'created_at'];
+
     public function order_items()
     {
         return $this->hasMany(OrderItem::class);
