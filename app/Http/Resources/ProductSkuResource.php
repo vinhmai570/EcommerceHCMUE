@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\SkuValueResource;
-
+use App\Models\Product;
 class ProductSkuResource extends JsonResource
 {
     /**
@@ -18,7 +18,7 @@ class ProductSkuResource extends JsonResource
         return [
             'id'         => $this->id,
             'sku'        => $this->sku,
-            'image'      => get_image($this->image, App\Models\Product::IMAGE_SIZE['small']),
+            'image'      => get_image($this->image, Product::IMAGE_SIZE['small']),
             'price'      => $this->price,
             'sale_price' => $this->sale_price,
             'quantity'   => $this->quantity,
