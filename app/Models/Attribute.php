@@ -9,6 +9,9 @@ class Attribute extends Model
 {
     use HasFactory;
 
+    const FIRST_ATTRIBUTE_ID = 1;
+    const SECOND_ATTRIBUTE_ID = 2;
+
     public function attribute_values()
     {
         return $this->hasMany(AttributeValue::class);

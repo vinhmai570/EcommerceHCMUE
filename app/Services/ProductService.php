@@ -83,7 +83,7 @@ class ProductService {
             return true;
         } catch(\Exception $e) {
             DB::rollback();
-            return false;
+            return $e;
         }
     }
 
@@ -112,7 +112,7 @@ class ProductService {
             return true;
         } catch(\Exception $e) {
             DB::rollback();
-            return false;
+            return $e;
         }
     }
 

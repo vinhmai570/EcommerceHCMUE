@@ -59,7 +59,7 @@
                 <p class="price" value="{{ $default_variant->price }}">${{ $default_variant->price }}</p>
             </div>
             <!-- End Price -->
-            <p class="description">{{ $product->description }}</p>
+            <p class="description">{!! $product->description !!}</p>
             <input type="hidden" id="product_id" value="{{ $product->product_id }}" >
             <input type="hidden" id="sku_hidden" value="{{ $default_variant->id }}" >
             <div class="options">

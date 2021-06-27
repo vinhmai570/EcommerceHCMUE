@@ -17,6 +17,7 @@ class HomeController extends Controller
     {
         $this->product_service = $product_service;
     }
+
     public function index()
     {
         $popular_product_represent;
