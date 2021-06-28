@@ -20,7 +20,7 @@ use App\Http\Controllers\OrderController;
 require __DIR__.'/admin.php';
 require __DIR__.'/auth.php';
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('root');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('products')->name('product')->group(function () {

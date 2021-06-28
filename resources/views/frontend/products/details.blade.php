@@ -56,31 +56,31 @@
             </div>
             <!-- End Rating -->
             <div class="wrap-price">
-                <p class="price" value="{{ $default_variant->price }}">${{ $default_variant->price }}</p>
+                <p class="price" value="{{ $default_variant->sale_price }}">${{ $default_variant->sale_price }}</p>
             </div>
             <!-- End Price -->
-            <p class="description">{{ $product->description }}</p>
+            <p class="description">{!! $product->description !!}</p>
             <input type="hidden" id="product_id" value="{{ $product->product_id }}" >
             <input type="hidden" id="sku_hidden" value="{{ $default_variant->id }}" >
             <div class="options">
                 <p>Size</p>
                 <ul class="size" id="attribute_size">
                     @foreach ($sizes as $size)
-                    <li><a href="#" name="attribute_ids[{{ $size->attribute_id }}]" value="{{ $size->attribute_value_id }}" class="size_attr @if($size->product_sku_id == $default_variant->id)size-active @endif">{{ $size->attribute_value->value_name }}</a></li>
+                    <li><a name="attribute_ids[{{ $size->attribute_id }}]" value="{{ $size->attribute_value_id }}" class="size_attr @if($size->product_sku_id == $default_variant->id)size-active @endif">{{ $size->attribute_value->value_name }}</a></li>
                     @endforeach
                 </ul>
                 <p>Color</p>
                 <ul class="color" id="attribute_color">
                     @foreach ($colors as $color)
-                    <li><a name="attribute_ids[{{ $color->attribute_id }}]" value="{{ $color->attribute_value_id }}" class="color_attr {{ strtolower($color->attribute_value->value_name) }} @if($color->product_sku_id == $default_variant->id)color-active @endif" href="#" title="xs"></a></li>
+                    <li><a name="attribute_ids[{{ $color->attribute_id }}]" value="{{ $color->attribute_value_id }}" class="color_attr {{ strtolower($color->attribute_value->value_name) }} @if($color->product_sku_id == $default_variant->id)color-active @endif" title="xs"></a></li>
                     @endforeach
                 </ul>
                 <div class="quantity">
                     <input type="number" size="4" id="quantity" class="input-text qty text" title="Qty" value="1" name="quantity" max="100" min="1" step="1">
                 </div>
                 <!-- End quanity -->
-                <a title="link" href="#" id="add-to-cart" class="link-v2"><span>Buy now</span><i class="zmdi zmdi-shopping-cart-plus"></i></a>
-                <a title="link" href="#" class="link-v2 link-v2-bg"><span>Wishlist</span><i class="zmdi zmdi-favorite-outline"></i></a>
+                <a title="link" id="add-to-cart" class="link-v2"><span>Buy now</span><i class="zmdi zmdi-shopping-cart-plus"></i></a>
+                <a title="link" class="link-v2 link-v2-bg"><span>Wishlist</span><i class="zmdi zmdi-favorite-outline"></i></a>
             </div>
             <!-- End Options -->
             </div>
