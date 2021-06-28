@@ -8,6 +8,6 @@
         <img class="primary_image" src="{{ get_image($product->image, App\Models\Product::IMAGE_SIZE['featured']) }}" alt="{{ $product->name }}" />
     </a>
     <div class="action">
-            <a title="add-to-cart" href="#"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
+        <a title="add-to-cart" class="add_to_cart" data-id="{{ $product->product_id }}" data-sku_id="{{ $product->id }}"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
     </div>
 </div>

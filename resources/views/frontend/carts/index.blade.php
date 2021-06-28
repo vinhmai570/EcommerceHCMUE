@@ -48,8 +48,8 @@
                         </div>
                     </form>
                 </div>
-                <a class="btn link-button link-border-raidus bg-gray" href="#" title="Continue shopping">Continue shopping</a>
-                <a id="update" class="btn link-button link-border-raidus bg-gray" href="#" title="Update cart">Update cart</a>
+                <a class="btn link-button link-border-raidus bg-gray" href="{{ route('product.index') }}" title="Continue shopping">Continue shopping</a>
+                <a id="update" class="btn link-button link-border-raidus bg-gray" title="Update cart">Update cart</a>
             </div>
             <!-- End col-md-6 -->
             <div class="col-md-6 cart-totals text-price">

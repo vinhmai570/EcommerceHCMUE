@@ -23,7 +23,7 @@ class CartController extends Controller
             'id'      => $product->id,
             'name'    => $product->name,
             'qty'     => $request->quantity,
-            'price'   => $product_sku->price,
+            'price'   => $product_sku->sale_price,
             'options' => array(
                 'product_sku_id' => $product_sku->id,
                 'image' => $product_sku->image
