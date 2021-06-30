@@ -14,5 +14,6 @@
     @include('frontend.components.content')
     @include('frontend.components.footer')
     @include('frontend.components.scripts')
+    @include('frontend.components.live_chat')
 </body>
 </html>
