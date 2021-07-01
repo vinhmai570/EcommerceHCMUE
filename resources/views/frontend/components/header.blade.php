@@ -117,7 +117,7 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <ul class="nav navbar-nav" id="navbar">
                 <li class="level1 {{ Route::currentRouteNamed(['home', 'root']) ? 'active' : '' }}"><a href="/" title="Home">Home</a></li>
-                <li class="level1 {{ !Route::currentRouteNamed(['home', 'root']) && empty(request()->input()['category_id']) ? 'active' : '' }}"><a href="{{ route('product.index') }}" title="All Products">All Products</a></li>
+                <li class="level1 {{ Route::currentRouteNamed('product.index') && empty(request()->input()['category_id']) ? 'active' : '' }}"><a href="{{ route('product.index') }}" title="All Products">All Products</a></li>
                 @foreach (App\Models\Product::MAIN_CATEGORIES as $id => $name)
                     <li class="level1 {{ isset(request()->input()['category_id']) && request()->input()['category_id'] == $id ? 'active' : '' }}"><a href="{{ route('product.index') }}?category_id={{ $id }}" title="{{ $name }}">{{ $name }}</a></li>
                 @endforeach
