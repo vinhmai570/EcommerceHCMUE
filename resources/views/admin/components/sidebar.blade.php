@@ -38,7 +38,7 @@
         </ul>
       </li>
       <li class="{{ Route::currentRouteNamed('admin.products.index', 'admin.products.create') ? 'active' : '' }}">
-        <a href="/">
+        <a href="{{ route('admin.products.index') }}">
         <i class="icon-handbag"></i>
         <span class="title">Product</span>
         <span class="arrow "></span>

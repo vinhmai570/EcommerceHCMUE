@@ -56,7 +56,7 @@
             </div>
             <!-- End Rating -->
             <div class="wrap-price">
-                <p class="price" value="{{ $default_variant->sale_price }}">${{ $default_variant->sale_price }}</p>
+                <p class="price" id="price" value="{{ $default_variant->sale_price }}">${{ $default_variant->sale_price }}</p>
             </div>
             <!-- End Price -->
             <p class="description">{!! $product->description !!}</p>
