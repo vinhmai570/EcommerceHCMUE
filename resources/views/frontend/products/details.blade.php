@@ -168,9 +168,7 @@
                 </a>
                 <p class="description">{{ $product->short_description }}</p>
                 <div class="action">
-                    <a class="refresh" href="#"><i class="zmdi zmdi-refresh-sync"></i></a>
-                    <a href="#" title="Like"><i class="zmdi zmdi-favorite-outline"></i></a>
-                    <a href="#" title="add-to-cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
+                    <a title="add-to-cart" class="add_to_cart" data-id="{{ $product->product_id }}" data-sku_id="{{ $product->id }}"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                 </div>
             </div>
         </div>
