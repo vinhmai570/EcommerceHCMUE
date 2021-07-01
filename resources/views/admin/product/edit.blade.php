@@ -193,7 +193,7 @@
             @endif
             <select class="table-group-action-input form-control input-medium" name="product[category_id]">
               @foreach ($categories as $category)
-              <option value="{{ $category->id }}" {{ $product->category_id ? 'selected' : '' }}>{{ $category->name }}</option>
+              <option value="{{ $category->id }}" {{ $product->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
               @endforeach
             </select>
           </div>
