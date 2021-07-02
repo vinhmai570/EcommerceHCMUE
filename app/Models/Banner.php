@@ -13,4 +13,6 @@ class Banner extends Model
     protected $table = 'banners';
     
     public $sortable = ['id', 'title', 'image', 'status', 'created_at',];
+    
+    protected $fillable = ['id', 'title', 'image', 'status', 'created_at', 'link', 'content'];
 }

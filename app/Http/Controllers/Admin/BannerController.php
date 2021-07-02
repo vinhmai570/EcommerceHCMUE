@@ -33,13 +33,28 @@ class BannerController extends Controller
         if ($request->hasFile('image')) {
             $file_path_with_name= 'banner/' . $request->alt . '-' . time() . '.' .$request->file('image')->extension();
             $request->file('image')->storeAs('uploads/',$file_path_with_name);
-            $banner_params['image'] = $file_path_with_name;
+            $banner->image = $file_path_with_name;
         }
-
-        $banner->image = $file_path_with_name;
+        
         $banner -> save();
-        return back()->with('message', 'Create category successful');
+        return back()->with('message', 'Create banner successful');
     }
 
+    public function edit($id){
+        $banner = Banner::find($id);
+        return view('admin.banner.edit', compact('banner'));
+    }
 
+    public function update(BannerRequest $request, $id){
+        $banner = Banner::find($id);
+        $banner_params = $request->only(['link', 'title', 'content', 'status']);
+        $banner_params['alt'] = str::slug($request->alt);
+        if ($request->hasFile('image')) {
+            $file_path_with_name= 'banner/' . $request->alt . '-' . time() . '.' .$request->file('image')->extension();
+            $request->file('image')->storeAs('uploads/',$file_path_with_name);
+            $banner_params['image'] = $file_path_with_name;
+        }
+        $banner -> update($banner_params);
+        return back()->with('message', 'update successful');
+    } 
 }
