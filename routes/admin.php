@@ -60,5 +60,7 @@ Route::middleware('auth:admin')->name('admin.')->group(function () {
         Route::post('/create', [BannerController::class, 'store'])->name('store');
         Route::get('/update/{id}', [BannerController::class, 'edit'])->name('edit');
         Route::put('/update/{id}', [BannerController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [BannerController::class, 'destroy'])->name('destroy');
+
     });
 });

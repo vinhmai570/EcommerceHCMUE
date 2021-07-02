@@ -63,7 +63,7 @@
             <div class="col-md-4">
               <a href="{{route('admin.banners.edit', $banner->id )}}" class="todo-username-btn btn btn-circle btn-info btn-xs">&nbsp;Edit&nbsp;</a>
             </div>
-            <form action="" method="POST" class="col-md-6">
+            <form action="{{route('admin.banners.destroy', $banner->id )}}" method="POST" class="col-md-6">
               @method('DELETE')
               @csrf
               <button type="submit" class="btn btn-circle btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete this item?');">&nbsp;Delete&nbsp;</button>

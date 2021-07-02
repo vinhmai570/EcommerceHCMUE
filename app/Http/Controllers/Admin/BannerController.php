@@ -57,4 +57,10 @@ class BannerController extends Controller
         $banner -> update($banner_params);
         return back()->with('message', 'update successful');
     } 
+
+    public function destroy($id){
+        $banner = Banner::find($id);
+        $banner->delete();
+        return back()->with('message', 'Delete user successful');
+    }
 }
