@@ -15,7 +15,7 @@
                         </div>
                         <div class="tp-caption skewfromleft customout link-1 link-2 icons height-50" data-x="270" data-y="500" data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-speed="1000" data-start="1500" data-easing="Power4.easeOut" data-endspeed="300" data-endeasing="Power1.easeIn" data-captionhidden="on" style="z-index: 8"><a href="{{$banner ->link}}" title="{{$banner ->title}}"></a>
                         </div>
-                        <div class="tp-caption skewfromright customout" data-x="590" data-y="130" data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-speed="1000" data-start="1500" data-easing="Power4.easeOut" data-endspeed="300" data-endeasing="Power1.easeIn" data-captionhidden="on" style="z-index: 1"><img src="{{asset('storage/uploads/'.$banner->image)}}" alt="{{ $banner->alt }}">
+                        <div class="tp-caption skewfromright customout" data-x="590" data-y="130" data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-speed="1000" data-start="1500" data-easing="Power4.easeOut" data-endspeed="300" data-endeasing="Power1.easeIn" data-captionhidden="on" style="z-index: 1"><img src="{{asset('storage/'.$banner->image)}}" alt="{{ $banner->alt }}">
                         </div>
                     </li>
                     <!-- SLIDER -->
