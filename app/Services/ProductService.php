@@ -62,7 +62,16 @@ class ProductService {
 
     public function search($request, $item_per_page)
     {
-        return $this->buildSearchQuery($request)->published()->withVariantionDefault()->paginate($item_per_page);
+        $query = $this->buildSearchQuery($request)->published()->withVariantionDefault();
+
+        if ($request->has('sort')) {
+            if ($request->sort == 'sale_price') {
+                $query->orderBy('product_skus.sale_price');
+            } else {
+                $query->orderBy('products.'.$request->sort, 'DESC');
+            }
+        }
+        return $query->paginate($item_per_page);
     }
 
     public function withVariantionDefault()
@@ -111,6 +120,7 @@ class ProductService {
             $product->product_skus()->where('is_default', 1)->update(['is_default'=> 0]);
             $product->product_skus()->find($product_params['variantion_default_id'])->update(['is_default'=> 1]);
         }
+
         $product_params['is_published'] = isset($product_params['is_published']) ? true : false;
         $product_params['is_featured']  = isset($product_params['is_featured']) ? true : false;
         return $product->update($product_params);
