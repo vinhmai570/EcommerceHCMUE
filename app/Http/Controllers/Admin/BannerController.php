@@ -31,11 +31,11 @@ class BannerController extends Controller
         $banner->status = $request->status;
 
         if ($request->hasFile('image')) {
-            $file_path_with_name= 'banner/' . $request->alt . '-' . time() . '.' .$request->file('image')->extension();
-            $request->file('image')->storeAs('uploads/',$file_path_with_name);
+            $file_path_with_name= 'uploads/banner/' . $request->alt . '-' . time() . '.' .$request->file('image')->extension();
+            $request->file('image')->storeAs('public', $file_path_with_name);
             $banner->image = $file_path_with_name;
         }
-        
+
         $banner -> save();
         return back()->with('message', 'Create banner successful');
     }
@@ -50,13 +50,13 @@ class BannerController extends Controller
         $banner_params = $request->only(['link', 'title', 'content', 'status']);
         $banner_params['alt'] = str::slug($request->alt);
         if ($request->hasFile('image')) {
-            $file_path_with_name= 'banner/' . $request->alt . '-' . time() . '.' .$request->file('image')->extension();
-            $request->file('image')->storeAs('uploads/',$file_path_with_name);
+            $file_path_with_name= 'uploads/banner/' . $request->alt . '-' . time() . '.' .$request->file('image')->extension();
+            $request->file('image')->storeAs('public', $file_path_with_name);
             $banner_params['image'] = $file_path_with_name;
         }
         $banner -> update($banner_params);
         return back()->with('message', 'update successful');
-    } 
+    }
 
     public function destroy($id){
         $banner = Banner::find($id);
