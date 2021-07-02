@@ -29,8 +29,8 @@ class ProfileController extends Controller
         $user_params = $request->only(['name', 'phone', 'address', 'birthday']);
 
         if ($request->hasFile('image')) {
-            $file_path_with_name= 'user/' . $user->id .'-' . time() . '.' .$request->file('image')->extension();
-            $request->file('image')->storeAs('public/',$file_path_with_name);
+            $file_path_with_name= 'uploads/user/' . $user->id .'-' . time() . '.' .$request->file('image')->extension();
+            $request->file('image')->storeAs('public',$file_path_with_name);
             $user_params['image'] = $file_path_with_name;
         }
         $user->update($user_params);
