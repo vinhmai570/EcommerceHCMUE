@@ -57,7 +57,7 @@
         <td>{{ $banner->title }}</td>
         <td>{{ $banner->alt }}</td>
         <td>{{ $banner->created_at }}</td>
-        <td>{{ $banner->status == 0 ? "ẩn" : "Hiện"  }}</td>
+        <td>{{ $banner->status == 0 ? "hide" : "show"  }}</td>
         <td class="text-center">
           <div class="row">
             <div class="col-md-4">
