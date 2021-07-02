@@ -2,7 +2,7 @@
 @section('content')
 <!-- BEGIN PAGE HEADER-->
 <h3 class="page-title">
-  Product
+  Banner
 </h3>
 <div class="page-bar">
   <ul class="page-breadcrumb">
@@ -12,7 +12,7 @@
       <i class="fa fa-angle-right"></i>
     </li>
     <li>
-      <a href="#">Product</a>
+      <a href="#">banner</a>
       <i class="fa fa-angle-right"></i>
     </li>
     <li>
@@ -38,32 +38,32 @@
   <table class="table">
     <thead>
       <tr>
-        <th>#</th>
+        <th>@sortablelink('id','Id')</th>
         <th>Image</th>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Sku</th>
-        <th>Status</th>
+        <th>Link</th>
+        <th>@sortablelink('title','Title')</th>
+        <th>@sortablelink('alt','Alt')</th>
+        <th>@sortablelink('create_at','Created')</th>
+        <th>@sortablelink('status','Status')</th>
         <th class="text-center" style="width: 130px;">Action</th>
       </tr>
     </thead>
     <tbody>
-      @foreach ($products as $product)
+      @foreach ($banners as $banner)
       <tr>
-        <td>{{ $product->product_id }}</td>
-        <td><img src="{{ get_image($product->image, App\Models\Product::IMAGE_SIZE['small']) }}" alt=""></td>
-        <td>{{ $product->name }}</td>
-        <td>{{ $product->price }}</td>
-        <td>{{ $product->quantity }}</td>
-        <td>{{ $product->sku }}</td>
-        <td>{{ $product->is_published ? 'Published' : 'Pending'}}</td>
+        <td>{{ $banner->id }}</td>
+        <td><img src="{{asset('storage/uploads/'.$banner->image)}}" alt="{{ $banner->alt }} " style="width: 60px; height: 60px;"></td>
+        <td>{{ $banner->link }}</td>
+        <td>{{ $banner->title }}</td>
+        <td>{{ $banner->alt }}</td>
+        <td>{{ $banner->created_at }}</td>
+        <td>{{ $banner->status == 0 ? "hide" : "show"  }}</td>
         <td class="text-center">
           <div class="row">
             <div class="col-md-4">
-              <a href="{{ route('admin.products.edit', $product->product_id) }}" class="todo-username-btn btn btn-circle btn-info btn-xs">&nbsp;Edit&nbsp;</a>
+              <a href="{{route('admin.banners.edit', $banner->id )}}" class="todo-username-btn btn btn-circle btn-info btn-xs">&nbsp;Edit&nbsp;</a>
             </div>
-            <form action="{{ route('admin.products.destroy', [$product->product_id]) }}" method="POST" class="col-md-8">
+            <form action="{{route('admin.banners.destroy', $banner->id )}}" method="POST" class="col-md-6">
               @method('DELETE')
               @csrf
               <button type="submit" class="btn btn-circle btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete this item?');">&nbsp;Delete&nbsp;</button>
@@ -74,6 +74,6 @@
       @endforeach
     </tbody>
   </table>
-  {{ $products->appends(request()->input())->links() }}
+  {{ $banners->links() }}
 </div>
 @endsection

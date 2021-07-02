@@ -70,6 +70,6 @@
     @endforeach
     </tbody>
   </table>
-  {{ $categories->links() }}
+  {{ $categories->appends(request()->input())->links() }}
 </div>
 @endsection
