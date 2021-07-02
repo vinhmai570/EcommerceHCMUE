@@ -59,4 +59,14 @@ class Product extends Model
     {
         return $query->join('product_skus', 'products.id', '=', 'product_skus.product_id')->whereColumn('products.variantion_default_id', 'product_skus.id');
     }
+
+    public function scopePublished($query)
+    {
+        return $query->where('is_published', true);
+    }
+
+    public function scopeFeatured($query)
+    {
+        return $query->where('is_featured', true);
+    }
 }
