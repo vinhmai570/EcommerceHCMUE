@@ -5,24 +5,28 @@
       @include('frontend.products.components.sidebar')
       <div id="primary" class="col-xs-12 col-md-9">
             <!-- End Banner Grid -->
-            {{-- <div class="ordering">
+            <div class="ordering">
                 <!-- end left -->
                 <div class="ordering-right">
                     <span class="list"></span>
                     <span class="col active"></span>
-                    <form action="{{ route('product.index') }}" method="GET" id="order_by">
+                    <form action="{{ route('product.index') }}" method="GET">
                         Sort By
-                        <select class="orderby" name="order_by" onchange="" id="limit">
-                            <option value="created_at">NewestArrivals</option>
-                            <option value="sale_price">Price low to high</option>
+                        @foreach (Arr::except($input, ['page', 'sort']) as $input_name => $input_value)
+                            <input type="hidden" name="{{ $input_name }}" value="{{ $input_value }}">
+                        @endforeach
+                        <select class="orderby" name="sort" onchange="this.form.submit()">
+                            <option value="created_at" {{ isset($input['sort']) && $input['sort'] == 'created_at' ? 'selected' : ''}}>NewestArrivals</option>
+                            <option value="sale_price" {{ isset($input['sort']) && $input['sort'] == 'sale_price' ? 'selected' : ''}}>Price low to hight</option>
+                            <option value="selled_count" {{ isset($input['sort']) && $input['sort'] == 'selled_count' ? 'selected' : ''}}>Selled count</option>
                         </select>
                     </form>
                 </div>
                 <!-- End right -->
-            </div> --}}
+            </div>
             <!-- End ordering -->
             <div class="products grid_full grid_sidebar" id="products">
-                    @include('frontend.products.list')
+                @include('frontend.products.list')
             </div>
             <!-- End product-content products  -->
             <div class="pagination-container">
@@ -38,38 +42,6 @@
 @endsection
 
 @section('scripts')
-<script>
-jQuery(document).ready(function() {
-    $(document).on("change", "#order_by", function () {
-        limit = $('#limit').val()
-        url = `{{ route('product.list') }}?limit=${limit}`
-
-        fetchAPI(url).then(response => {
-            $('#products').html(response);
-            console.log(response);
-        })
-    });
-
-    $(document).on("click", ".order-by", function () {
-        orderField = $(this).attr('value')
-        url = `{{ route('product.list') }}?order=${orderField}`
-
-        fetchAPI(url).then(response => {
-            $('#products').html(response);
-            console.log(response);
-        })
-    });
-
-    async function fetchAPI(api){
-        try {
-            let response = await fetch(api);
-            return response.text();
-        } catch (error) {
-            console.error(`error is :${error}`);
-        }
-    }
-})
-</script>
 <script>
     var trigger = $('.discount_selector');
     var list = $('.discount-list');
