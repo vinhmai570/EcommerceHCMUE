@@ -39,6 +39,22 @@ class ProductService {
         return $popular_products;
     }
 
+
+    public function featuredProducts($number_of_item)
+    {
+        return $this->model->featured()->published()->orderBy('selled_count', 'DESC')->withVariantionDefault()->paginate($number_of_item);
+    }
+
+    public function bestSellerProducts($number_of_item)
+    {
+        return $this->model->orderBy('selled_count', 'DESC')->published()->withVariantionDefault()->paginate($number_of_item);
+    }
+
+    public function newestProducts($number_of_item)
+    {
+        return $this->model->orderBy('products.created_at', 'DESC')->published()->withVariantionDefault()->paginate($number_of_item);
+    }
+
     public function find($id)
     {
         return $this->model->find($id);
@@ -46,7 +62,7 @@ class ProductService {
 
     public function search($request, $item_per_page)
     {
-        return $this->buildSearchQuery($request)->withVariantionDefault()->paginate($item_per_page);
+        return $this->buildSearchQuery($request)->published()->withVariantionDefault()->paginate($item_per_page);
     }
 
     public function withVariantionDefault()
@@ -151,7 +167,7 @@ class ProductService {
 
     public function getRelatedProducts($product)
     {
-        return $this->model->where('category_id', '=', $product->category_id)->where('name', '<>', $product->name)->take(self::ITEM_OF_RELATED)->withVariantionDefault()->get();
+        return $this->model->where('category_id', '=', $product->category_id)->where('name', '<>', $product->name)->published()->take(self::ITEM_OF_RELATED)->withVariantionDefault()->get();
     }
 
     public function getAllAttributes()
