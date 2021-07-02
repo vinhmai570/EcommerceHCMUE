@@ -28,7 +28,7 @@ class BannerRequest extends FormRequest
             'link' => 'nullable',
             'title' => 'required|string',
             'alt' => 'required|string|min:2|max:15',
-            'content' => 'nullable|max:30'
+            'content' => 'nullable|max:300'
         ];
     }
 }

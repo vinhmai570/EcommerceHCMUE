@@ -14,5 +14,5 @@ class Banner extends Model
     
     public $sortable = ['id', 'title', 'image', 'status', 'created_at',];
     
-    protected $fillable = ['id', 'title', 'image', 'status', 'created_at', 'link', 'content'];
+    protected $fillable = [ 'title', 'image', 'status', 'created_at', 'link', 'content'];
 }
