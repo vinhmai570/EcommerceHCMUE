@@ -10,9 +10,7 @@ class Banner extends Model
 {
     use HasFactory, Sortable;
 
+    protected $table = 'banners';
+    
     public $sortable = ['id', 'title', 'image', 'status', 'created_at',];
-
-    protected $fillable = [
-        'title', 'image', 'url', 'status', 'alt'
-    ];
 }

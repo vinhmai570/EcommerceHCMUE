@@ -74,6 +74,11 @@
         <span class="title">Banner</span>
         </a>
         <ul class="sub-menu">
+        <li>
+            <a href="{{ route('admin.banners.create') }}">
+            <i class="fa fa-plus"></i>
+            New</a>
+          </li>
           <li>
             <a href="{{ route('admin.banners.index') }}">
             <i class="fa fa-list"></i>

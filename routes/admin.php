@@ -56,5 +56,7 @@ Route::middleware('auth:admin')->name('admin.')->group(function () {
 
     Route::prefix('banners')->name('banners.')->group(function () {
         Route::get('/', [BannerController::class, 'index'])->name('index');
+        Route::get('/create', [BannerController::class, 'create'])->name('create');
+        Route::post('/create', [BannerController::class, 'store'])->name('store');
     });
 });

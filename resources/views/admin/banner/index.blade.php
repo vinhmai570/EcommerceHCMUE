@@ -44,6 +44,7 @@
         <th>@sortablelink('title','Title')</th>
         <th>@sortablelink('alt','Alt')</th>
         <th>@sortablelink('create_at','Created')</th>
+        <th>@sortablelink('status','Status')</th>
         <th class="text-center" style="width: 130px;">Action</th>
       </tr>
     </thead>
@@ -51,16 +52,18 @@
       @foreach ($banners as $banner)
       <tr>
         <td>{{ $banner->id }}</td>
-        <td><img src="{{ get_image($banner->image, '60x60') }}" alt="{{ $banner->alt }}"></td>
-        <td>{{ $banner->url }}</td>
+        <td><img src="{{asset('storage/uploads/'.$banner->image)}}" alt="{{ $banner->alt }} " style="width: 60px; height: 60px;"></td>
+        <td>{{ $banner->link }}</td>
         <td>{{ $banner->title }}</td>
         <td>{{ $banner->alt }}</td>
+        <td>{{ $banner->created_at }}</td>
+        <td>{{ $banner->status == 0 ? "ẩn" : "Hiện"  }}</td>
         <td class="text-center">
           <div class="row">
             <div class="col-md-4">
               <a href="" class="todo-username-btn btn btn-circle btn-info btn-xs">&nbsp;Edit&nbsp;</a>
             </div>
-            <form action="" method="POST" class="col-md-8">
+            <form action="" method="POST" class="col-md-6">
               @method('DELETE')
               @csrf
               <button type="submit" class="btn btn-circle btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete this item?');">&nbsp;Delete&nbsp;</button>
