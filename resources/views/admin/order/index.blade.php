@@ -73,7 +73,7 @@
       @endforeach
     </tbody>
   </table>
-  {{ $orders->links() }}
+  {{ $orders->appends(request()->input())->links() }}
 </div>
 @endsection
 
