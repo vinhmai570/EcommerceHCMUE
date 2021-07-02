@@ -69,7 +69,7 @@
         </a>
       </li>
       <li class="{{ Route::currentRouteNamed('admin.banners.index') ? 'active' : '' }}">
-        <a href="/">
+        <a href="">
         <i class="fa fa-picture-o"></i>
         <span class="title">Banner</span>
         </a>
