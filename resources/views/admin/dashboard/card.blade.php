@@ -24,10 +24,10 @@
             </div>
             <div class="details">
                 <div class="number">
-                    ${{$total_profit * 15 / 100}}
+                    ${{ $total_revenue }}
                 </div>
                 <div class="desc">
-                    Total Profit
+                    Total Revenue
                 </div>
             </div>
             <a class="more" href="#">

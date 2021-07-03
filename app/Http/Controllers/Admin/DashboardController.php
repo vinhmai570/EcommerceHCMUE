@@ -12,6 +12,7 @@ Use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Http\Resources\ChartDataResource;
+
 class DashboardController extends Controller
 {
     public function index()
@@ -19,12 +20,12 @@ class DashboardController extends Controller
         $now = Carbon::now ()->toDateString();
         $user = Auth::guard('admin')->user();
         $new_order = Order::where('status',0)->count();
-        $total_profit = Order::sum('total');
+        $total_revenue = Order::sum('total');
         $admin_quantity = Admin::count();
         $user_quantity = User::count();
         $order_Processing = Order::where('status', 0)->count();
         $order_done = Order::where('status', 1)->count();
-        return view('admin.dashboard.index',compact('new_order','total_profit','user_quantity','admin_quantity','order_done','order_Processing'));
+        return view('admin.dashboard.index',compact('new_order','total_revenue','user_quantity','admin_quantity','order_done','order_Processing'));
     }
 
     public function filterByDate(Request $request){

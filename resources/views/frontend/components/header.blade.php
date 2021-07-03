@@ -61,8 +61,8 @@
                                 <i class="zmdi zmdi-chevron-down"></i>
                                 <select name="category_id" class="category-search">
                                     <option value="">Select Category</option>
-                                    @foreach (App\Models\Product::MAIN_CATEGORIES as $id => $name)
-                                        <option value="{{ $id }}">{{ $name }}</option>
+                                    @foreach ($search_categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
