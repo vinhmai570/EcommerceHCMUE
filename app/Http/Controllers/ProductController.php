@@ -41,7 +41,7 @@ class ProductController extends Controller
         $product = $this->product_service->withVariantionDefault()->firstWhere('slug', $slug);
 
         $product_variants = ProductSku::where('product_id', $product->product_id)->get();
-        $default_variant = $product_variants->Where('is_default', 1)->first();
+        $default_variant = $product_variants->Where('is_default', true)->first();
         $related_products = $this->product_service->getRelatedProducts($product);
         $sizes = Attribute::firstWhere('name', 'Size')->sku_values->whereIn('product_sku_id', $product_variants->pluck('id'))->unique('attribute_value_id');
         $colors = Attribute::firstWhere('name', 'Color')->sku_values->whereIn('product_sku_id', $product_variants->pluck('id'))->unique('attribute_value_id');
