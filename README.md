@@ -7,7 +7,7 @@ This projec is Course projects for e-commerce course in HCMUE
 * php extension: pdo_mysql mbstring zip exif pcntl gd
 * mysql 5.7
 
-## Installation (Development setup)
+## Development setup
 
 - PHP
 ```sh
@@ -37,6 +37,40 @@ sudo apt update
 sudo apt install mysql-server
 sudo mysql_secure_installation
 ```
+
+## Installation
+- First simply clone this repo by using following command:
+```sh
+git clone https://github.com/vinhmai570/EcommerceHCMUE.git [your-directory]
+```
+
+- Now navigate to the directory you cloned the repo into and run the following command
+```
+composer install
+```
+
+- Publish configuration & views:
+```
+php artisan vendor:publish
+```
+
+- Create .env file
+```
+cp .env.example .env
+```
+
+- Set application key
+```
+php artisan key:generate
+```
+
+- Set your database credentials.
+
+- Migrate the databases:
+```
+php artisan migrate
+```
+
 ### Todo
 
 - [ ] Activities log
