@@ -7,12 +7,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Kyslik\ColumnSortable\Sortable;
+use Jenssegers\Mongodb\Eloquent\HybridRelations;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasFactory, Notifiable, Sortable;
+    use HasFactory, Notifiable, Sortable, HybridRelations;
 
-    protected $table = 'users';
+    protected $table      = 'users';
+    protected $connection = 'mysql';
 
     /**
      * The attributes that are mass assignable.
@@ -53,5 +55,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function orders()
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function activityLogs()
+    {
+        return $this->morphMany(ActivityLog::class, 'userable');
     }
 }
