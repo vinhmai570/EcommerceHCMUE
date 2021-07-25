@@ -12,8 +12,7 @@ class ActivityLog extends Eloquent
 
     protected $connection = 'mongodb';
     protected $collection = 'activity_logs';
-    protected $fillable   = ['mac_address', 'ip_address', 'uri', 'action', 'params', 'method', 'username', 'user_id', 'user_type'];
-
+    protected $fillable   = ['mac_address', 'ip_address', 'uri', 'action', 'params', 'method', 'username', 'user_id', 'user_type', 'session_id'];
 
     public function session()
     {

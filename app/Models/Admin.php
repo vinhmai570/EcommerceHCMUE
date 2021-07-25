@@ -28,4 +28,9 @@ class Admin extends Authenticatable
     {
         return $this->morphMany(ActivityLog::class, 'userable');
     }
+
+    public function sessions()
+    {
+        return $this->morphMany(Session::class, 'sessionable');
+    }
 }

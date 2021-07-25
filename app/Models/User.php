@@ -61,4 +61,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->morphMany(ActivityLog::class, 'userable');
     }
+
+    public function sessions()
+    {
+        return $this->morphMany(Session::class, 'sessionable');
+    }
 }

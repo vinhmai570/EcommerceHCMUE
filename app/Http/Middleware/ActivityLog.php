@@ -2,14 +2,22 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
 use Illuminate\Http\Request;
+use Closure;
+use App\Jobs\ActivityLog as ProcessActivityLog;
 use App\Services\ActivityLogService;
+use Jenssegers\Agent\Agent;
 use Route;
 use Auth;
 
 class ActivityLog {
+
     private $activityLogService;
+
+    public function __construct()
+    {
+        $this->activityLogService = new ActivityLogService;
+    }
 
     /**
      * Handle an incoming request.
@@ -20,31 +28,45 @@ class ActivityLog {
      */
     public function handle(Request $request, Closure $next)
     {
-        $this->activityLogService = new ActivityLogService;
+        $agent = new Agent;
+
+        $currentAction = Route::currentRouteAction();
+        $userAgent  = $request->header('user-agent');
+
+        $deviceName = $agent->device();
+        $deviceType = $agent->device();
+
+        $client        = $agent->browser();
+        $clientVersion = $agent->version($client);
+        $clientVersion = $client. '-' .$clientVersion;
+
+        $os        = $agent->platform();
+        $osVersion = $agent->version($os);
+        $osVersion = $os. '-' .$osVersion;
 
         $ipAddress  = $request->ip();
         $macAddress = $this->activityLogService->getMacAddress();
         $uri        = $request->fullURL();
-        $action     = Route::getCurrentRoute()->getActionName();
+        $action     = Route::currentRouteAction();
+        // $action     = "test";
         $params     = $request->all();
         $method     = $request->method();
 
         if (Auth::check()) {
-            $userID = Auth::user()->id;
+            $userID   = Auth::user()->id;
             $userName = Auth::user()->name;
             $userType = 'user';
         } else if (Auth::guard('admin')->check()) {
-            $userID = $Auth::user()->id;
-            $userName = $Auth::guard('admin')->user()->name;
+            $userID   = Auth::user()->id;
+            $userName = Auth::guard('admin')->user()->name;
             $userType = 'admin';
         } else {
-            $userID = null;
+            $userID   = null;
             $userName = null;
             $userType = null;
         }
 
-        $this->activityLogService->store($macAddress, $ipAddress, $uri, $action, $params, $method, $userID, $userName, $userType);
-
+        ProcessActivityLog::dispatch($currentAction, $userAgent, $deviceName, $deviceType, $clientVersion, $osVersion, $ipAddress, $macAddress, $uri, $action, $params, $method, $userID, $userName, $userType);
         return $next($request);
     }
 }

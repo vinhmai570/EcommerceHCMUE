@@ -20,7 +20,7 @@ class ActivityLogService {
         return $listMac[count($listMac) - 1];
     }
 
-    public function store($macAddress, $ipAddress, $uri, $action, $params, $method, $userID, $userName, $userType)
+    public function store($macAddress, $ipAddress, $uri, $action, $params, $method, $userID, $userName, $userType, $sessionID)
     {
         $activityLog = array(
             'mac_address' => $macAddress,
@@ -31,7 +31,8 @@ class ActivityLogService {
             'method'      => $method,
             'user_id'     => $userID,
             'username'    => $userName,
-            'user_type'   => $userType
+            'user_type'   => $userType,
+            'session_id'  => $sessionID
         );
 
         return $this->activityLog->create($activityLog);

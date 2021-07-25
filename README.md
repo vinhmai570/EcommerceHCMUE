@@ -4,7 +4,7 @@ This projec is Course projects for e-commerce course in HCMUE
 
 ## Requirements
 * php 7.4
-* php extension: pdo_mysql mbstring zip exif pcntl gd
+* php extension: pdo_mysql mbstring zip exif pcntl gd redis
 * mysql 5.7
 
 ## Installation (Development setup)
