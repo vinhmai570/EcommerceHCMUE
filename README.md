@@ -39,7 +39,7 @@ sudo mysql_secure_installation
 ```
 ### Todo
 
-- [ ] Activities log
+- [ ] Activity log
 
 - [ ] Export CSV
 
