@@ -7,6 +7,8 @@ use App\Models\Category;
 use App\Models\ProductSku;
 use App\Models\Attribute;
 use App\Services\ProductService;
+use Artesaos\SEOTools\Facades\SEOTools;
+
 
 class ProductController extends Controller
 {
@@ -46,7 +48,7 @@ class ProductController extends Controller
         $sizes = Attribute::firstWhere('name', 'Size')->sku_values->whereIn('product_sku_id', $product_variants->pluck('id'))->unique('attribute_value_id');
         $colors = Attribute::firstWhere('name', 'Color')->sku_values->whereIn('product_sku_id', $product_variants->pluck('id'))->unique('attribute_value_id');
 
-
+        $this->product_service->setSeoMeta($product);
         return view('frontend.products.details', compact('product', 'product_variants', 'default_variant', 'related_products', 'sizes', 'colors'));
     }
 }

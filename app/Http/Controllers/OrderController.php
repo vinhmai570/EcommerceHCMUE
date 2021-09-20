@@ -9,9 +9,12 @@ use App\Models\OrderItem;
 use App\Models\Order;
 use Auth;
 use Cart;
+use App\Traits\SeoTrait;
 
 class OrderController extends Controller
 {
+    use SeoTrait;
+
     const DEFAULT_STATUS = 0;
 
     public function index(){
@@ -20,6 +23,7 @@ class OrderController extends Controller
         }
 
         $cart_items = Cart::content();
+        $this->setSeoMeta('Dama shop checkout');
         return(view('frontend.checkout.index',compact('cart_items')));
     }
 
