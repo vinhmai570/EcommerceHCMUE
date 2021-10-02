@@ -7,11 +7,13 @@ use App\Models\Category;
 use App\Models\ProductSku;
 use App\Models\Attribute;
 use App\Services\ProductService;
-use Artesaos\SEOTools\Facades\SEOTools;
+use App\Traits\SeoTrait;
 
 
 class ProductController extends Controller
 {
+    use SeoTrait;
+
     private $product_service;
     private $item_per_page = 6;
 
@@ -24,6 +26,7 @@ class ProductController extends Controller
     {
         $products = $this->product_service->search($request, $this->item_per_page);
         $input = request()->input();
+        $this->setSeoMeta('Dama products');
         return view('frontend.products.index', compact('products', 'input'));
     }
 
