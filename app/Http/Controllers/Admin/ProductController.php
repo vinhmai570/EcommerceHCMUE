@@ -42,7 +42,7 @@ class ProductController extends Controller
 
     public function store(CreateProductRequest $request)
     {
-        if ($this->product_service->store($request)) {
+        if ($this->product_service->store($request) === true) {
             return back()->with('message', 'Create product successful');
         } else {
             return back()->with_input()->with('alert-type', 'error')->with('message', 'Create product failed');
@@ -51,7 +51,7 @@ class ProductController extends Controller
 
     public function update(UpdateProductRequest $request, $id)
     {
-        if ($this->product_service->update($request, $id)) {
+        if ($this->product_service->update($request, $id) === true) {
             return redirect()->route('admin.products.index')->with('message', 'Update product successful');
         } else {
             return back()->with('message', 'Update product failed');
@@ -60,7 +60,7 @@ class ProductController extends Controller
 
     public function delete($id)
     {
-        if ($this->product_service->delete($id)) {
+        if ($this->product_service->delete($id) === true) {
             return back()->with('message', 'Delete product successful');
         } else {
             return back()->with('alert-type', 'error')->with('message', 'Delete product Failed');

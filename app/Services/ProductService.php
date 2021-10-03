@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\SkuValue;
 use App\Models\Category;
 use App\Models\Attribute;
+use Artesaos\SEOTools\Facades\SEOTools;
 
 class ProductService {
     private $model;
@@ -188,5 +189,12 @@ class ProductService {
     public function getAllCategories()
     {
         return Category::all();
+    }
+
+    public function setSeoMeta($product)
+    {
+        SEOTools::setTitle("Dama: $product->name");
+        SEOTools::setDescription($product->description);
+        SEOTools::opengraph()->setUrl(url()->current());
     }
 }

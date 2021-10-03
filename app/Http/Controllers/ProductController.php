@@ -7,9 +7,13 @@ use App\Models\Category;
 use App\Models\ProductSku;
 use App\Models\Attribute;
 use App\Services\ProductService;
+use App\Traits\SeoTrait;
+
 
 class ProductController extends Controller
 {
+    use SeoTrait;
+
     private $product_service;
     private $item_per_page = 6;
 
@@ -22,6 +26,7 @@ class ProductController extends Controller
     {
         $products = $this->product_service->search($request, $this->item_per_page);
         $input = request()->input();
+        $this->setSeoMeta('Dama products');
         return view('frontend.products.index', compact('products', 'input'));
     }
 
@@ -46,7 +51,7 @@ class ProductController extends Controller
         $sizes = Attribute::firstWhere('name', 'Size')->sku_values->whereIn('product_sku_id', $product_variants->pluck('id'))->unique('attribute_value_id');
         $colors = Attribute::firstWhere('name', 'Color')->sku_values->whereIn('product_sku_id', $product_variants->pluck('id'))->unique('attribute_value_id');
 
-
+        $this->product_service->setSeoMeta($product);
         return view('frontend.products.details', compact('product', 'product_variants', 'default_variant', 'related_products', 'sizes', 'colors'));
     }
 }
