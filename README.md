@@ -20,7 +20,7 @@ sudo apt -y install php7.4
 sudo apt-get install -y php7.4-{pdo_mysql,exif,pcntl,gd,mbstring,mysql,zip,gd}
 ```
 
-- Composer
+- Composer:
 Go to [composer](https://getcomposer.org/download/) and follow steps to install composer
 
 - Mysql
