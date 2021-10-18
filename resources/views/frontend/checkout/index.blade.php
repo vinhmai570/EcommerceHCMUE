@@ -8,7 +8,7 @@
 @section('content')
 <div class="container wrapper">
     <div class="row cart-body">
-        <form class="form-horizontal" method="post" action="{{route('checkout')}}" enctype="multipart/form-data">
+        <form id="checkout-form" class="form-horizontal" method="post" action="{{route('checkout')}}" enctype="multipart/form-data">
             @csrf
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-push-6 col-sm-push-6">
                 <!--REVIEW ORDER-->
@@ -119,6 +119,7 @@
                 <div class="form-group">
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <button type="submit" class="btn btn-primary btn-submit-fix">Place Order</button>
+                        <div id="paypal-button-container"></div>
                     </div>
                 </div>
             </div>
@@ -136,5 +137,59 @@
             .catch( error => {
                 console.error( error );
             } );
+    </script>
+                
+    <script src="https://www.paypal.com/sdk/js?client-id={{config('paypal.sandbox.client_id')}}&currency=USD"></script>
+    <script>
+        let orderID;
+        const formToJSON = (elements) =>
+        [].reduce.call(
+            elements,
+            (data, element) => {
+            data[element.name] = element.value;
+            return data;
+            },
+            {},
+        );
+        paypal.Buttons({
+             createOrder: function(data, actions) {
+                return fetch('{{route('paypalcreate')}}', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    },
+                    body: JSON.stringify(formToJSON($("#checkout-form")[0])),
+                }).then(res=>{return res.json();})
+                .then(data=>{
+                    orderID = data.order_id;
+                    return data.id;
+                })
+                .catch(error=>{toastr.error('failed to create Paypal order due to internal server error')});
+            },
+
+            onApprove: function(data, actions) {
+                return fetch('{{route('paypalcapture')}}?'+ new URLSearchParams({orderID: orderID,paypalOrderID: data.orderID}), {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    },
+                }).then(()=>{
+                    toastr.success('The payment has been completed!');
+                    window.location.replace('{{route('home')}}');
+                })
+                .catch(error=>{toastr.error('failed to capture Paypal order due to internal server error')});
+            },
+
+            onCancel: function(data,actions) {
+                return fetch('{{route('paypalcancel')}}?'+ new URLSearchParams({orderID: orderID}), {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    },
+                }).then(()=>{
+                    toastr.error('The payment has been cancelled by client!');
+                }).catch(error=>{toastr.error('internal server error')});
+            },
+        }).render('#paypal-button-container');
     </script>
     @endsection

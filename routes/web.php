@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaypalPaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,3 +47,9 @@ Route::prefix('profile')->name('profile.')->group(function () {
 
 Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
 Route::get('/checkout', [OrderController::class, 'index'])->name('checkout.show')->middleware('auth');
+
+Route::prefix('paypal')->name('paypal')->group(function () {
+    Route::post('/order/create', [PaypalPaymentController::class, 'create'])->name('create');
+    Route::post('/order/capture', [PaypalPaymentController::class, 'capture'])->name('capture');
+    Route::post('/order/cancel', [PaypalPaymentController::class, 'cancel'])->name('cancel');
+});

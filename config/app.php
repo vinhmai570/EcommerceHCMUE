@@ -177,7 +177,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
-
+        /*
+         * Paypal Service Providers...
+         */
+        Srmklive\PayPal\Providers\PayPalServiceProvider::class,
     ],
 
     /*
