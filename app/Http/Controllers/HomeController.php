@@ -27,7 +27,7 @@ class HomeController extends Controller
     public function index()
     {
         $popular_products = $this->product_service->popularProducts(Product::MAIN_CATEGORIES,self::NUMBER_OF_ITEM_POPULAR_PRODUCT);
-        $main_categories = Category::whereIn('name', array_values(Product::MAIN_CATEGORIES))->get();
+        $main_categories = Category::whereIn('slug', array_values(Product::MAIN_CATEGORIES))->get();
         $banners = Banner::where('status', 1)->get();
 
         $bottom_products_featured = $this->product_service->featuredProducts(self::NUMBER_OF_ITEM_BOTTOM_PRODUCT);
