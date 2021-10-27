@@ -118,8 +118,8 @@
                 <!--SHIPPING METHOD END-->
                 <div class="form-group">
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <button type="submit" class="btn btn-primary btn-submit-fix">Place Order</button>
-                        <div id="paypal-button-container"></div>
+                        <button type="submit" class="btn btn-primary btn-submit-fix btn-order">Place Order</button>
+                        <div id="paypal-button-container" class="btn-order"></div>
                     </div>
                 </div>
             </div>
@@ -139,7 +139,7 @@
             } );
     </script>
                 
-    <script src="https://www.paypal.com/sdk/js?client-id={{config('paypal.sandbox.client_id')}}&currency=USD"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id={{config('paypal.sandbox.client_id')}}&currency=USD&disable-funding=card"></script>
     <script>
         let orderID;
         const formToJSON = (elements) =>
@@ -152,7 +152,10 @@
             {},
         );
         paypal.Buttons({
-             createOrder: function(data, actions) {
+            style: {
+                color:   'black',
+            },
+            createOrder: function(data, actions) {
                 return fetch('{{route('paypalcreate')}}', {
                     method: 'POST',
                     headers: {
