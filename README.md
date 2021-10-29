@@ -17,7 +17,7 @@ brew install php@7.4
 # Ubuntu
 sudo apt update
 sudo apt -y install php7.4
-sudo apt-get install -y php7.4-{pdo_mysql,exif,pcntl,gd,mbstring,mysql,zip,gd}
+sudo apt-get install -y php7.4-{curl,dom,exif,gd,mbstring,mysql,zip,gd}
 ```
 
 - Composer:
