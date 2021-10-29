@@ -59,10 +59,10 @@
                         <form action="{{ route('product.index') }}" method="GET">
                             <div class="search-select">
                                 <i class="zmdi zmdi-chevron-down"></i>
-                                <select name="category_id" class="category-search">
+                                <select name="category" class="category-search">
                                     <option value="">Select Category</option>
                                     @foreach ($search_categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        <option value="{{ $category->slug }}">{{ $category->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -117,9 +117,9 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <ul class="nav navbar-nav" id="navbar">
                 <li class="level1 {{ Route::currentRouteNamed(['home', 'root']) ? 'active' : '' }}"><a href="/" title="Home">Home</a></li>
-                <li class="level1 {{ Route::currentRouteNamed('product.index') && empty(request()->input()['category_id']) ? 'active' : '' }}"><a href="{{ route('product.index') }}" title="All Products">All Products</a></li>
-                @foreach (App\Models\Product::MAIN_CATEGORIES as $id => $name)
-                    <li class="level1 {{ isset(request()->input()['category_id']) && request()->input()['category_id'] == $id ? 'active' : '' }}"><a href="{{ route('product.index') }}?category_id={{ $id }}" title="{{ $name }}">{{ $name }}</a></li>
+                <li class="level1 {{ Route::currentRouteNamed('product.index') && empty(request()->input()['category']) ? 'active' : '' }}"><a href="{{ route('product.index') }}" title="All Products">All Products</a></li>
+                @foreach (App\Models\Product::MAIN_CATEGORIES as $id => $slug)
+                    <li class="level1 {{ isset(request()->input()['category']) && request()->input()['category'] == $slug ? 'active' : '' }}"><a href="{{ route('product.index') }}?category={{ $slug }}" title="{{ $slug }}">{{ $slug }}</a></li>
                 @endforeach
             </ul>
             <div class="menu-icon-right">
