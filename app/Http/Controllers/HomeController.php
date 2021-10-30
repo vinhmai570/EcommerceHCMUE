@@ -14,6 +14,7 @@ class HomeController extends Controller
 {
     use SeoTrait;
 
+    private $SEODescription = 'Free shipping on millions of items. Get the best of Shopping and Entertainment with Dama. Enjoy low prices and great deals on the largest selection of everyday essentials and other products technology, electronics, video games, and more';
     private $product_service;
 
     const NUMBER_OF_ITEM_POPULAR_PRODUCT = 7;
@@ -34,7 +35,7 @@ class HomeController extends Controller
         $bottom_products_best_seller = $this->product_service->bestSellerProducts(self::NUMBER_OF_ITEM_BOTTOM_PRODUCT);
         $bottom_products_newest = $this->product_service->newestProducts(self::NUMBER_OF_ITEM_BOTTOM_PRODUCT);
 
-        $this->setSeoMeta('Dama shop');
+        $this->setSeoMeta('Dama shop', $this->SEODescription, asset('frontend/images/Dana-home1-banner-bottom.png'));
         return view('frontend.home.index', compact('main_categories', 'popular_products','banners', 'bottom_products_featured', 'bottom_products_best_seller', 'bottom_products_newest'));
     }
 }
