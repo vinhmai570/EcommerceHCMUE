@@ -195,7 +195,7 @@ class ProductService {
     {
         SEOTools::setTitle("Dama: $product->name");
         SEOTools::setDescription($product->description);
-        SEOTools::opengraph()->addImage($product->image, ['size' => 300]);
+        SEOTools::opengraph()->addImage(get_image($product->image, \App\Models\Product::IMAGE_SIZE['large']), ['size' => 300]);
         SEOTools::opengraph()->setUrl(url()->current());
     }
 }
