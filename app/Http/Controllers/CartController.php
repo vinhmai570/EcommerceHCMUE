@@ -14,7 +14,7 @@ class CartController extends Controller
     public function index()
     {
         $cart_items = Cart::content();
-        $this->setSeoMeta('Dama shop cart');
+        $this->setSeoMeta('Dama shop cart', 'Dama shop cart', asset('frontend/images/Dana-home1-banner-bottom.png'));
         return view('frontend.carts.index', compact('cart_items'));
     }
 

@@ -26,7 +26,7 @@ class ProductController extends Controller
     {
         $products = $this->product_service->search($request, $this->item_per_page);
         $input = request()->input();
-        $this->setSeoMeta('Dama products');
+        $this->setSeoMeta('Dama products', 'Dama: Search product', asset('frontend/images/Dana-home1-banner-bottom.png'));
         return view('frontend.products.index', compact('products', 'input'));
     }
 
