@@ -9,6 +9,7 @@ use App\Models\OrderItem;
 use App\Models\Order;
 use Auth;
 use Cart;
+use App\Traits\SeoTrait;
 
 class OrderController extends Controller
 {

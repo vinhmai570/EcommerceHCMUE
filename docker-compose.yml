@@ -1,6 +1,5 @@
-version: '3'
+version: "3"
 services:
-
   #PHP Service
   app:
     build:
@@ -14,6 +13,9 @@ services:
       SERVICE_NAME: app
       SERVICE_TAGS: dev
     working_dir: /var/www
+    depends_on:
+      mysql:
+        condition: service_healthy
     volumes:
       - ./:/var/www
       - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
@@ -27,8 +29,8 @@ services:
     restart: always
     tty: true
     ports:
-      - "80:80"
-      - "443:443"
+      - "8000:80"
+      - "4430:443"
     volumes:
       - ./:/var/www
       - ./nginx/conf.d/:/etc/nginx/conf.d/
@@ -44,10 +46,14 @@ services:
     ports:
       - "3308:3306"
     environment:
-      MYSQL_DATABASE: laravel
+      MYSQL_DATABASE: web_technology
       MYSQL_ROOT_PASSWORD: root
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 10
     volumes:
       - dbdata:/var/lib/mysql/
       - ./mysql/my.cnf:/etc/mysql/my.cnf

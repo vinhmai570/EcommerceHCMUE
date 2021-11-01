@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use App\Models\Product;
 use Cart;
+use App\Traits\SeoTrait;
 
 class CartController extends Controller
 {
+    use SeoTrait;
+
     public function index()
     {
         $cart_items = Cart::content();
+        $this->setSeoMeta('Dama shop cart', 'Dama shop cart', asset('frontend/images/Dana-home1-banner-bottom.png'));
         return view('frontend.carts.index', compact('cart_items'));
     }
 

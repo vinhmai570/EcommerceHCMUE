@@ -2,9 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 <head>
+    {!! SEO::generate(true) !!}
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{asset('frontend/images/favicon.png')}}" />
     @include('frontend.components.styles')
     <title>Home</title>

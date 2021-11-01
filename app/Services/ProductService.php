@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\SkuValue;
 use App\Models\Category;
 use App\Models\Attribute;
+use Artesaos\SEOTools\Facades\SEOTools;
 
 class ProductService {
     private $model;
@@ -28,12 +29,12 @@ class ProductService {
     public function popularProducts($main_categories,$item_per_page)
     {
         $popular_products = array();
-        foreach ($main_categories as $id => $name) {
-            $popular_products[$name] = Product::where('category_id', '=', $id);
-            if (count($popular_products[$name]->get())>0) {
-                $popular_products[$name] = $popular_products[$name]->withVariantionDefault()->get();
+        foreach ($main_categories as $id => $slug) {
+            $popular_products[$slug] = Product::where('category_id', '=', $id);
+            if (count($popular_products[$slug]->get())>0) {
+                $popular_products[$slug] = $popular_products[$slug]->withVariantionDefault()->get();
             } else {
-                $popular_products[$name] = [];
+                $popular_products[$slug] = [];
             }
         }
         return $popular_products;
@@ -144,16 +145,18 @@ class ProductService {
 
     public function buildSearchQuery($request)
     {
-        $query = $this->model;
+        $query = $this->model->join('categories', 'products.category_id', '=', 'categories.id');
+
+        $query = $query->select('products.name as name', 'products.id as product_id', 'products.slug as slug', 'price', 'sale_price', 'product_skus.image', 'product_skus.id as id');
 
         if ($request->has('q')) {
-            $query = $query->where('name', 'like', "%$request->q%");
-            $query = $query->orWhere('description', 'like', "%$request->q%");
-            $query = $query->orWhere('content', 'like', "%$request->q%");
+            $query = $query->where('products.name', 'like', "%$request->q%");
+            $query = $query->orWhere('products.description', 'like', "%$request->q%");
+            $query = $query->orWhere('products.content', 'like', "%$request->q%");
         }
 
-        if ($request->has('category_id')) {
-            $query = $query->where('category_id', '=', $request->category_id);
+        if ($request->has('category')) {
+            $query = $query->where('categories.slug', '=', $request->category);
         }
 
         if ($request->has('price_from')) {
@@ -188,5 +191,13 @@ class ProductService {
     public function getAllCategories()
     {
         return Category::all();
+    }
+
+    public function setSeoMeta($product)
+    {
+        SEOTools::setTitle("Dama: $product->name");
+        SEOTools::setDescription($product->description);
+        SEOTools::opengraph()->addImage(get_image($product->image, \App\Models\Product::IMAGE_SIZE['large']), ['size' => 300]);
+        SEOTools::opengraph()->setUrl(url()->current());
     }
 }
