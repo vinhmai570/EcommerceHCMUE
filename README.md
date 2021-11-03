@@ -66,7 +66,7 @@ php artisan migrate
 
 ### Todo
 
-- [ ] Activities log
+- [ ] Activity log
 
 - [ ] Export CSV
 
