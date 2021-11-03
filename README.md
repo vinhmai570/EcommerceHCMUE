@@ -1,6 +1,6 @@
 ## About Project
 
-This projec is Course projects for e-commerce course in HCMUE
+This projec is Coursework projects for e-commerce course in HCMUE
 
 ## Requirements
 * php 7.4
