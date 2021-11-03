@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaypalPaymentController;
+use App\Http\Controllers\Admin\Auth\LogoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,8 @@ use App\Http\Controllers\PaypalPaymentController;
 */
 require __DIR__.'/admin.php';
 require __DIR__.'/auth.php';
+
+Route::post('/admin/logout', [LogoutController::class, 'logout'])->name('admin.logout');
 
 Route::get('/', [HomeController::class, 'index'])->name('root');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
