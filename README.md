@@ -1,6 +1,6 @@
 ## About Project
 
-This projec is Course projects for e-commerce course in HCMUE
+This projec is Coursework project for e-commerce course in HCMUE
 
 ## Requirements
 * php 7.4
@@ -66,7 +66,7 @@ php artisan migrate
 
 ### Todo
 
-- [ ] Activities log
+- [ ] Activity log
 
 - [ ] Export CSV
 
