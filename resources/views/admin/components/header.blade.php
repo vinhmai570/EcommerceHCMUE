@@ -107,8 +107,12 @@
 								<i class="icon-user"></i> My Profile </a>
 							</li>
 							<li>
-								<a href="{{route('admin.logout')}}">
-								<i class="icon-key"></i> Log Out </a>
+                                <form method="POST" action="{{ route('admin.logout') }}">
+                                    @csrf
+                                    <button style="border: none; background:none;" type="submit">
+                                        <i class="icon-key"></i> Log Out
+                                    </button>
+                                </form>
 							</li>
 						</ul>
 					</li>

@@ -8,6 +8,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaypalPaymentController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +19,6 @@ use App\Http\Controllers\PaypalPaymentController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-require __DIR__.'/admin.php';
 require __DIR__.'/auth.php';
 
 Route::get('/', [HomeController::class, 'index'])->name('root');
