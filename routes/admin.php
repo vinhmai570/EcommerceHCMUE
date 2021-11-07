@@ -52,6 +52,7 @@ Route::middleware('auth:admin')->name('admin.')->group(function () {
         Route::get('/edit/{id}', [UserController::class, 'edit'])->name('edit');
         Route::put('/update/{id}', [UserController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [UserController::class, 'destroy'])->name('destroy');
+        Route::get('/export', [UserController::class, 'export'])->name('export');
     });
 
     Route::prefix('banners')->name('banners.')->group(function () {

@@ -77,6 +77,9 @@
       @endforeach
     </tbody>
   </table>
+  <form action="{{ route('admin.users.export') }}" method="GET" class="col-md-5">
+    <button type="submit" style="background-color:darkgreen; border: 1px solid; padding: 10px; color: #fff">Export to CSV</button>
+  </form>
   {{ $users->appends(request()->input())->links() }}
 </div>
 @endsection
