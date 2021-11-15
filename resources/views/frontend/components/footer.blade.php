@@ -43,11 +43,10 @@
                     float: right;
                     margin-top: -30px;
                 }
-                /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
-                We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+                /* https://gmail.us20.list-manage.com/subscribe/post?u=09e510485dd9e65efabddd1ae&amp;id=0d03ed7797 */
             </style>
             <div id="mc_embed_signup">
-                <form action="https://gmail.us20.list-manage.com/subscribe/post?u=09e510485dd9e65efabddd1ae&amp;id=0d03ed7797" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                <form action="https://gmail.us5.list-manage.com/subscribe/post?u=fe1a322b97c005c5f3154c3a8&amp;id=9ca4526078" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
                     <div id="mc_embed_signup_scroll">
                     <label for="mce-EMAIL">Subscribe</label>
                     <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
