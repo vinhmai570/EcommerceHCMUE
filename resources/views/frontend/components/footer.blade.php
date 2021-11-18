@@ -33,7 +33,7 @@
                 </ul>
             </div>
             <!-- Begin Mailchimp Signup Form -->
-            <link href="http://cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7_dtp.css" rel="stylesheet" type="text/css">
+            <link href="https://cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7_dtp.css" rel="stylesheet" type="text/css">
             <style type="text/css">
                 #mc_embed_signup{
                     background:#fff;
