@@ -10,6 +10,7 @@ use App\Models\Order;
 use Auth;
 use Cart;
 use App\Traits\SeoTrait;
+use Log;
 
 class OrderController extends Controller
 {
@@ -48,9 +49,14 @@ class OrderController extends Controller
             $order->order_items()->saveMany($order_items);
             DB::commit();
 
+            if ($request->payment == 'vn-pay') {
+                return redirect( route('vnpay'))->with('id',$order->id);
+            }
+
             Cart::destroy();
             return redirect('/')->with('message', 'Create order successful');
         } catch(\Exception $e) {
+            Log::error($e);
             DB::rollback();
             return back()->with('alert-type', 'error')->with('message', 'Create order failed');
         }

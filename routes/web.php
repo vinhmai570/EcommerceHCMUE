@@ -8,7 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaypalPaymentController;
-
+use App\Http\Controllers\VnpayController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,3 +54,6 @@ Route::prefix('paypal')->name('paypal')->group(function () {
     Route::post('/order/capture', [PaypalPaymentController::class, 'capture'])->name('capture');
     Route::post('/order/cancel', [PaypalPaymentController::class, 'cancel'])->name('cancel');
 });
+
+Route::get('/vnpay', [VnpayController::class,'create'])->name('vnpay');
+Route::get('/return-vnpay', [VnpayController::class,'return'])->name('return-vnpay');

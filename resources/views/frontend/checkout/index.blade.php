@@ -120,6 +120,9 @@
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <button type="submit" class="btn btn-primary btn-submit-fix btn-order">Place Order</button>
                         <div id="paypal-button-container" class="btn-order"></div>
+                        <input type="radio" class="btn-check" name="payment" autocomplete="off" value="vn-pay">
+                        <h3>VNPay</h3>
+                        <img src="{{asset('frontend/images/logoVnpay.png')}}" alt='payment vnpay' />
                     </div>
                 </div>
             </div>
@@ -138,7 +141,7 @@
                 console.error( error );
             } );
     </script>
-                
+
     <script src="https://www.paypal.com/sdk/js?client-id={{config('paypal.sandbox.client_id')}}&currency=USD&disable-funding=card"></script>
     <script>
         let orderID;
