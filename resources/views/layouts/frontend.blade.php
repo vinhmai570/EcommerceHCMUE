@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="{{asset('frontend/images/favicon.png')}}" />
     @include('frontend.components.styles')
     <title>Home</title>
-    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=60dc7fd8315d7b0012983500&product=sticky-share-buttons" async="async"></script>
+    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=60dc7fd8315d7b0012983500&product=sticky-share-buttons" defer="defer"></script>
 </head>
 <body>
     @include('frontend.components.header')
@@ -20,5 +20,6 @@
     @include('frontend.components.footer')
     @include('frontend.components.scripts')
     @include('frontend.components.live_chat')
+    @include('frontend.components.chat-messenger')
 </body>
 </html>
