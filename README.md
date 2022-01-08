@@ -42,11 +42,6 @@ git clone https://github.com/vinhmai570/EcommerceHCMUE.git [your-directory]
 composer install
 ```
 
-- Publish configuration & views:
-```
-php artisan vendor:publish
-```
-
 - Create .env file
 ```
 cp .env.example .env
@@ -63,19 +58,3 @@ php artisan key:generate
 ```
 php artisan migrate
 ```
-
-### Todo
-
-- [ ] Activity log
-
-- [ ] Export CSV
-
-- [ ] Improve SEO
-
-- [ ] Paypal checkout
-
-- [ ] Push notification
-
-- [ ] Setup CI/CD
-
-- [ ] Multi Language
